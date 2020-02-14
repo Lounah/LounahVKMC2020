@@ -6,6 +6,7 @@ object Modules {
     const val app = ":app"
     const val coreExtensions = ":core:extensions"
     const val coreUi = ":core:ui"
+    const val featureChallenge = ":feature:challenge-feature"
 }
 
 object Releases {

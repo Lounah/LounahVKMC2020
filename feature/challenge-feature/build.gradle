@@ -1,0 +1,16 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+    implementation project(Modules.coreExtensions)
+    implementation project(Modules.coreUi)
+
+    implementation Libraries.rxJava
+    implementation Libraries.rxKotlin
+    implementation Libraries.glide
+    implementation Libraries.vkSdk
+    implementation Libraries.rxAndroid
+    implementation SupportLibraries.design
+    implementation SupportLibraries.appcompat
+    implementation SupportLibraries.recyclerview
+    implementation Libraries.constraintLayout
+}

@@ -7,29 +7,27 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.lounah.vkmc.R
 import com.lounah.vkmc.core.extensions.toast
+import com.lounah.vkmc.feature.challenge_feature.ChallengeFeatureActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
-import com.vk.api.sdk.auth.VKScope
-import kotlinx.android.synthetic.main.activity_splash.*
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlin.LazyThreadSafetyMode.*
 
 internal class LoginActivity : AppCompatActivity() {
 
     private val authCallback: VKAuthCallback by lazy(NONE) {
         object : VKAuthCallback {
-            override fun onLogin(token: VKAccessToken) = Unit
+            override fun onLogin(token: VKAccessToken) = startMainActivity()
             override fun onLoginFailed(errorCode: Int) = toast(R.string.login_auth_failed)
         }
     }
 
-    private val authScopes = emptyList<VKScope>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkIfLoggedIn()
-        setContentView(R.layout.activity_splash)
-        loginBtn.setOnClickListener { VK.login(this, authScopes) }
+        setContentView(R.layout.activity_login)
+        loginBtn.setOnClickListener { VK.login(this, ChallengeFeatureActivity.authScopes) }
     }
 
 
@@ -40,8 +38,14 @@ internal class LoginActivity : AppCompatActivity() {
 
     private fun checkIfLoggedIn() {
         if (VK.isLoggedIn()) {
-
+            startMainActivity()
+            finish()
         }
+    }
+
+    private fun startMainActivity() {
+        ChallengeFeatureActivity.start(this)
+        finish()
     }
 
     companion object {
