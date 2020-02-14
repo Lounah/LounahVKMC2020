@@ -48,6 +48,7 @@ android {
 dependencies {
     implementation project(Modules.coreExtensions)
     implementation project(Modules.coreUi)
+    implementation project(Modules.coreDi)
     implementation project(Modules.featureChallenge)
 
     implementation Libraries.kotlin

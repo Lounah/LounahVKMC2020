@@ -1,3 +1,7 @@
-include Modules.app, Modules.coreExtensions, Modules.coreUi, Modules.featureChallenge
+include Modules.app,
+        Modules.coreExtensions,
+        Modules.coreUi,
+        Modules.coreDi,
+        Modules.featureChallenge
 
 rootProject.name = 'LounahVKMC2020'

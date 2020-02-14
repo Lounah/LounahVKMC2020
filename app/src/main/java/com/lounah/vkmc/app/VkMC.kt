@@ -1,6 +1,7 @@
 package com.lounah.vkmc.app
 
 import android.app.Application
+import com.lounah.vkmc.di.InjectorInitializer
 import com.lounah.vkmc.login.LoginActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKTokenExpiredHandler
@@ -17,5 +18,6 @@ internal class VkMC : Application() {
     override fun onCreate() {
         super.onCreate()
         VK.addTokenExpiredHandler(tokenTracker)
+        InjectorInitializer.initialize(this)
     }
 }
