@@ -5,6 +5,7 @@ import com.lounah.vkmc.login.LoginActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKTokenExpiredHandler
 
+@Suppress("unused")
 internal class VkMC : Application() {
 
     private val tokenTracker = object: VKTokenExpiredHandler {

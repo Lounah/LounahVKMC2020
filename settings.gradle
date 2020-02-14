@@ -1,3 +1,4 @@
-include Modules.app, Modules.coreExtensions
+
+include Modules.app, Modules.coreExtensions, Modules.coreUi
 
 rootProject.name = 'LounahVKMC2020'

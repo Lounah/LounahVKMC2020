@@ -1,0 +1,9 @@
+apply from: "$rootDir/common-android-library.gradle"
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation Libraries.glide
+    kapt Libraries.glideAp
+    implementation SupportLibraries.appcompat
+    implementation SupportLibraries.design
+}

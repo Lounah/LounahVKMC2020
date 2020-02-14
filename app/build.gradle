@@ -47,6 +47,7 @@ android {
 
 dependencies {
     implementation project(Modules.coreExtensions)
+    implementation project(Modules.coreUi)
 
     implementation Libraries.kotlin
     implementation Libraries.rxJava

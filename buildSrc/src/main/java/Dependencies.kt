@@ -5,6 +5,7 @@ object ApplicationId {
 object Modules {
     const val app = ":app"
     const val coreExtensions = ":core:extensions"
+    const val coreUi = ":core:ui"
 }
 
 object Releases {
