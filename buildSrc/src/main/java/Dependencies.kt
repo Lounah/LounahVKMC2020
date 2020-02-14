@@ -4,6 +4,7 @@ object ApplicationId {
 
 object Modules {
     const val app = ":app"
+    const val coreExtensions = ":core:extensions"
 }
 
 object Releases {
@@ -16,7 +17,7 @@ object Versions {
     const val minSdk = 21
     const val targetSdk = 29
 
-    const val vkSdk = "2.0.0"
+    const val vkSdk = "2.2.1"
 
     const val appcompat = "1.0.2"
     const val design = "1.0.0"

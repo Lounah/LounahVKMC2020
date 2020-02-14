@@ -9,7 +9,7 @@ android {
     defaultConfig {
         minSdkVersion Versions.minSdk
         targetSdkVersion Versions.targetSdk
-        versionCode Releases.versionCode
+        versionCode rootProject.gitCommitCount
         versionName Releases.versionName
         resConfig "ru"
     }

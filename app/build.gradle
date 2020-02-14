@@ -46,9 +46,12 @@ android {
 }
 
 dependencies {
+    implementation project(Modules.coreExtensions)
+
     implementation Libraries.kotlin
     implementation Libraries.rxJava
     implementation Libraries.rxAndroid
+    implementation Libraries.vkSdk
     implementation SupportLibraries.design
     implementation SupportLibraries.appcompat
     implementation SupportLibraries.recyclerview
