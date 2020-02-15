@@ -11,8 +11,7 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatDialog
 import com.google.android.material.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HALF_EXPANDED
-import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
+import com.google.android.material.bottomsheet.BottomSheetBehavior.*
 import java.lang.Math.max
 
 fun Dialog.attachStickyFooter(stickyView: View,
@@ -68,7 +67,7 @@ private fun setBottomSheetCallback(bottomSheet: ViewGroup,
                 slide(bottomSheet, harmonizedOffset)
             }
             override fun onStateChanged(bottomSheet: View, state: Int) = when (state) {
-                STATE_HIDDEN -> dismiss()
+                STATE_HIDDEN, STATE_COLLAPSED -> dismiss()
                 STATE_HALF_EXPANDED -> show()
                 else -> Unit
             }
