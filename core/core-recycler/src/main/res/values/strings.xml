@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cannot_load_data">Не удалось загрузить данные</string>
+    <string name="try_one_more_time">Попробуйте еще раз</string>
+    <string name="repeat">Повторить</string>
+</resources>

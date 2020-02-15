@@ -28,6 +28,7 @@ object Versions {
     const val appcompat = "1.0.2"
     const val design = "1.0.0"
     const val recyclerview = "1.0.0"
+    const val lifecycle = "2.2.0"
     const val ktx = "1.0.0-alpha1"
     const val kotlin = "1.3.50"
 
@@ -51,6 +52,7 @@ object Libraries {
     const val rxAndroid = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideAp = "com.github.bumptech.glide:compiler:${Versions.glide}"
     const val vkSdk = "com.vk:androidsdk:${Versions.vkSdk}"
