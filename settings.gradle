@@ -2,6 +2,7 @@ include Modules.app,
         Modules.coreExtensions,
         Modules.coreUi,
         Modules.coreDi,
+        Modules.featureImageViewer,
         Modules.featureChallenge
 
 rootProject.name = 'LounahVKMC2020'

@@ -1,0 +1,13 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+    implementation project(Modules.coreExtensions)
+    implementation project(Modules.coreUi)
+
+    implementation Libraries.glide
+    implementation Libraries.vkSdk
+    implementation SupportLibraries.design
+    implementation SupportLibraries.appcompat
+
+    implementation 'com.alexvasilkov:gesture-views:2.2.0'
+}

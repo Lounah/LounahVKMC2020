@@ -5,6 +5,7 @@ import android.widget.ImageView
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
@@ -16,6 +17,7 @@ fun ImageView.load(
     failed: () -> Unit = {}
 ) = GlideApp.with(this)
     .load(url)
+    .transition(DrawableTransitionOptions.withCrossFade())
     .also { request -> requestOptions?.let(request::apply) }
     .setListener(failed, success)
     .into(this)

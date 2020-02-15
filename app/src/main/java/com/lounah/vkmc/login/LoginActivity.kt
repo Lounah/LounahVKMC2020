@@ -4,10 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.*
 import android.os.Bundle
+import android.view.WindowManager
+import android.view.WindowManager.LayoutParams
+import android.view.WindowManager.LayoutParams.*
 import androidx.appcompat.app.AppCompatActivity
 import com.lounah.vkmc.R
 import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.feature.challenge_feature.ChallengeFeatureActivity
+import com.lounah.vkmc.feature.image_viewer.ui.ImageViewerActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -24,10 +28,13 @@ internal class LoginActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.addFlags(FLAG_LAYOUT_NO_LIMITS)
         super.onCreate(savedInstanceState)
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)
-        loginBtn.setOnClickListener { VK.login(this, ChallengeFeatureActivity.authScopes) }
+        loginBtn.setOnClickListener {
+            VK.login(this, ChallengeFeatureActivity.authScopes)
+        }
     }
 
 

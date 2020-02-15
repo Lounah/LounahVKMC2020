@@ -8,6 +8,7 @@ object Modules {
     const val coreUi = ":core:ui"
     const val coreDi = ":core:di"
     const val featureChallenge = ":feature:challenge-feature"
+    const val featureImageViewer = ":feature:image-viewer"
 }
 
 object Releases {
