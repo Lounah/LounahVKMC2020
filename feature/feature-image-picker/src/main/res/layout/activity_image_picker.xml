@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="56dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="56dp"
+            android:text="@string/all_photos"
+            android:textColor="@color/uikit_black"
+            android:textSize="18sp"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_margin="16dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_close"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="56dp" />
+
+    <Button
+        style="@style/Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:alpha="0"
+        android:text="@string/select_photo"
+        tools:alpha="1" />
+
+    <LinearLayout
+        android:id="@+id/permissionsNotice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textWithIcon"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:text="@string/storage_access_required"
+            android:textColor="@color/uikit_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/subText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal"
+            android:text="@string/storage_access_permission_rationale"
+            android:textColor="@color/uikit_gray"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnRepeat"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/allow"
+            android:textColor="@color/uikit_accent" />
+
+    </LinearLayout>
+
+</FrameLayout>

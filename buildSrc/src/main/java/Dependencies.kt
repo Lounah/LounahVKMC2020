@@ -11,6 +11,7 @@ object Modules {
     const val coreNavigation = ":core:core-navigation"
     const val featureChallenge = ":feature:feature-challenge"
     const val featureImageViewer = ":feature:feature-image-viewer"
+    const val featureImagePicker = ":feature:feature-image-picker"
 }
 
 object Releases {

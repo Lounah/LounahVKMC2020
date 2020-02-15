@@ -1,0 +1,26 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp">
+
+    <View
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/ic_photograph" />
+
+    <TextView
+        android:id="@+id/pickPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:fontFamily="sans-serif-medium"
+        android:drawablePadding="12dp"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/from_camera"
+        android:textAlignment="center"
+        android:textColor="@color/uikit_accent"
+        android:textSize="16sp" />
+
+</FrameLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="storage_access_required">Необходим доступ к внутреннему хранилищу</string>
+    <string name="storage_access_permission_rationale">Разрешите приложению доступ ко внутреннему хранилищу, чтобы иметь возможность загружать фотографии</string>
+
+    <string name="allow">Разрешить</string>
+    <string name="select_photo">Выбрать</string>
+    <string name="from_camera">Фото</string>
+    <string name="all_photos">Все фотографии</string>
+</resources>

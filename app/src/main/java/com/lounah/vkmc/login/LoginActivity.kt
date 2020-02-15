@@ -12,6 +12,7 @@ import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
 import com.lounah.vkmc.feature.challenge_feature.ChallengeFeatureActivity
+import com.lounah.vkmc.feature.feature_image_picker.ui.ImagePickerActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -30,12 +31,14 @@ internal class LoginActivity : AppCompatActivity() {
     private val clickLock = ClickLock()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        overridePendingTransition(0, 0)
         window.addFlags(FLAG_LAYOUT_NO_LIMITS)
         super.onCreate(savedInstanceState)
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)
         loginBtn.throttledClick(clickLock) {
-            VK.login(this, ChallengeFeatureActivity.authScopes)
+            ImagePickerActivity.start(this, 1)
+//            VK.login(this, ChallengeFeatureActivity.authScopes)
         }
     }
 
