@@ -8,6 +8,7 @@ object Modules {
     const val coreUi = ":core:core-ui"
     const val coreDi = ":core:core-di"
     const val coreRecycler = ":core:core-recycler"
+    const val coreNavigation = ":core:core-navigation"
     const val featureChallenge = ":feature:feature-challenge"
     const val featureImageViewer = ":feature:feature-image-viewer"
 }

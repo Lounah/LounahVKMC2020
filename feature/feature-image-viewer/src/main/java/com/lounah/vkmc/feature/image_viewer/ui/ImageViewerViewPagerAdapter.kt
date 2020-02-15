@@ -4,13 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
-import com.bumptech.glide.request.RequestOptions
 import com.lounah.vkmc.core.extensions.dp
 import com.lounah.vkmc.core.extensions.hide
 import com.lounah.vkmc.core.extensions.show
-import com.lounah.vkmc.core.ui.load
+import com.lounah.vkmc.core.ui.imageloader.load
 import com.lounah.vkmc.feature.image_viewer.R
 import com.lounah.vkmc.feature.image_viewer.core.ContainerGestureListener
 import com.lounah.vkmc.feature.image_viewer.core.ContentSizeProvider

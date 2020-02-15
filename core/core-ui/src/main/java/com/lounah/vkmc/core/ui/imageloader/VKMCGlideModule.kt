@@ -1,4 +1,4 @@
-package com.lounah.vkmc.core.ui
+package com.lounah.vkmc.core.ui.imageloader
 
 import android.app.ActivityManager
 import android.content.Context

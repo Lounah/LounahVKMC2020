@@ -3,6 +3,7 @@ include Modules.app,
         Modules.coreUi,
         Modules.coreDi,
         Modules.coreRecycler,
+        Modules.coreNavigation,
         Modules.featureImageViewer,
         Modules.featureChallenge
 
