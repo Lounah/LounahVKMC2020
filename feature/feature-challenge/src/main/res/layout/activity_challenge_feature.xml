@@ -33,13 +33,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="8dp"
-            android:text="Поделитесь фотографией на стене и добавьте к ней описание." />
+            android:text="@string/share_your_photos_descr" />
 
         <Button
             style="@style/Button.Mini"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
-            android:text="Выбрать фото" />
+            android:text="@string/select_a_photo" />
     </LinearLayout>
 
 </FrameLayout>
