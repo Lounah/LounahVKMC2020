@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import com.lounah.vkmc.core.extensions.animateAlpha
 import com.lounah.vkmc.core.extensions.animateReveal
 import com.lounah.vkmc.core.extensions.animateTranslationY
 import com.lounah.vkmc.core.extensions.dp
@@ -37,7 +38,7 @@ internal class ImageViewerUiHelper(
     fun handleImageMove(moveRatio: Float) {
         updateBackgroundDimmingAlpha(abs(moveRatio))
         systemUiHelper.hide()
-        toolbar.animateTranslationY(-toolbar.height - 16.dp(activity), 450, 100)
+        toolbar.animateAlpha(0)
     }
 
     fun handleImageDismiss() {
@@ -46,10 +47,10 @@ internal class ImageViewerUiHelper(
 
     fun onImageClicked() {
         if (systemUiHelper.isShowing) {
-            toolbar.animateTranslationY(-toolbar.height - 16.dp(activity), 450, 100)
+            toolbar.animateAlpha(0)
             systemUiHelper.hide()
         } else {
-            toolbar.animateTranslationY(0, 450)
+            toolbar.animateAlpha(1)
             systemUiHelper.show()
         }
     }
