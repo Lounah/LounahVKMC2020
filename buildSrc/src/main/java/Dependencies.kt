@@ -4,12 +4,12 @@ object ApplicationId {
 
 object Modules {
     const val app = ":app"
-    const val coreExtensions = ":core:extensions"
-    const val coreUi = ":core:ui"
-    const val coreDi = ":core:di"
-    const val coreRecycler = ":core:recycler"
-    const val featureChallenge = ":feature:challenge-feature"
-    const val featureImageViewer = ":feature:image-viewer"
+    const val coreExtensions = ":core:core-extensions"
+    const val coreUi = ":core:core-ui"
+    const val coreDi = ":core:core-di"
+    const val coreRecycler = ":core:core-recycler"
+    const val featureChallenge = ":feature:feature-challenge"
+    const val featureImageViewer = ":feature:feature-image-viewer"
 }
 
 object Releases {
