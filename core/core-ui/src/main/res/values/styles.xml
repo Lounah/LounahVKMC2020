@@ -23,6 +23,7 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/uikit_white</item>
     </style>
 
     <style name="TitleText" parent="TextAppearance.AppCompat">

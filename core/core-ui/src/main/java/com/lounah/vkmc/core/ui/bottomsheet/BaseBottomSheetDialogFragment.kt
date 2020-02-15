@@ -11,7 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lounah.vkmc.core.ui.R
 
-class BaseBottomSheetDialogFragment(
+abstract class BaseBottomSheetDialogFragment(
     @LayoutRes private val layout: Int
 ) : BottomSheetDialogFragment() {
 
@@ -23,10 +23,8 @@ class BaseBottomSheetDialogFragment(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(layout, container, false)
-    }
+    ): View? = inflater.inflate(layout, container, false)
+
 
     override fun onStart() {
         super.onStart()

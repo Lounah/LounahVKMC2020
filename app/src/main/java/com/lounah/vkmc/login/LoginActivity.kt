@@ -2,18 +2,21 @@ package com.lounah.vkmc.login
 
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.*
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
-import android.view.WindowManager.LayoutParams.*
+import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
 import com.lounah.vkmc.R
 import com.lounah.vkmc.core.extensions.toast
+import com.lounah.vkmc.core.ui.util.ClickLock
+import com.lounah.vkmc.core.ui.util.throttledClick
 import com.lounah.vkmc.feature.challenge_feature.ChallengeFeatureActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlin.LazyThreadSafetyMode.*
+import kotlin.LazyThreadSafetyMode.NONE
 
 internal class LoginActivity : AppCompatActivity() {
 
@@ -24,12 +27,14 @@ internal class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private val clickLock = ClickLock()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         window.addFlags(FLAG_LAYOUT_NO_LIMITS)
         super.onCreate(savedInstanceState)
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)
-        loginBtn.setOnClickListener {
+        loginBtn.throttledClick(clickLock) {
             VK.login(this, ChallengeFeatureActivity.authScopes)
         }
     }
