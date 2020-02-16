@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class GroupsReponse(
+data class GroupsResponse(
     val response: Groups
 )
 
@@ -17,7 +17,7 @@ data class Groups(
 data class Group(
     val id: Int,
     val name: String,
-    @SerializedName("photo_100")
+    @SerializedName("photo_200")
     val photo: String
 )
 
@@ -33,7 +33,7 @@ data class GroupById(
     val description: String,
     @SerializedName("members_count")
     val subscribers: Int,
-    @SerializedName("photo_100")
+    @SerializedName("photo_medium")
     val photo: String
 )
 

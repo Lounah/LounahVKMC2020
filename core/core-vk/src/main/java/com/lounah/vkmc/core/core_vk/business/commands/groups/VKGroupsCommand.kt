@@ -3,7 +3,7 @@ package com.lounah.vkmc.core.core_vk.business.commands.groups
 import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
 import com.lounah.vkmc.core.core_vk.model.Group
-import com.lounah.vkmc.core.core_vk.model.GroupsReponse
+import com.lounah.vkmc.core.core_vk.model.GroupsResponse
 import com.vk.api.sdk.VKApiManager
 import com.vk.api.sdk.VKApiResponseParser
 
@@ -33,7 +33,7 @@ internal class VKGroupsCommand(
         private val gson: Gson = Gson()
     ) : VKApiResponseParser<List<Group>> {
         override fun parse(response: String): List<Group> {
-            return gson.fromJson(response, GroupsReponse::class.java).response.items
+            return gson.fromJson(response, GroupsResponse::class.java).response.items
         }
     }
 }

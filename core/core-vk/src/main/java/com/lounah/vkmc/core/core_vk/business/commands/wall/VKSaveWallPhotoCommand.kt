@@ -22,7 +22,7 @@ internal class VKSaveWallPhotoCommandBuilder(
     }
 }
 
-class VKSaveWallPhotoCommand(
+internal class VKSaveWallPhotoCommand(
     fileUploadInfo: VKFileUploadInfo,
     override val method: String = "photos.saveWallPhoto",
     override val responseParser: VKApiResponseParser<VKSaveInfo> = SaveInfoParser()

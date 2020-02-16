@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unsubscribe">Отписаться</string>
+    <string name="groups">Сообщества</string>
+    <string name="groups_unsubscribe">Отписаться от сообществ</string>
+    <string name="groups_unsubscribe_rationale">Коснитесь и удерживайте, чтобы увидеть информацию о сообществе</string>
+</resources>

@@ -11,6 +11,6 @@ typealias Count = Int
 class GetUserGroups : (Offset, Count) -> Single<List<Group>> {
 
     override fun invoke(offset: Offset, count: Count): Single<List<Group>> {
-        return Single.fromCallable { VK.executeSync(VKGroupsCommand(offset, count)) }
+        return Single.fromCallable { VK.executeSync(VKGroupsCommand(offset, count, reversed = true)) }
     }
 }
