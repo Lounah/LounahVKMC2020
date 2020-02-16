@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.*
 import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.feature.feature_image_picker.R
@@ -36,7 +37,7 @@ class ImagePickerActivity : AppCompatActivity() {
 
     private fun setUpBottomSheet() {
         dialog.run {
-            from(view)?.let { bsb ->
+            BottomSheetBehavior.from(view)?.let { bsb ->
                 bsb.state = STATE_EXPANDED
                 bsb.setBottomSheetCallback(bottomSheetCallback)
             }

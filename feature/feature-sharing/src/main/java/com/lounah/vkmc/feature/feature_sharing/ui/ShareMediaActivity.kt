@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_sharing
+package com.lounah.vkmc.feature.feature_sharing.ui
 
 import android.app.Activity
 import android.content.Context
@@ -9,10 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
 import com.lounah.vkmc.feature.feature_image_picker.ui.ImagePickerActivity
+import com.lounah.vkmc.feature.feature_sharing.R
 import com.vk.api.sdk.auth.VKScope
 import kotlinx.android.synthetic.main.activity_challenge_feature.*
 
-class SharingActivity : AppCompatActivity() {
+class ShareMediaActivity : AppCompatActivity() {
 
     private val clickLock = ClickLock()
 
@@ -22,7 +23,9 @@ class SharingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_challenge_feature)
         btnPicker.throttledClick(clickLock) {
-            ImagePickerActivity.start(this, PICKER_RC)
+            ImagePickerActivity.start(this,
+                PICKER_RC
+            )
         }
     }
 
@@ -36,11 +39,11 @@ class SharingActivity : AppCompatActivity() {
     }
 
     companion object {
-        val authScopes = listOf(VKScope.WALL)
+        val authScopes = listOf(VKScope.WALL, VKScope.PHOTOS)
 
         private const val PICKER_RC = 101
 
         fun start(context: Context) =
-            Intent(context, SharingActivity::class.java).also(context::startActivity)
+            Intent(context, ShareMediaActivity::class.java).also(context::startActivity)
     }
 }

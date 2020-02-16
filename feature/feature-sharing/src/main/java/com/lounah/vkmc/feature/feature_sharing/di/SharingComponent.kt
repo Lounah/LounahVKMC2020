@@ -1,11 +1,12 @@
 package com.lounah.vkmc.feature.feature_sharing.di
 
-import android.content.Context
+import com.lounah.vkmc.feature.feature_sharing.presentation.ShareMediaPresenter
 
 interface SharingComponent {
-    val appContext: Context
+    val createWallPostFragmentPresenter: ShareMediaPresenter
 }
 
 fun SharingComponent(
     deps: SharingDependencies
-): SharingComponent = object : SharingComponent, SharingModule by SharingModule(deps) {}
+): SharingComponent =
+    object : SharingComponent, SharingModule by SharingModule(), SharingDependencies by deps {}

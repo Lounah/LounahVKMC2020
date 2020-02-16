@@ -2,6 +2,7 @@
 <resources>
     <string name="storage_access_required">Необходим доступ к внутреннему хранилищу</string>
     <string name="storage_access_permission_rationale">Разрешите приложению доступ ко внутреннему хранилищу, чтобы иметь возможность загружать фотографии</string>
+    <string name="camera_access_permission_rationale">Разрешите приложению доступ к камере, чтобы иметь возможность загружать фотографии</string>
 
     <string name="allow">Разрешить</string>
     <string name="select_photo">Выбрать</string>

@@ -30,4 +30,8 @@ abstract class BaseBottomSheetDialogFragment(
         super.onStart()
         dialog?.setState(BottomSheetBehavior.STATE_EXPANDED)
     }
+
+    protected fun argsString(key: String): String {
+        return arguments?.getString(key) ?: error("Arguments is null or key doesn't present")
+    }
 }

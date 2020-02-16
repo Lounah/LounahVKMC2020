@@ -6,9 +6,12 @@ dependencies {
     implementation project(Modules.coreExtensions)
     implementation project(Modules.coreUi)
     implementation project(Modules.coreDi)
+    implementation project(Modules.coreVk)
 
     implementation Libraries.rxJava
     implementation Libraries.rxKotlin
+    implementation Libraries.rxRedux
+    implementation Libraries.rxRelay
     implementation Libraries.glide
     implementation Libraries.vkSdk
     implementation Libraries.rxAndroid

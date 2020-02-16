@@ -2,9 +2,11 @@
 
 package com.lounah.vkmc.core.extensions
 
+import android.content.Context
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
+import android.view.inputmethod.InputMethodManager
 
 inline fun View.animateScale(to: Int, duration: Long = 150) = animate()
     .scaleX(to.toFloat()).scaleY(to.toFloat())
@@ -86,4 +88,11 @@ inline fun View.hide() {
 
 inline fun View.gone() {
     visibility = View.GONE
+}
+
+fun View.hideKeyboard() {
+    post {
+        val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(this.windowToken, 0)
+    }
 }

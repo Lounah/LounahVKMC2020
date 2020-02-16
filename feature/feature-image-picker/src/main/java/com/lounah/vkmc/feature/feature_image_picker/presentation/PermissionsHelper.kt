@@ -49,7 +49,7 @@ internal class PermissionsHelper(
 
     @AfterPermissionGranted(CAMERA_RC)
     fun requestCameraPermission(onGranted: () -> Unit) {
-        val rationale = bottomSheet.getString(R.string.storage_access_permission_rationale)
+        val rationale = bottomSheet.getString(R.string.camera_access_permission_rationale)
         checkPermissions(cameraPermissions, rationale, CAMERA_RC, onGranted)
     }
 
