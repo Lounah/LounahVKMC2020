@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
@@ -18,14 +18,12 @@ class ShareMediaActivity : AppCompatActivity() {
     private val clickLock = ClickLock()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        window.addFlags(FLAG_LAYOUT_NO_LIMITS)
         overridePendingTransition(0, 0)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_challenge_feature)
         btnPicker.throttledClick(clickLock) {
-            ImagePickerActivity.start(this,
-                PICKER_RC
-            )
+            ImagePickerActivity.start(this, PICKER_RC)
         }
     }
 

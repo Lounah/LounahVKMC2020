@@ -24,9 +24,8 @@ class VKWallPostCommand(
         val photos = attachments.map { vkPhotoUploader(it, manager) }
 
         callBuilder.args("attachments", photos.joinToString(","))
-        return manager.execute(callBuilder.build(),
-            ResponseApiParser()
-        )
+
+        return manager.execute(callBuilder.build(), ResponseApiParser())
     }
 
     private class ResponseApiParser(private val gson: Gson = Gson()) :

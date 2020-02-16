@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
-import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
 import com.lounah.vkmc.R
 import com.lounah.vkmc.core.extensions.toast
@@ -31,7 +30,6 @@ internal class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(0, 0)
-        window.addFlags(FLAG_LAYOUT_NO_LIMITS)
         super.onCreate(savedInstanceState)
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)

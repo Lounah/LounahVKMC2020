@@ -14,6 +14,7 @@ interface RecyclerBuilder {
 @Suppress("VarCouldBeVal")
 interface Recycler<T : ViewTyped> {
     fun setItems(items: List<T>)
+    fun updateItems(items: List<T>)
     fun clickedItem(vararg viewType: Int): Observable<T>
     fun clickedViewId(viewType: Int, viewId: Int): Observable<T>
     fun repeatOnErrorClick(): Observable<*>
@@ -54,6 +55,12 @@ private class RecyclerImpl<T : ViewTyped>(
 
     override fun setItems(items: List<T>) {
         recyclerAdapter.items = items
+    }
+
+    override fun updateItems(items: List<T>) {
+        val unique = items.filterNot(recyclerAdapter.items::contains)
+        if (unique.isNotEmpty())
+        recyclerAdapter.items = recyclerAdapter.items + unique
     }
 
     override fun clickedItem(vararg viewType: Int): Observable<T> {

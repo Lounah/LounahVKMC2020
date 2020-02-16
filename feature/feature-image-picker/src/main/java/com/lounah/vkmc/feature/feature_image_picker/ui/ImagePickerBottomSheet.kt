@@ -17,6 +17,7 @@ import com.lounah.vkmc.core.extensions.hide
 import com.lounah.vkmc.core.extensions.subscribeTo
 import com.lounah.vkmc.core.recycler.Recycler
 import com.lounah.vkmc.core.recycler.base.ViewTyped
+import com.lounah.vkmc.core.recycler.base.items.EmptyContent
 import com.lounah.vkmc.feature.feature_image_picker.R
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerComponent
 import com.lounah.vkmc.feature.feature_image_picker.presentation.*
@@ -55,11 +56,7 @@ internal class ImagePickerBottomSheet : BottomSheetDialogFragment(),
 
     private val recycler: Recycler<ViewTyped> by lazy(NONE) {
         Recycler<ViewTyped>(recyclerView, ImagePickerViewHolderFactory()) {
-            itemDecoration = listOf(
-                GridSpacesDecoration(
-                    4.dp(activity)
-                )
-            )
+            itemDecoration = listOf(GridSpacesDecoration(4.dp(activity)))
         }
     }
 
@@ -99,7 +96,7 @@ internal class ImagePickerBottomSheet : BottomSheetDialogFragment(),
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         val action = if (requestCode == CAMERA_RC) ::openCamera else ::openGalleryViewer
-        permissionsHelper.handlePermissionsGrant(perms, action)
+        permissionsHelper.handlePermissionsGrant(requestCode, perms, action)
     }
 
     private fun initUI() {
@@ -111,8 +108,7 @@ internal class ImagePickerBottomSheet : BottomSheetDialogFragment(),
 
     private fun initRecycler() {
         val layoutManager = GridLayoutManager(activity, 3, RecyclerView.VERTICAL, false).apply {
-            spanSizeLookup =
-                ImagePickerSpanSizeLookup()
+            spanSizeLookup = ImagePickerSpanSizeLookup()
         }
         recyclerView.layoutManager = layoutManager
     }
@@ -138,7 +134,12 @@ internal class ImagePickerBottomSheet : BottomSheetDialogFragment(),
     }
 
     private fun renderState(state: ImagePickerState) {
-        recycler.setItems(listOf(CameraPickerUi) + state.galleryPhotos)
+        val items = if (state.galleryPhotos.isEmpty()) {
+            listOf(EmptyContent(R.string.no_photos))
+        } else {
+            state.galleryPhotos
+        }
+        recycler.updateItems(listOf(CameraPickerUi) + items)
     }
 
     private fun handleEvent(event: ImagePickerEvent) {
