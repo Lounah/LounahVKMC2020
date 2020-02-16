@@ -25,7 +25,7 @@ class ImagePickerPresenter(
             initialState = ImagePickerState(),
             sideEffects = listOf(loadGalleryPhotos(), requestCameraAccess(), showPickedImage()),
             reducer = ImagePickerState::reduce
-        )
+        ).distinctUntilChanged()
 
     private fun loadGalleryPhotos(): ImagePickerSideEff {
         return { actions, _ ->

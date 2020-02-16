@@ -8,4 +8,5 @@
     <string name="select_photo">Выбрать</string>
     <string name="from_camera">Фото</string>
     <string name="all_photos">Все фотографии</string>
+    <string name="no_photos">Список фотографий пуст</string>
 </resources>
