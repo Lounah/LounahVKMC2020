@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_unsubscribe.viewholders
+package com.lounah.vkmc.feature.feature_unsubscribe.ui.viewholders
 
 import android.view.View
 import com.lounah.vkmc.core.recycler.base.BaseViewHolder

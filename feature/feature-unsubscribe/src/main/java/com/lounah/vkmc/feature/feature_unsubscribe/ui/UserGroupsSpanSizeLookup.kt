@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_unsubscribe
+package com.lounah.vkmc.feature.feature_unsubscribe.ui
 
 import androidx.recyclerview.widget.GridLayoutManager
 

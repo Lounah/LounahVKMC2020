@@ -10,7 +10,7 @@ import com.lounah.vkmc.R
 import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
-import com.lounah.vkmc.feature.feature_unsubscribe.UserGroupsActivity
+import com.lounah.vkmc.feature.feature_unsubscribe.ui.UserGroupsActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
