@@ -3,14 +3,20 @@ package com.lounah.vkmc.feature.feature_unsubscribe
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.lounah.vkmc.core.core_vk.domain.GetUserGroups
 import com.lounah.vkmc.core.extensions.dp
 import com.lounah.vkmc.core.recycler.Recycler
 import com.lounah.vkmc.core.recycler.base.ViewTyped
+import com.lounah.vkmc.feature.feature_unsubscribe.viewholders.GroupsHeaderUi
+import com.lounah.vkmc.feature.feature_unsubscribe.viewholders.UserGroupUi
 import com.lounah.vkmc.feature.feature_unsubscribe.viewholders.UserGroupsHolderFactory
 import com.vk.api.sdk.auth.VKScope
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_user_groups.*
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -24,9 +30,18 @@ class UserGroupsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(0, 0)
+        window.setFlags(FLAG_LAYOUT_NO_LIMITS, FLAG_LAYOUT_NO_LIMITS)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_groups)
         initRecycler()
+
+        GetUserGroups()(0, 50)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { success, error ->
+                val items = success.map { UserGroupUi(it.id.toString(), it.photo, it.name) }
+                recycler.setItems(listOf(GroupsHeaderUi) + items)
+            }
     }
 
     private fun initRecycler() {

@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingStart="10dp"
         android:overScrollMode="never"
+        android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:paddingBottom="90dp" />
 
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="top"
-        android:alpha="0"
+        android:layout_marginTop="24dp"
         android:background="@color/uikit_white"
         tools:alpha="1">
 
@@ -40,6 +40,11 @@
             android:layout_gravity="bottom" />
 
     </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:background="@color/uikit_white" />
 
     <FrameLayout
         android:id="@+id/buttonContainer"
@@ -74,7 +79,6 @@
             android:indeterminateTintMode="src_atop"
             android:visibility="visible"
             tools:visibility="gone" />
-
 
     </FrameLayout>
 
