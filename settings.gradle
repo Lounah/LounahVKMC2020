@@ -6,6 +6,7 @@ include Modules.app,
         Modules.coreRecycler,
         Modules.coreNavigation,
         Modules.featureImageViewer,
+        Modules.featureUnsubscribe,
         Modules.featureImagePicker,
         Modules.featureSharing
 
