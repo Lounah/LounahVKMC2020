@@ -1,4 +1,5 @@
 include Modules.app,
+        Modules.common,
         Modules.coreExtensions,
         Modules.coreUi,
         Modules.coreDi,
