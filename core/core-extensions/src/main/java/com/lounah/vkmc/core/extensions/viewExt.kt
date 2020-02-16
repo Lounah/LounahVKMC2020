@@ -2,9 +2,11 @@
 
 package com.lounah.vkmc.core.extensions
 
+import android.content.Context
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
+import android.view.inputmethod.InputMethodManager
 
 inline fun View.animateScale(to: Int, duration: Long = 150) = animate()
     .scaleX(to.toFloat()).scaleY(to.toFloat())
@@ -17,11 +19,20 @@ inline fun View.animateTranslationY(to: Int, duration: Long = 150, startDelay: L
     .setStartDelay(startDelay)
     .start()
 
-inline fun View.animateAlpha(to: Int, duration: Long = 250) = animate()
-    .withLayer()
-    .alpha(to.toFloat())
-    .setDuration(duration)
-    .start()
+inline fun View.animateAlpha(to: Int, duration: Long = 250) {
+    if (isEnabled)
+        animate()
+            .withLayer()
+            .withStartAction { isEnabled = false }
+            .withEndAction { isEnabled = true }
+            .alpha(to.toFloat())
+            .setDuration(duration)
+            .start()
+}
+
+inline fun View.toggleAlpha(duration: Long = 250) {
+    if (alpha == 0f) animateAlpha(1, duration) else animateAlpha(0, duration)
+}
 
 inline fun View.animateReveal(startX: Int, startY: Int = 0, duration: Long = 350) {
     measured {
@@ -77,4 +88,11 @@ inline fun View.hide() {
 
 inline fun View.gone() {
     visibility = View.GONE
+}
+
+fun View.hideKeyboard() {
+    post {
+        val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(this.windowToken, 0)
+    }
 }

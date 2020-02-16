@@ -2,10 +2,11 @@ include Modules.app,
         Modules.coreExtensions,
         Modules.coreUi,
         Modules.coreDi,
+        Modules.coreVk,
         Modules.coreRecycler,
         Modules.coreNavigation,
         Modules.featureImageViewer,
         Modules.featureImagePicker,
-        Modules.featureChallenge
+        Modules.featureSharing
 
 rootProject.name = 'LounahVKMC2020'

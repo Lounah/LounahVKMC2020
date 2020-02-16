@@ -57,6 +57,11 @@
         <item name="android:background">@drawable/ripple_button_light</item>
     </style>
 
+    <style name="Button.Dark">
+        <item name="android:textColor">@color/uikit_black</item>
+        <item name="android:background">@drawable/ripple_button_dark</item>
+    </style>
+
     <style name="Button.Mini">
         <item name="android:textSize">15sp</item>
         <item name="android:layout_height">36dp</item>

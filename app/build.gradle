@@ -49,7 +49,7 @@ dependencies {
     implementation project(Modules.coreExtensions)
     implementation project(Modules.coreUi)
     implementation project(Modules.coreDi)
-    implementation project(Modules.featureChallenge)
+    implementation project(Modules.featureSharing)
     implementation project(Modules.featureImagePicker)
 
     implementation Libraries.kotlin

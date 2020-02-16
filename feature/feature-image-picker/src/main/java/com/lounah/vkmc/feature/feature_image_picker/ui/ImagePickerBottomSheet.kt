@@ -23,7 +23,7 @@ import com.lounah.vkmc.feature.feature_image_picker.presentation.*
 import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerAction.RequestGalleryPhotos
 import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerEvent.RequestCameraAccess
 import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerEvent.ShowSelectedImage
-import com.lounah.vkmc.feature.feature_image_picker.ui.ImageViewerActivity.Companion.EXTRA_PICKED_IMAGE
+import com.lounah.vkmc.feature.feature_image_picker.ui.ImagePickerActivity.Companion.EXTRA_PICKED_IMAGE
 import com.lounah.vkmc.feature.feature_image_picker.ui.util.GridSpacesDecoration
 import com.lounah.vkmc.feature.feature_image_picker.ui.util.ImagePickerSpanSizeLookup
 import com.lounah.vkmc.feature.feature_image_picker.ui.util.Value
@@ -36,7 +36,7 @@ import com.lounah.vkmc.feature.image_viewer.ui.ImageViewerActivity.Companion.PIC
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.schedulers.Schedulers.io
 import io.reactivex.schedulers.Schedulers.trampoline
-import kotlinx.android.synthetic.main.activity_image_picker.*
+import kotlinx.android.synthetic.main.fragment_image_picker.*
 import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
 import kotlin.LazyThreadSafetyMode.NONE
@@ -72,7 +72,7 @@ internal class ImagePickerBottomSheet : BottomSheetDialogFragment(),
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.activity_image_picker, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_image_picker, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

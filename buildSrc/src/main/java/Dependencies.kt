@@ -9,7 +9,8 @@ object Modules {
     const val coreDi = ":core:core-di"
     const val coreRecycler = ":core:core-recycler"
     const val coreNavigation = ":core:core-navigation"
-    const val featureChallenge = ":feature:feature-challenge"
+    const val coreVk = ":core:core-vk"
+    const val featureSharing = ":feature:feature-sharing"
     const val featureImageViewer = ":feature:feature-image-viewer"
     const val featureImagePicker = ":feature:feature-image-picker"
 }
@@ -38,6 +39,7 @@ object Versions {
     const val rxRelay = "2.1.1"
     const val rxRedux = "1.0.1"
     const val okhttp = "4.2.1"
+    const val gson = "2.8.6"
     const val constraintLayout = "2.0.0-alpha4"
     const val permissions = "3.0.0"
 
@@ -53,6 +55,7 @@ object Libraries {
     const val rxRedux = "com.freeletics.rxredux:rxredux:${Versions.rxRedux}"
     const val rxAndroid = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
+    const val gson = "com.google.code.gson:gson:${Versions.gson}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"

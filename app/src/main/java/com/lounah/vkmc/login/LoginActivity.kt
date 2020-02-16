@@ -11,7 +11,7 @@ import com.lounah.vkmc.R
 import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
-import com.lounah.vkmc.feature.challenge_feature.ChallengeFeatureActivity
+import com.lounah.vkmc.feature.feature_sharing.ui.ShareMediaActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -36,7 +36,7 @@ internal class LoginActivity : AppCompatActivity() {
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)
         loginBtn.throttledClick(clickLock) {
-            VK.login(this, ChallengeFeatureActivity.authScopes)
+            VK.login(this, ShareMediaActivity.authScopes)
         }
     }
 
@@ -54,7 +54,7 @@ internal class LoginActivity : AppCompatActivity() {
     }
 
     private fun startMainActivity() {
-        ChallengeFeatureActivity.start(this)
+        ShareMediaActivity.start(this)
         finish()
     }
 

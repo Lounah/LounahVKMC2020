@@ -8,9 +8,14 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 
 inline fun AppCompatActivity.toast(msg: Int, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, msg, length).show()
+}
+
+inline fun Fragment.toast(msg: Int, length: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(requireContext(), msg, length).show()
 }
 
 fun Activity.cameraIntent(code: Int, fileUri: Uri) {

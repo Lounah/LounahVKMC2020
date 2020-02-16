@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">challenge-feature</string>
+    <string name="share_your_photos">Делитесь фотографиями</string>
+    <string name="share_your_photos_descr">Поделитесь фотографией на стене и добавьте к ней описание.</string>
+    <string name="select_a_photo">Выбрать фото</string>
+    <string name="send">Отправить</string>
+    <string name="share_on_the_wall">Поделиться на стене</string>
+    <string name="add_comment">Добавить комментарий</string>
+    <string name="error_sharing_photo">Произошла ошибка. Попробуйте позднее</string>
+    <string name="successfully_created_wall_post">Пост успешно создан</string>
+    <string name="check_post">Посмотреть</string>
+</resources>
