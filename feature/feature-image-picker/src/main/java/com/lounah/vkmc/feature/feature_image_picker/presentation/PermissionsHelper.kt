@@ -4,7 +4,7 @@ import android.Manifest.permission.*
 import com.lounah.vkmc.core.extensions.show
 import com.lounah.vkmc.feature.feature_image_picker.R
 import com.lounah.vkmc.feature.feature_image_picker.ui.ImagePickerBottomSheet
-import kotlinx.android.synthetic.main.activity_image_picker.*
+import kotlinx.android.synthetic.main.fragment_image_picker.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions

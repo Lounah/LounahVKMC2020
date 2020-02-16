@@ -36,6 +36,7 @@
             android:text="@string/share_your_photos_descr" />
 
         <Button
+            android:id="@+id/btnPicker"
             style="@style/Button.Mini"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"

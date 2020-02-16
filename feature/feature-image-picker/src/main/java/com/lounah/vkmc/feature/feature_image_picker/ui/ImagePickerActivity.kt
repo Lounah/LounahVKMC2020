@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.feature.feature_image_picker.R
-import kotlinx.android.synthetic.main.activity_test.*
+import kotlinx.android.synthetic.main.activity_image_picker.*
 import kotlin.LazyThreadSafetyMode.NONE
 
-class ImageViewerActivity : AppCompatActivity() {
+class ImagePickerActivity : AppCompatActivity() {
 
     private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onSlide(bottomSheet: View, delta: Float) {
@@ -30,7 +30,7 @@ class ImageViewerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(R.anim.slide_bottom_up, R.anim.slide_stub)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test)
+        setContentView(R.layout.activity_image_picker)
         setUpBottomSheet()
     }
 
@@ -59,7 +59,7 @@ class ImageViewerActivity : AppCompatActivity() {
         private const val EXTRA_REQUEST_CODE = "EXTRA_REQUEST_CODE"
 
         fun start(context: Activity, requestCode: Int) {
-            Intent(context, ImageViewerActivity::class.java).apply {
+            Intent(context, ImagePickerActivity::class.java).apply {
                 putExtra(EXTRA_REQUEST_CODE, requestCode)
             }.also { context.startActivityForResult(it, requestCode) }
         }
