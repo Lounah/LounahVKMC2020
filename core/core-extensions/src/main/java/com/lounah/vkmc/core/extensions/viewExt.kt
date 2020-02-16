@@ -17,11 +17,20 @@ inline fun View.animateTranslationY(to: Int, duration: Long = 150, startDelay: L
     .setStartDelay(startDelay)
     .start()
 
-inline fun View.animateAlpha(to: Int, duration: Long = 250) = animate()
-    .withLayer()
-    .alpha(to.toFloat())
-    .setDuration(duration)
-    .start()
+inline fun View.animateAlpha(to: Int, duration: Long = 250) {
+    if (isEnabled)
+        animate()
+            .withLayer()
+            .withStartAction { isEnabled = false }
+            .withEndAction { isEnabled = true }
+            .alpha(to.toFloat())
+            .setDuration(duration)
+            .start()
+}
+
+inline fun View.toggleAlpha(duration: Long = 250) {
+    if (alpha == 0f) animateAlpha(1, duration) else animateAlpha(0, duration)
+}
 
 inline fun View.animateReveal(startX: Int, startY: Int = 0, duration: Long = 350) {
     measured {

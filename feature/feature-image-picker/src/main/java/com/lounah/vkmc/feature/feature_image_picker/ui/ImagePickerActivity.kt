@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.*
 import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.feature.feature_image_picker.R
 import kotlinx.android.synthetic.main.activity_image_picker.*
@@ -13,13 +13,13 @@ import kotlin.LazyThreadSafetyMode.NONE
 
 class ImagePickerActivity : AppCompatActivity() {
 
-    private val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
+    private val bottomSheetCallback = object : BottomSheetCallback() {
         override fun onSlide(bottomSheet: View, delta: Float) {
             backgroundDim.alpha = delta
         }
 
         override fun onStateChanged(bottomSheet: View, state: Int) {
-            if (state == BottomSheetBehavior.STATE_HIDDEN) finish()
+            if (state == STATE_HIDDEN) finish()
         }
     }
 
@@ -36,8 +36,8 @@ class ImagePickerActivity : AppCompatActivity() {
 
     private fun setUpBottomSheet() {
         dialog.run {
-            BottomSheetBehavior.from(view)?.let { bsb ->
-                bsb.state = BottomSheetBehavior.STATE_EXPANDED
+            from(view)?.let { bsb ->
+                bsb.state = STATE_EXPANDED
                 bsb.setBottomSheetCallback(bottomSheetCallback)
             }
             pickRequestCode = intent.getIntExtra(EXTRA_REQUEST_CODE, 0)

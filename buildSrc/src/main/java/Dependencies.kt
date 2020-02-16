@@ -9,7 +9,7 @@ object Modules {
     const val coreDi = ":core:core-di"
     const val coreRecycler = ":core:core-recycler"
     const val coreNavigation = ":core:core-navigation"
-    const val featureChallenge = ":feature:feature-challenge"
+    const val featureSharing = ":feature:feature-sharing"
     const val featureImageViewer = ":feature:feature-image-viewer"
     const val featureImagePicker = ":feature:feature-image-picker"
 }

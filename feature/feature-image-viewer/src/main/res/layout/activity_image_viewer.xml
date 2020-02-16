@@ -20,10 +20,10 @@
     <FrameLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp">
+        android:layout_height="56dp">
 
         <ImageButton
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -32,26 +32,28 @@
             android:src="@drawable/ic_arrow_back"
             tools:ignore="ContentDescription,RtlSymmetry" />
 
-        <TextView
-            android:id="@+id/back"
-            style="@style/TitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingStart="56dp"
-            android:text="@string/photo"
-            android:textColor="@color/uikit_white"
-            tools:ignore="RtlSymmetry" />
+    </FrameLayout>
 
-        <ImageView
-            android:id="@+id/checkmark"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="end|center_vertical"
+
+    <FrameLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:alpha="0"
+        android:background="@color/uikit_primary_dark"
+        tools:alpha="1">
+
+        <Button
+            android:id="@+id/pickBtn"
+            style="@style/Button.Dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_check"
-            android:visibility="gone"
-            tools:ignore="ContentDescription" />
+            android:layout_marginBottom="16dp"
+            android:text="@string/select" />
 
     </FrameLayout>
 

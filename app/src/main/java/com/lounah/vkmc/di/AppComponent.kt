@@ -1,12 +1,12 @@
 package com.lounah.vkmc.di
 
 import android.content.Context
-import com.lounah.vkmc.feature.challenge_feature.di.ChallengeFeatureComponent
-import com.lounah.vkmc.feature.challenge_feature.di.ChallengeFeatureDependencies
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerComponent
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerDependencies
+import com.lounah.vkmc.feature.feature_sharing.di.SharingComponent
+import com.lounah.vkmc.feature.feature_sharing.di.SharingDependencies
 
-interface AppComponent : ChallengeFeatureDependencies, ImagePickerDependencies {
+interface AppComponent : SharingDependencies, ImagePickerDependencies {
 
     companion object {
         operator fun invoke(context: Context): AppComponent {
@@ -17,8 +17,8 @@ interface AppComponent : ChallengeFeatureDependencies, ImagePickerDependencies {
         }
     }
 
-    fun challengeFeatureComponent(): ChallengeFeatureComponent {
-        return ChallengeFeatureComponent(this)
+    fun challengeFeatureComponent(): SharingComponent {
+        return SharingComponent(this)
     }
 
     fun imagePickerComponent(): ImagePickerComponent {

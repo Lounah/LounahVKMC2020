@@ -6,6 +6,6 @@ include Modules.app,
         Modules.coreNavigation,
         Modules.featureImageViewer,
         Modules.featureImagePicker,
-        Modules.featureChallenge
+        Modules.featureSharing
 
 rootProject.name = 'LounahVKMC2020'

@@ -3,6 +3,8 @@
     <color name="uikit_primary">#008577</color>
     <color name="uikit_primaryDark">#3F8AE0</color>
     <color name="uikit_accent">#4986CC</color>
+    <color name="uikit_accent_dark">#DBDCE2</color>
+    <color name="uikit_primary_dark">#131313</color>
 
     <color name="uikit_black_20">#1A000000</color>
     <color name="uikit_black_40">#66000000</color>

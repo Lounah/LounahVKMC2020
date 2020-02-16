@@ -2,6 +2,7 @@ apply from: "$rootDir/common-android-library.gradle"
 
 dependencies {
     implementation project(Modules.featureImagePicker)
+    implementation project(Modules.featureImageViewer)
     implementation project(Modules.coreExtensions)
     implementation project(Modules.coreUi)
     implementation project(Modules.coreDi)
