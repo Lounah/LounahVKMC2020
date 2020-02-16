@@ -11,7 +11,7 @@ import com.vk.api.sdk.internal.ApiCommand
 
 private const val RETRY_COUNT = 3
 
-class VKFileUploader(
+internal class VKFileUploader(
     private val serverUploadInfo: VKServerUploadInfo,
     private val uri: Uri
 ) : ApiCommand<VKFileUploadInfo>() {
@@ -34,7 +34,7 @@ class VKFileUploader(
     }
 }
 
-class VKFileUploaderBuilder : (VKServerUploadInfo, Uri) -> ApiCommand<VKFileUploadInfo>() {
+internal class VKFileUploaderBuilder : (VKServerUploadInfo, Uri) -> ApiCommand<VKFileUploadInfo>() {
 
     override fun invoke(
         serverUploadInfo: VKServerUploadInfo,

@@ -8,7 +8,7 @@ import com.lounah.vkmc.core.core_vk.model.VKSaveInfo
 import com.lounah.vkmc.core.core_vk.model.VKSaveInfoResponse
 import com.vk.api.sdk.VKApiResponseParser
 
-class VKSaveWallPhotoCommandBuilder(
+internal class VKSaveWallPhotoCommandBuilder(
     private val method: String = "photos.saveWallPhoto",
     private val responseParser: VKApiResponseParser<VKSaveInfo> = SaveInfoParser()
 ) : (VKFileUploadInfo) -> VKApiCommandWrapper<VKSaveInfo>() {

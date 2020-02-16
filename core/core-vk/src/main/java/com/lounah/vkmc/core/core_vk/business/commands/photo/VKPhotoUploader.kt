@@ -9,7 +9,7 @@ import com.lounah.vkmc.core.core_vk.model.VKServerUploadInfo
 import com.vk.api.sdk.VKApiManager
 import com.vk.api.sdk.internal.ApiCommand
 
-class VKPhotoUploader(
+internal class VKPhotoUploader(
     private val vkSavePhotoCommandBuilder: (VKFileUploadInfo) -> VKApiCommandWrapper<VKSaveInfo> = VKSaveWallPhotoCommandBuilder(),
     private val vkFileUploaderBuilder: (VKServerUploadInfo, Uri) -> ApiCommand<VKFileUploadInfo> = VKFileUploaderBuilder(),
     private val serverUploadInfoCommand: VKApiCommandWrapper<VKServerUploadInfo> = VKServerUploadInfoCommand()

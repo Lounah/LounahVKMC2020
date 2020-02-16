@@ -9,7 +9,7 @@ import com.vk.api.sdk.VKApiResponseParser
 import com.vk.api.sdk.VKMethodCall
 import com.vk.api.sdk.internal.ApiCommand
 
-class VKWallPostCommand(
+internal class VKWallPostCommand(
     private val comment: String,
     private val attachments: List<Uri>,
     private val vkPhotoUploader: (Uri, VKApiManager) -> String = VKPhotoUploader()
@@ -28,8 +28,7 @@ class VKWallPostCommand(
         return manager.execute(callBuilder.build(), ResponseApiParser())
     }
 
-    private class ResponseApiParser(private val gson: Gson = Gson()) :
-        VKApiResponseParser<WallPost> {
+    private class ResponseApiParser(private val gson: Gson = Gson()) : VKApiResponseParser<WallPost> {
         override fun parse(response: String): WallPost {
             return gson.fromJson(response, WallPost::class.java)
         }
