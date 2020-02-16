@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/image"
+<com.lounah.vkmc.core.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scaleType="centerCrop"
-    tools:ignore="ContentDescription" />
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="0dp"
+    app:aspect_ratio="1">
+
+    <ImageView
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
+
+</com.lounah.vkmc.core.ui.AspectRatioFrameLayout>

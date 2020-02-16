@@ -2,6 +2,7 @@
 
 package com.lounah.vkmc.core.extensions
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
@@ -12,7 +13,7 @@ inline fun AppCompatActivity.toast(msg: Int, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, msg, length).show()
 }
 
-fun AppCompatActivity.cameraIntent(code: Int, fileUri: Uri) {
+fun Activity.cameraIntent(code: Int, fileUri: Uri) {
     Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
         takePictureIntent.resolveActivity(packageManager)?.also {

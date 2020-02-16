@@ -39,6 +39,7 @@ object Versions {
     const val rxRedux = "1.0.1"
     const val okhttp = "4.2.1"
     const val constraintLayout = "2.0.0-alpha4"
+    const val permissions = "3.0.0"
 
     const val glide = "4.10.0"
 }
@@ -57,6 +58,7 @@ object Libraries {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideAp = "com.github.bumptech.glide:compiler:${Versions.glide}"
     const val vkSdk = "com.vk:androidsdk:${Versions.vkSdk}"
+    const val permissions = "pub.devrel:easypermissions:${Versions.permissions}"
 }
 
 object SupportLibraries {

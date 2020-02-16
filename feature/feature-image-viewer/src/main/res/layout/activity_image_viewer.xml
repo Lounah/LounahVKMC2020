@@ -12,11 +12,16 @@
         android:layout_height="match_parent"
         android:overScrollMode="never" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@drawable/bg_gradient_tight" />
+
     <FrameLayout
         android:id="@+id/toolbar"
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -37,6 +42,16 @@
             android:text="@string/photo"
             android:textColor="@color/uikit_white"
             tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/checkmark"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_check"
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
 
     </FrameLayout>
 

@@ -1,6 +1,10 @@
 package com.lounah.vkmc.feature.feature_image_picker.ui.viewholders
 
+import android.graphics.Bitmap.CompressFormat.JPEG
 import android.view.View
+import com.bumptech.glide.Priority.IMMEDIATE
+import com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC
+import com.bumptech.glide.request.RequestOptions
 import com.lounah.vkmc.core.recycler.base.BaseViewHolder
 import com.lounah.vkmc.core.recycler.base.ViewTyped
 import com.lounah.vkmc.core.recycler.base.clicks.RecyclerItemClicksObservable
@@ -18,13 +22,20 @@ internal class GalleryImageViewHolder(view: View, clicks: RecyclerItemClicksObse
 
     init {
         clicks.accept(this) {
-//            root.isSelected = !root.isSelected
+            //            root.isSelected = !root.isSelected
 //            checkbox.isChecked = !checkbox.isChecked
         }
     }
 
     override fun bind(item: GalleryImageUi) {
         super.bind(item)
-        image.load(item.uid)
+        val requestOptions = RequestOptions()
+            .encodeQuality(75)
+            .override(itemView.measuredWidth, itemView.measuredWidth)
+            .priority(IMMEDIATE)
+            .placeholder(R.drawable.bg_image_loader_placeholder)
+            .diskCacheStrategy(AUTOMATIC)
+            .encodeFormat(JPEG)
+        image.load(item.uid, requestOptions)
     }
 }

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/uikit_white">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -17,7 +18,7 @@
             android:paddingStart="56dp"
             android:text="@string/all_photos"
             android:textColor="@color/uikit_black"
-            android:textSize="18sp"
+            android:textSize="21sp"
             tools:ignore="RtlSymmetry" />
 
         <ImageView
@@ -41,23 +42,13 @@
         android:overScrollMode="never"
         android:paddingBottom="56dp" />
 
-    <Button
-        style="@style/Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_margin="16dp"
-        android:alpha="0"
-        android:text="@string/select_photo"
-        tools:alpha="1" />
-
     <LinearLayout
         android:id="@+id/permissionsNotice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:visibility="invisible"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/textWithIcon"

@@ -6,15 +6,19 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application>
         <activity
-            android:name=".ui.ImagePickerActivity"
+            android:name=".ui.ImagePickerBottomSheet"
             android:theme="@style/VKMCAppTheme"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.ImageViewerActivity"
+            android:theme="@style/VKMCAppTheme.Transparent"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.lounah.vkmc.feature.image_viewer.core.ZoomableGestureImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.lounah.vkmc.feature.image_viewer.core.ZoomableGestureImageView
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/image"
         android:layout_width="match_parent"

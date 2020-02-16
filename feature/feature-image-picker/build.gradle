@@ -3,9 +3,17 @@ apply from: "$rootDir/common-android-library.gradle"
 dependencies {
     implementation project(Modules.coreExtensions)
     implementation project(Modules.coreUi)
+    implementation project(Modules.coreDi)
     implementation project(Modules.coreRecycler)
+    implementation project(Modules.featureImageViewer)
 
     implementation Libraries.glide
+    implementation Libraries.rxJava
+    implementation Libraries.lifecycleCommonJava8
+    implementation Libraries.rxRedux
+    implementation Libraries.rxRelay
+    implementation Libraries.rxKotlin
+    implementation Libraries.permissions
     implementation SupportLibraries.design
     implementation SupportLibraries.appcompat
 }

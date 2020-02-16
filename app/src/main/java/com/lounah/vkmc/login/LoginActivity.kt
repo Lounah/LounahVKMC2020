@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
 import com.lounah.vkmc.R
@@ -12,7 +13,8 @@ import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
 import com.lounah.vkmc.feature.challenge_feature.ChallengeFeatureActivity
-import com.lounah.vkmc.feature.feature_image_picker.ui.ImagePickerActivity
+import com.lounah.vkmc.feature.feature_image_picker.ui.ImageViewerActivity
+import com.lounah.vkmc.feature.feature_image_picker.ui.ImageViewerActivity.Companion.EXTRA_PICKED_IMAGE
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -37,13 +39,14 @@ internal class LoginActivity : AppCompatActivity() {
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)
         loginBtn.throttledClick(clickLock) {
-            ImagePickerActivity.start(this, 1)
+            ImageViewerActivity.start(this, 1)
 //            VK.login(this, ChallengeFeatureActivity.authScopes)
         }
     }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.i("EXTRA!!!", data?.getStringExtra(EXTRA_PICKED_IMAGE).orEmpty())
         if (data != null && !VK.onActivityResult(requestCode, resultCode, data, authCallback))
             super.onActivityResult(requestCode, resultCode, data)
     }

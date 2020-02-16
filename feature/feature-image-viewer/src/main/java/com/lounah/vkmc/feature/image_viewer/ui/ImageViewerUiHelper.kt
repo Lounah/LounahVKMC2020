@@ -2,13 +2,9 @@ package com.lounah.vkmc.feature.image_viewer.ui
 
 import android.animation.ObjectAnimator
 import android.graphics.drawable.Drawable
-import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.lounah.vkmc.core.extensions.animateAlpha
 import com.lounah.vkmc.core.extensions.animateReveal
-import com.lounah.vkmc.core.extensions.animateTranslationY
-import com.lounah.vkmc.core.extensions.dp
 import com.lounah.vkmc.feature.image_viewer.immersive.SystemUiHelper
 import com.lounah.vkmc.feature.image_viewer.immersive.SystemUiHelper.LEVEL_IMMERSIVE
 import kotlinx.android.synthetic.main.activity_image_viewer.*
@@ -42,6 +38,7 @@ internal class ImageViewerUiHelper(
     }
 
     fun handleImageDismiss() {
+        systemUiHelper.show()
         root.postDelayed(activity::finish, IMAGE_DISMISS_DURATION)
     }
 

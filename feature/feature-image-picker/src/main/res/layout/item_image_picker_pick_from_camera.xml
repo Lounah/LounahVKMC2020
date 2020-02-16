@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="56dp">
+    android:layout_height="56dp"
+    android:background="?selectableItemBackground">
 
     <View
         android:layout_width="24dp"
@@ -13,8 +14,8 @@
         android:id="@+id/pickPhoto"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:fontFamily="sans-serif-medium"
         android:drawablePadding="12dp"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
