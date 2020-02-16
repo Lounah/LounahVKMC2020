@@ -23,9 +23,7 @@ class VKFileUploader(
             .retryCount(RETRY_COUNT)
             .build()
 
-        return manager.execute(fileUploadCall, null,
-            FileUploadInfoParser()
-        )
+        return manager.execute(fileUploadCall, null, FileUploadInfoParser())
     }
 
     private class FileUploadInfoParser(
@@ -41,10 +39,5 @@ class VKFileUploaderBuilder : (VKServerUploadInfo, Uri) -> ApiCommand<VKFileUplo
     override fun invoke(
         serverUploadInfo: VKServerUploadInfo,
         uri: Uri
-    ): ApiCommand<VKFileUploadInfo> {
-        return VKFileUploader(
-            serverUploadInfo,
-            uri
-        )
-    }
+    ): ApiCommand<VKFileUploadInfo> = VKFileUploader(serverUploadInfo, uri)
 }

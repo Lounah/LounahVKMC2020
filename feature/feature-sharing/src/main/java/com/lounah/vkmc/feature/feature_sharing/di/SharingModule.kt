@@ -12,9 +12,8 @@ interface SharingModule {
 
 fun SharingModule(): SharingModule = object : SharingModule {
 
-    private val createWallPost: (String, List<Uri>) -> Single<WallPost>
-        get() = CreateWallPost()
+    private val createWallPost: (String, List<Uri>) -> Single<WallPost> = CreateWallPost()
 
-    override val createWallPostFragmentPresenter: ShareMediaPresenter
-        get() = ShareMediaPresenter(createWallPost)
+    override val createWallPostFragmentPresenter: ShareMediaPresenter =
+        ShareMediaPresenter(createWallPost)
 }
