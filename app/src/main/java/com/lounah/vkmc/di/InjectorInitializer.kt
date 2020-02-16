@@ -8,8 +8,10 @@ internal object InjectorInitializer {
     fun initialize(context: Context) {
         val appComponent = AppComponent(context)
         val challengeFeatureComponent = appComponent.challengeFeatureComponent()
+        val imagePickerComponent = appComponent.imagePickerComponent()
 
         ComponentStorage.addComponent(appComponent)
         ComponentStorage.addComponent(challengeFeatureComponent)
+        ComponentStorage.addComponent(imagePickerComponent)
     }
 }

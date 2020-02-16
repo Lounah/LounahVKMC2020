@@ -10,9 +10,7 @@ import com.lounah.vkmc.core.extensions.hide
 import com.lounah.vkmc.core.extensions.show
 import com.lounah.vkmc.core.ui.imageloader.load
 import com.lounah.vkmc.feature.image_viewer.R
-import com.lounah.vkmc.feature.image_viewer.core.ContainerGestureListener
-import com.lounah.vkmc.feature.image_viewer.core.ContentSizeProvider
-import com.lounah.vkmc.feature.image_viewer.core.DismissableCallback
+import com.lounah.vkmc.feature.image_viewer.core.*
 import kotlinx.android.synthetic.main.item_image.view.*
 
 internal class ImageViewerViewPagerAdapter(
@@ -33,10 +31,11 @@ internal class ImageViewerViewPagerAdapter(
         override fun onMove(moveRatio: Float) = onMoveCallback(moveRatio)
     }
 
-    private val containerGestureListenerProvider
-            = ContainerGestureListener(context, contentHeightProvider, dismissCallbacks)
+    private val containerGestureListenerProvider =
+        ContainerGestureListener(context, contentHeightProvider, dismissCallbacks)
 
-    private val dismissGestureListener = containerGestureListenerProvider()
+    private val dismissGestureListener: (ImageDismissLayout) -> DismissGestureListener =
+        { containerGestureListenerProvider(it) }
 
     override fun getCount() = images.size
 
@@ -51,7 +50,7 @@ internal class ImageViewerViewPagerAdapter(
         LayoutInflater.from(container.context)
             .inflate(R.layout.item_image, container, false)
             .apply {
-                imageContainer.gestureListener = dismissGestureListener
+                imageContainer.gestureListener = dismissGestureListener(imageContainer)
                 image.load(images[position], success = {
                     image.show()
                     progress.hide()
