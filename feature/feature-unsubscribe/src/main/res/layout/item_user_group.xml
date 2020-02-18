@@ -35,7 +35,7 @@
             android:scaleY="0"
             android:scaleX="0"
             android:layout_marginBottom="5dp"
-            android:background="@color/uikit_accent" />
+            android:background="@drawable/layer_list_check_circle" />
 
     </com.lounah.vkmc.core.ui.AspectRatioFrameLayout>
 

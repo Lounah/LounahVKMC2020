@@ -1,5 +1,6 @@
 package com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation
 
+import android.util.Log
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
@@ -26,7 +27,7 @@ private typealias UserGroupsSideEffect = SideEffect<UserGroupsState, UserGroupsA
 class UserGroupsPresenter(
     private val getUserGroups: (Offset, Count) -> Single<List<Group>>,
     private val userGroupsMapper: (List<Group>) -> List<UserGroupUi>,
-    private val leaveGroups: (List<Int>) -> Completable
+    private val leaveGroups: (List<String>) -> Single<Boolean>
 ) {
 
     private val inputRelay = PublishRelay.create<UserGroupsAction>()
@@ -49,11 +50,12 @@ class UserGroupsPresenter(
 
     private fun handleLeaveGroupsClick(): UserGroupsSideEffect {
         return { actions, state ->
-            actions.ofType<OnLeaveGroupsClicked>().switchMap {
+            actions.ofType<OnLeaveGroupsClicked>().flatMap {
                 leaveGroups(state().selectedGroupsIds())
                     .subscribeOn(io())
                     .observeOn(mainThread())
-                    .andThen(Observable.just<UserGroupsAction>(OnGroupsLeft))
+                    .toObservable()
+                    .map<UserGroupsAction> { OnGroupsLeft }
                     .doOnError { eventsRelay.accept(ShowGroupsLeaveError) }
                     .onErrorReturnItem(OnLeftGroupsError)
             }
@@ -89,7 +91,7 @@ class UserGroupsPresenter(
     private fun loadGroupsPaged(page: Int): Observable<UserGroupsAction> {
         return getUserGroups(page, DEFAULT_PAGE_SIZE)
             .subscribeOn(single())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(mainThread())
             .toObservable()
             .map<UserGroupsAction> { OnGroupsLoaded(userGroupsMapper(it)) }
             .onErrorReturnItem(OnLoadingError)

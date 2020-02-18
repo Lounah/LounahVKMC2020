@@ -26,7 +26,6 @@ abstract class BaseBottomSheetDialogFragment(
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(layout, container, false)
 
-
     override fun onStart() {
         super.onStart()
         if (expandByDefault)

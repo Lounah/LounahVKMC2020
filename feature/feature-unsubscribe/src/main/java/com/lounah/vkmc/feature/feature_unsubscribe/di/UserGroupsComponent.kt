@@ -18,7 +18,7 @@ interface UserGroupsComponent {
 fun UserGroupsComponent(): UserGroupsComponent = object : UserGroupsComponent {
     private val getUserGroups: (Offset, Count) -> Single<List<Group>> = GetUserGroups()
     private val userGroupsMapper: (List<Group>) -> List<UserGroupUi> = UserGroupsMapper()
-    private val leaveGroups: (List<Int>) -> Completable = LeaveGroups()
+    private val leaveGroups: (List<String>) -> Single<Boolean> = LeaveGroups()
 
     override val presenter: UserGroupsPresenter =
         UserGroupsPresenter(getUserGroups, userGroupsMapper, leaveGroups)

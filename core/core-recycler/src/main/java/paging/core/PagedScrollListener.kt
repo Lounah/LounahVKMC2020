@@ -14,3 +14,12 @@ fun RecyclerView.pagedScrollListener(onNextPage: (Int) -> Unit) {
         }
     })
 }
+
+fun RecyclerView.scrollListener(scrollChange: (Int) -> Unit) {
+    addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            scrollChange(dy)
+        }
+    })
+}

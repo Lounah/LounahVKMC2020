@@ -27,10 +27,8 @@ private const val FLIPPER_ITEM_LOADING = 0
 private const val FLIPPER_ITEM_ERROR = 1
 private const val FLIPPER_ITEM_CONTENT = 2
 
-
-// TODO: landscape
 internal class GroupDetailsBottomSheet :
-    BaseBottomSheetDialogFragment(R.layout.fragment_group_details, expandByDefault = true) {
+    BaseBottomSheetDialogFragment(R.layout.fragment_group_details, expandByDefault = false) {
 
     private val presenter: GroupDetailsPresenter by lazy(NONE) {
         val groupId = arguments?.getInt(ARG_GROUP_ID) ?: 0
@@ -40,13 +38,7 @@ internal class GroupDetailsBottomSheet :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBindings()
-        dialog?.attachStickyFooter(buttonContainer, dismissOnHalfCollapse = false)
-        closeBtn.setOnClickListener { dismiss() }
-        title.isSelected = true
-        view.findViewById<Button>(R.id.btnRepeat).setOnClickListener {
-            presenter.input.accept(OnRetryLoadClicked)
-        }
-        actionButton.setOnClickListener { presenter.input.accept(OnGoToGroupClicked) }
+        initUi()
     }
 
     private fun initBindings() {
@@ -61,6 +53,16 @@ internal class GroupDetailsBottomSheet :
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeTo(onNext = ::handleEvent)
             .disposeOnDestroy(this)
+    }
+
+    private fun initUi() {
+        dialog?.attachStickyFooter(buttonContainer, dismissOnHalfCollapse = false)
+        closeBtn.setOnClickListener { dismiss() }
+        title.isSelected = true
+        view?.findViewById<Button>(R.id.btnRepeat)?.setOnClickListener {
+            presenter.input.accept(OnRetryLoadClicked)
+        }
+        actionButton.setOnClickListener { presenter.input.accept(OnGoToGroupClicked) }
     }
 
     private fun render(state: GroupDetailsState) {

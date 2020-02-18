@@ -8,7 +8,7 @@ import com.vk.api.sdk.VKApiResponseParser
 import com.vk.api.sdk.internal.ApiCommand
 
 internal class VKLeaveGroupCommand(
-    groupId: Int,
+    groupId: String,
     override val arguments: Map<String, String> = mapOf("group_id" to "$groupId"),
     override val method: String = "groups.leave",
     override val responseParser: VKApiResponseParser<LeaveGroupResponse> = VKLeaveGroupResponseParser()
@@ -24,7 +24,7 @@ internal class VKLeaveGroupCommand(
 }
 
 internal class VKLeaveGroupsCommand(
-    private val groupIds: List<Int>
+    private val groupIds: List<String>
 ) : ApiCommand<Boolean>() {
 
     override fun onExecute(manager: VKApiManager): Boolean {
@@ -35,6 +35,8 @@ internal class VKLeaveGroupsCommand(
 
 @Keep
 internal data class LeaveGroupResponse(
-    val response: Int,
-    val isSuccess: Boolean = response == 1
-)
+    val response: Int
+) {
+    val isSuccess: Boolean
+        get() = response == 1
+}
