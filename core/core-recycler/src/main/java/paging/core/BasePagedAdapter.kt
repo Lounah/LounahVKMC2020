@@ -25,7 +25,9 @@ abstract class BasePagedAdapter(
     }
 
     fun isLoading(): Boolean {
-        return itemsInternal.any { it is PagedProgressUi || it.viewType == R.layout.item_progress }
+        return itemsInternal.any {
+            it.viewType == R.layout.item_paging_loading || it.viewType == R.layout.item_progress
+        }
     }
 
     fun isError(): Boolean {

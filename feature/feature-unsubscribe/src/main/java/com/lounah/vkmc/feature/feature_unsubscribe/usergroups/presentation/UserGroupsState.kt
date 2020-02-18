@@ -32,7 +32,7 @@ internal fun UserGroupsState.reduce(action: UserGroupsAction): UserGroupsState {
         is OnGroupsLoaded -> {
             val header = if (pageOffset == 0) listOf(GroupsHeaderUi) else emptyList()
             val newItems =
-                header + (userGroups - ProgressItem - errorView - pagedProgress - pagedError) + action.groups
+                header + (userGroups - ProgressItem - errorView - pagedProgress - pagedError) + action.groups - ProgressItem
             copy(userGroups = newItems)
         }
         is OnLoadingStarted -> {
