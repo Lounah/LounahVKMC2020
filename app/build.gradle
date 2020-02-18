@@ -51,6 +51,7 @@ dependencies {
     implementation project(Modules.coreDi)
     implementation project(Modules.featureSharing)
     implementation project(Modules.featureUnsubscribe)
+    implementation project(Modules.featureMarket)
     implementation project(Modules.featureImagePicker)
 
     implementation Libraries.kotlin
