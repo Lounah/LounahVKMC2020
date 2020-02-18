@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.lounah.vkmc.core.ui.AspectRatioFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/imageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@drawable/selector_user_group">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="?selectableItemBackgroundBorderless"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <View
+            android:id="@+id/checkmark"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="5dp"
+            android:scaleY="0"
+            android:scaleX="0"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/layer_list_check_circle" />
+
+    </com.lounah.vkmc.core.ui.AspectRatioFrameLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/sf_pro_regular"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textColor="@color/uikit_black"
+        android:textSize="14sp"
+        tools:text="Киберленика" />
+
+</LinearLayout>

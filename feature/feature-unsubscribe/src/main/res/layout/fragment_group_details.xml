@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/uikit_white">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="12dp"
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="42dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:fontFamily="sans-serif-medium"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingStart="16dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@color/uikit_black"
+            android:textSize="17sp"
+            tools:text="Just before crash" />
+
+        <View
+            android:id="@+id/closeBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end|center_vertical"
+            android:background="@drawable/layer_list_cancel_button" />
+
+    </FrameLayout>
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="150dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+        <include
+            android:id="@+id/errorView"
+            layout="@layout/item_paging_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="86dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/subscribers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_followers"
+                    android:drawablePadding="14dp"
+                    android:textColor="@color/uikit_black"
+                    android:textSize="15sp"
+                    tools:text="10,2K подписчиков • 3 друга" />
+
+                <FrameLayout
+                    android:id="@+id/descriptionContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="12dp"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/ic_description" />
+
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:autoLink="all"
+                        android:paddingStart="30dp"
+                        android:textColor="@color/uikit_black"
+                        android:textSize="15sp"
+                        tools:text="Я в телевизоре и вообще тут такие длинные предложения что аж в две строки" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/wallpostDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawablePadding="14dp"
+                    android:textColor="@color/uikit_black"
+                    android:textSize="15sp"
+                    tools:text="Последняя запись 23 февраля" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </ViewFlipper>
+
+    <FrameLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/uikit_white">
+
+        <Button
+            android:id="@+id/actionButton"
+            style="@style/Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/open"
+            android:visibility="visible"
+            app:elevation="0dp" />
+
+    </FrameLayout>
+
+</FrameLayout>
+

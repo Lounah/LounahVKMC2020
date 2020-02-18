@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unsubscribe">Отписаться %1s</string>
+    <string name="groups">Сообщества</string>
+    <string name="groups_unsubscribe">Отписаться от сообществ</string>
+    <string name="groups_unsubscribe_rationale">Коснитесь и удерживайте, чтобы увидеть информацию о сообществе</string>
+    <string name="an_error_occurred">Не удалось загрузить данные</string>
+    <string name="retry">Повторить</string>
+    <string name="open">Открыть</string>
+
+    <string name="extended_group_base_info">%1$s%2$s • %3$s%4$s</string>
+    <string name="wall_post_date">Последняя запись %1$s</string>
+    <string name="unsubscribe_failed">Не удалось отписаться. Попробуйте позже</string>
+
+    <plurals name="subscribersCount">
+        <item quantity="one">подписчик</item>
+        <item quantity="two">подписчика</item>
+        <item quantity="other">подписчиков</item>
+    </plurals>
+
+    <plurals name="friendsCount">
+        <item quantity="one">друг</item>
+        <item quantity="two">друга</item>
+        <item quantity="other">друзей</item>
+    </plurals>
+</resources>

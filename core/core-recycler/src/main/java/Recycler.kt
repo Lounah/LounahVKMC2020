@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lounah.vkmc.core.recycler.base.HolderFactory
 import com.lounah.vkmc.core.recycler.base.ViewTyped
+import com.lounah.vkmc.core.recycler.diff.DiffResult
 import io.reactivex.Observable
 
 interface RecyclerBuilder {
@@ -14,8 +15,10 @@ interface RecyclerBuilder {
 @Suppress("VarCouldBeVal")
 interface Recycler<T : ViewTyped> {
     fun setItems(items: List<T>)
+    fun setItems(diffResult: DiffResult<T>)
     fun updateItems(items: List<T>)
     fun clickedItem(vararg viewType: Int): Observable<T>
+    fun longTappedItem(vararg viewType: Int): Observable<T>
     fun clickedViewId(viewType: Int, viewId: Int): Observable<T>
     fun repeatOnErrorClick(): Observable<*>
 
@@ -41,7 +44,7 @@ interface Recycler<T : ViewTyped> {
 private class RecyclerImpl<T : ViewTyped>(
     builder: RecyclerBuilder,
     private val holderFactory: HolderFactory,
-    recyclerView: RecyclerView
+    private val recyclerView: RecyclerView
 ) : Recycler<T> {
 
     private val recyclerAdapter = Adapter<T>(holderFactory)
@@ -49,6 +52,7 @@ private class RecyclerImpl<T : ViewTyped>(
     init {
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = builder.layoutManager
+        recyclerView.itemAnimator = null
         recyclerView.setHasFixedSize(true)
         builder.itemDecoration.forEach(recyclerView::addItemDecoration)
     }
@@ -57,14 +61,23 @@ private class RecyclerImpl<T : ViewTyped>(
         recyclerAdapter.items = items
     }
 
+    override fun setItems(diffResult: DiffResult<T>) {
+        adapter.updateItems(diffResult.items)
+        diffResult.update(adapter)
+    }
+
     override fun updateItems(items: List<T>) {
-        val unique = items.filterNot(recyclerAdapter.items::contains)
+        val unique = items.filter(recyclerAdapter.items::contains)
         if (unique.isNotEmpty())
-        recyclerAdapter.items = recyclerAdapter.items + unique
+            recyclerAdapter.items = recyclerAdapter.items + unique
     }
 
     override fun clickedItem(vararg viewType: Int): Observable<T> {
         return holderFactory.clickPosition(*viewType).map(recyclerAdapter.items::get)
+    }
+
+    override fun longTappedItem(vararg viewType: Int): Observable<T> {
+        return holderFactory.longClickPosition(*viewType).map(recyclerAdapter.items::get)
     }
 
     override fun clickedViewId(viewType: Int, viewId: Int): Observable<T> {

@@ -28,7 +28,11 @@ abstract class HolderFactory : (ViewGroup, Int) -> BaseViewHolder<ViewTyped> {
     }
 
     fun clickPosition(vararg viewType: Int): Observable<Int> {
-        return clicks.filter { it.viewType in viewType }.map(ItemClick::position)
+        return clicks.filter { it.viewType in viewType && !it.longClick }.map(ItemClick::position)
+    }
+
+    fun longClickPosition(vararg viewType: Int): Observable<Int> {
+        return clicks.filter { it.viewType in viewType && it.longClick }.map(ItemClick::position)
     }
 
     fun clickPosition(viewType: Int, viewId: Int): Observable<Int> {

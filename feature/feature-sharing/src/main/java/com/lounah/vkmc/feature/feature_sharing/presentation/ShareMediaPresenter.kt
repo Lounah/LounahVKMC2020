@@ -15,7 +15,7 @@ import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.schedulers.Schedulers.single
 
-typealias SharingSideEffect = SideEffect<ShareMediaState, ShareMediaAction>
+private typealias SharingSideEffect = SideEffect<ShareMediaState, ShareMediaAction>
 
 class ShareMediaPresenter(
     private val createWallPost: (String, List<Uri>) -> Single<WallPost>

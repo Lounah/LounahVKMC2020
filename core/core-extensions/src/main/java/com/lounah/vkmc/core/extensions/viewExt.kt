@@ -20,7 +20,7 @@ inline fun View.animateTranslationY(to: Int, duration: Long = 150, startDelay: L
     .start()
 
 inline fun View.animateAlpha(to: Int, duration: Long = 250) {
-    if (isEnabled)
+    if (isEnabled && alpha != to.toFloat())
         animate()
             .withLayer()
             .withStartAction { isEnabled = false }

@@ -57,7 +57,7 @@
             android:textSize="16sp"
             tools:ignore="Autofill,RtlSymmetry" />
 
-        <com.lounah.vkmc.core.ui.AspectRatioFrameLayout
+        <com.lounah.vkmc.core.ui.AspectRatioCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -74,7 +74,7 @@
                 tools:layout_height="150dp"
                 tools:src="@color/uikit_gray" />
 
-        </com.lounah.vkmc.core.ui.AspectRatioFrameLayout>
+        </com.lounah.vkmc.core.ui.AspectRatioCardView>
 
     </LinearLayout>
 

@@ -11,13 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
-import com.lounah.vkmc.core.extensions.disposeOnDestroy
-import com.lounah.vkmc.core.extensions.dp
-import com.lounah.vkmc.core.extensions.hide
-import com.lounah.vkmc.core.extensions.subscribeTo
+import com.lounah.vkmc.core.extensions.*
 import com.lounah.vkmc.core.recycler.Recycler
 import com.lounah.vkmc.core.recycler.base.ViewTyped
-import com.lounah.vkmc.core.recycler.base.items.EmptyContent
 import com.lounah.vkmc.feature.feature_image_picker.R
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerComponent
 import com.lounah.vkmc.feature.feature_image_picker.presentation.*
@@ -134,12 +130,8 @@ internal class ImagePickerBottomSheet : BottomSheetDialogFragment(),
     }
 
     private fun renderState(state: ImagePickerState) {
-        val items = if (state.galleryPhotos.isEmpty()) {
-            listOf(EmptyContent(R.string.no_photos))
-        } else {
-            state.galleryPhotos
-        }
-        recycler.updateItems(listOf(CameraPickerUi) + items)
+        if (state.galleryPhotos.isEmpty()) emptyView.show() else emptyView.hide()
+        recycler.updateItems(listOf(CameraPickerUi) + state.galleryPhotos)
     }
 
     private fun handleEvent(event: ImagePickerEvent) {

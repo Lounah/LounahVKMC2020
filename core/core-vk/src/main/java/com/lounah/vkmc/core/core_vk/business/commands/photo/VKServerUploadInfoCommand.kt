@@ -6,7 +6,7 @@ import com.lounah.vkmc.core.core_vk.model.VKServerUploadInfo
 import com.lounah.vkmc.core.core_vk.model.VKServerUploadInfoResponse
 import com.vk.api.sdk.VKApiResponseParser
 
-class VKServerUploadInfoCommand(
+internal class VKServerUploadInfoCommand(
     override val method: String = "photos.getWallUploadServer",
     override val arguments: Map<String, String> = emptyMap(),
     override val responseParser: VKApiResponseParser<VKServerUploadInfo> = ServerUploadInfoParser()
