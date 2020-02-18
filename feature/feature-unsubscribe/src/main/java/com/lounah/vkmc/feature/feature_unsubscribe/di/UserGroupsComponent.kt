@@ -7,7 +7,7 @@ import com.lounah.vkmc.core.core_vk.domain.Offset
 import com.lounah.vkmc.core.core_vk.model.Group
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.domain.UserGroupsMapper
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsPresenter
-import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.viewholders.UserGroupUi
+import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.recycler.UserGroupUi
 import io.reactivex.Completable
 import io.reactivex.Single
 

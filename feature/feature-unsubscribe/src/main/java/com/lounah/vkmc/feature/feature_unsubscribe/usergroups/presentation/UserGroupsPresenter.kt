@@ -6,10 +6,11 @@ import com.jakewharton.rxrelay2.PublishRelay
 import com.lounah.vkmc.core.core_vk.domain.Count
 import com.lounah.vkmc.core.core_vk.domain.Offset
 import com.lounah.vkmc.core.core_vk.model.Group
+import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.core.recycler.paging.DEFAULT_PAGE_SIZE
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsAction.*
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsEvent.*
-import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.viewholders.UserGroupUi
+import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.recycler.UserGroupUi
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -34,20 +35,35 @@ class UserGroupsPresenter(
     val state: Observable<UserGroupsState> = inputRelay
         .reduxStore(
             initialState = UserGroupsState(),
-            sideEffects = listOf(loadGroups(), handleGroupLongTap(), handleLeaveGroupsClick()),
+            sideEffects = listOf(
+                loadPagedGroups(),
+                initialLoading(),
+                repeatLoadGroups(),
+                handleGroupLongTap(),
+                handleLeaveGroupsClick()
+            ),
             reducer = UserGroupsState::reduce
         ).distinctUntilChanged()
 
     private fun handleLeaveGroupsClick(): UserGroupsSideEffect {
         return { actions, state ->
             actions.ofType<OnLeaveGroupsClicked>().switchMap {
-                leaveGroups(state().selectedGroups)
+                val selectedGroups = state().userGroups
+                    .filterIsInstance<UserGroupUi>()
+                    .filter(UserGroupUi::isSelected)
+                    .map { it.uid.toInt() }
+
+                leaveGroups(selectedGroups)
                     .doOnComplete { eventsRelay.accept(ShowGroupsLeaveSuccess) }
                     .doOnError { eventsRelay.accept(ShowGroupsLeaveError) }
                     .onErrorComplete()
                     .toObservable<UserGroupsAction>()
             }
         }
+    }
+
+    private fun initialLoading(): UserGroupsSideEffect {
+        return { _, _ -> loadGroupsPaged(0) }
     }
 
     private fun handleGroupLongTap(): UserGroupsSideEffect {
@@ -60,20 +76,25 @@ class UserGroupsPresenter(
         }
     }
 
-    private fun loadGroups(): UserGroupsSideEffect {
-        return { actions, state ->
-            actions.ofType<OnPageScrolled>().flatMap {
-                //            actions.filter { it is OnPageScrolled || it is OnRetryLoadingClicked || it is InitialLoading }
-//                .flatMap {
-                getUserGroups(state().pageOffset, DEFAULT_PAGE_SIZE)
-                    .subscribeOn(single())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .toObservable()
-                    .map<UserGroupsAction> { OnGroupsLoaded(userGroupsMapper(it)) }
-                    .onErrorReturnItem(OnLoadingError)
-                    .startWith(OnLoadingStarted)
-//                }
-            }
+    private fun loadPagedGroups(): UserGroupsSideEffect {
+        return { actions, _ ->
+            actions.ofType<OnPageScrolled>().flatMap { loadGroupsPaged(it.offset) }
         }
+    }
+
+    private fun repeatLoadGroups(): UserGroupsSideEffect {
+        return { actions, state ->
+            actions.ofType<OnRetryLoadingClicked>().flatMap { loadGroupsPaged(state().pageOffset) }
+        }
+    }
+
+    private fun loadGroupsPaged(page: Int): Observable<UserGroupsAction> {
+        return getUserGroups(page, DEFAULT_PAGE_SIZE)
+            .subscribeOn(single())
+            .observeOn(AndroidSchedulers.mainThread())
+            .toObservable()
+            .map<UserGroupsAction> { OnGroupsLoaded(userGroupsMapper(it)) }
+            .onErrorReturnItem(OnLoadingError)
+            .startWith(OnLoadingStarted)
     }
 }

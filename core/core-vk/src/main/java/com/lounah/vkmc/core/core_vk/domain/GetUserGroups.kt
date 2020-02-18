@@ -25,6 +25,6 @@ class GetUserGroups : (Offset, Count) -> Single<List<Group>> {
                 val d = rnd.nextInt(1000000)
                 it.copy(id = d, name = d.toString())
             } else return@fromCallable res
-        }.delay(2, TimeUnit.SECONDS)
+        }
     }
 }

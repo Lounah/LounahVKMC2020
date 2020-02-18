@@ -6,9 +6,10 @@
     android:orientation="vertical">
 
     <com.lounah.vkmc.core.ui.AspectRatioFrameLayout
+        android:id="@+id/imageContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foreground="@drawable/bg_community_stroke">
+        android:foreground="@drawable/selector_user_group">
 
         <ImageView
             android:id="@+id/image"

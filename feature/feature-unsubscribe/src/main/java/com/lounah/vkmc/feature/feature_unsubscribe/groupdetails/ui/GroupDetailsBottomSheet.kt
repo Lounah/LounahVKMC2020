@@ -2,11 +2,12 @@ package com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import com.lounah.vkmc.core.core_vk.vkViewIntent
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
 import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.gone
 import com.lounah.vkmc.core.extensions.subscribeTo
-import com.lounah.vkmc.core.extensions.vkViewIntent
 import com.lounah.vkmc.core.ui.bottomsheet.BaseBottomSheetDialogFragment
 import com.lounah.vkmc.core.ui.bottomsheet.attachStickyFooter
 import com.lounah.vkmc.feature.feature_unsubscribe.R
@@ -20,7 +21,6 @@ import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.presentation.Gro
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_group_details.*
-import kotlinx.android.synthetic.main.item_paging_error.*
 import kotlin.LazyThreadSafetyMode.NONE
 
 private const val FLIPPER_ITEM_LOADING = 0
@@ -41,7 +41,9 @@ internal class GroupDetailsBottomSheet :
         dialog?.attachStickyFooter(buttonContainer, dismissOnHalfCollapse = false)
         closeBtn.setOnClickListener { dismiss() }
         title.isSelected = true
-        btnRepeat.setOnClickListener { presenter.input.accept(OnRetryLoadClicked) }
+        view.findViewById<Button>(R.id.btnRepeat).setOnClickListener {
+            presenter.input.accept(OnRetryLoadClicked)
+        }
         actionButton.setOnClickListener { presenter.input.accept(OnGoToGroupClicked) }
     }
 
