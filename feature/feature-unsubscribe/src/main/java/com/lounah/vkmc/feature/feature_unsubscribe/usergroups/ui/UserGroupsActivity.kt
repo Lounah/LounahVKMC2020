@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
-import com.lounah.vkmc.core.extensions.asType
-import com.lounah.vkmc.core.extensions.disposeOnDestroy
-import com.lounah.vkmc.core.extensions.dp
-import com.lounah.vkmc.core.extensions.subscribeTo
+import com.lounah.vkmc.core.extensions.*
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_unsubscribe.R
 import com.lounah.vkmc.feature.feature_unsubscribe.di.UserGroupsComponent
@@ -27,6 +24,7 @@ import com.vk.api.sdk.auth.VKScope
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_user_groups.*
+import kotlinx.android.synthetic.main.fragment_group_details.*
 import kotlin.LazyThreadSafetyMode.NONE
 
 class UserGroupsActivity : AppCompatActivity() {
@@ -44,6 +42,8 @@ class UserGroupsActivity : AppCompatActivity() {
         window.setFlags(FLAG_LAYOUT_NO_LIMITS, FLAG_LAYOUT_NO_LIMITS)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_groups)
+        unsubscribeButton.text = getString(R.string.unsubscribe)
+        unsubscribeButton.setButtonClickListener { presenter.input.accept(OnLeaveGroupsClicked) }
         initBindings()
         initRecycler()
     }
@@ -64,6 +64,12 @@ class UserGroupsActivity : AppCompatActivity() {
 
     private fun render(state: UserGroupsState) {
         adapter.setItems(state.userGroups)
+        unsubscribeButton.loading = state.groupsDeletionLoading
+        if (state.selectedGroupsIds().isNotEmpty()) {
+            unsubscribeButton.show()
+        } else {
+            unsubscribeButton.hide()
+        }
     }
 
     private fun handleEvent(event: UserGroupsEvent) {
@@ -80,16 +86,18 @@ class UserGroupsActivity : AppCompatActivity() {
     }
 
     private fun initRecycler() {
-        userGroups.layoutManager = GridLayoutManager(this@UserGroupsActivity, 3, GridLayoutManager.VERTICAL, false)
-            .apply {
-                spanSizeLookup = UserGroupsSpanSizeLookup { adapter.items }
-            }
-        userGroups.addItemDecoration((GridSpacesDecoration(12.dp(this@UserGroupsActivity))))
-        userGroups.adapter = adapter
-        userGroups.pagedScrollListener { presenter.input.accept(OnPageScrolled(it)) }
+        userGroups.apply {
+            val lm = GridLayoutManager(this@UserGroupsActivity, 3, GridLayoutManager.VERTICAL, false)
+            lm.spanSizeLookup = UserGroupsSpanSizeLookup { this@UserGroupsActivity.adapter.items }
+            layoutManager = lm
+            addItemDecoration((GridSpacesDecoration(12.dp(this@UserGroupsActivity))))
+            adapter = this@UserGroupsActivity.adapter
+            pagedScrollListener { presenter.input.accept(OnPageScrolled(it)) }
+        }
     }
 
     private fun onGroupClicked(group: UserGroupUi) {
+        if (!unsubscribeButton.loading)
         presenter.input.accept(OnGroupSelected(group.uid))
     }
 

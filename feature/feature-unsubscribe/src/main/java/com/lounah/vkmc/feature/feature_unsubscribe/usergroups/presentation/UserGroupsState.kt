@@ -19,7 +19,14 @@ data class UserGroupsState(
     val pagedError: ViewTyped = PagedErrorUi(),
     val pageOffset: Int = 0,
     val groupsDeletionLoading: Boolean = false
-)
+) {
+    fun selectedGroupsIds(): List<Int> {
+        return userGroups.toMutableList()
+            .filterIsInstance<UserGroupUi>()
+            .filter(UserGroupUi::isSelected)
+            .map { it.uid.toInt() }
+    }
+}
 
 internal fun UserGroupsState.reduce(action: UserGroupsAction): UserGroupsState {
     return when (action) {
@@ -43,6 +50,9 @@ internal fun UserGroupsState.reduce(action: UserGroupsAction): UserGroupsState {
             }
             copy(userGroups = newItems)
         }
+        is OnLeaveGroupsClicked -> {
+            copy(groupsDeletionLoading = true)
+        }
         is OnGroupSelected -> {
             val groupId = action.uid
             val groups = userGroups.toMutableList().map {
@@ -51,6 +61,17 @@ internal fun UserGroupsState.reduce(action: UserGroupsAction): UserGroupsState {
                 else it
             }
             copy(userGroups = groups)
+        }
+        is OnLeftGroupsError -> {
+            copy(groupsDeletionLoading = false)
+        }
+        is OnGroupsLeft -> {
+            val selected = selectedGroupsIds()
+            val withLeftGroups = userGroups
+                .toMutableList()
+                .filterNot { selected.contains(it.uid.toInt()) }
+
+            copy(userGroups = withLeftGroups, groupsDeletionLoading = false)
         }
         else -> this
     }

@@ -2,6 +2,7 @@ package com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.recycler
 
 import android.view.View
 import com.bumptech.glide.request.RequestOptions
+import com.lounah.vkmc.core.extensions.animateScale
 import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.core.recycler.base.ViewTyped
 import com.lounah.vkmc.core.recycler.paging.core.BaseViewHolder2
@@ -31,9 +32,16 @@ class UserGroupViewHolder(
             RequestOptions().circleCrop()
         )
         imageContainer.isSelected = item.isSelected
+        checkmark.scaleX = if (item.isSelected) 1f else 0f
+        checkmark.scaleY = if (item.isSelected) 1f else 0f
     }
 
     override fun bind(item: UserGroupUi, payloads: List<Any>) {
         imageContainer.isSelected = item.isSelected
+        if (imageContainer.isSelected) {
+            checkmark.animateScale(1, 250)
+        } else {
+            checkmark.animateScale(0, 250)
+        }
     }
 }

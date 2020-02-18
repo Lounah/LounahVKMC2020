@@ -15,8 +15,10 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.ofType
+import io.reactivex.schedulers.Schedulers.io
 import io.reactivex.schedulers.Schedulers.single
 
 private typealias UserGroupsSideEffect = SideEffect<UserGroupsState, UserGroupsAction>
@@ -48,16 +50,12 @@ class UserGroupsPresenter(
     private fun handleLeaveGroupsClick(): UserGroupsSideEffect {
         return { actions, state ->
             actions.ofType<OnLeaveGroupsClicked>().switchMap {
-                val selectedGroups = state().userGroups
-                    .filterIsInstance<UserGroupUi>()
-                    .filter(UserGroupUi::isSelected)
-                    .map { it.uid.toInt() }
-
-                leaveGroups(selectedGroups)
-                    .doOnComplete { eventsRelay.accept(ShowGroupsLeaveSuccess) }
+                leaveGroups(state().selectedGroupsIds())
+                    .subscribeOn(io())
+                    .observeOn(mainThread())
+                    .andThen(Observable.just<UserGroupsAction>(OnGroupsLeft))
                     .doOnError { eventsRelay.accept(ShowGroupsLeaveError) }
-                    .onErrorComplete()
-                    .toObservable<UserGroupsAction>()
+                    .onErrorReturnItem(OnLeftGroupsError)
             }
         }
     }

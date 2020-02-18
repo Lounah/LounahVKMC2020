@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.core.recycler.base.BaseViewHolder
 import com.lounah.vkmc.core.recycler.base.ViewTyped
+import com.lounah.vkmc.core.ui.util.ClickLock
 import kotlinx.android.extensions.LayoutContainer
 
 open class BaseViewHolder2<T : ViewTyped>(

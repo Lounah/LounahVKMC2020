@@ -27,8 +27,10 @@ private const val FLIPPER_ITEM_LOADING = 0
 private const val FLIPPER_ITEM_ERROR = 1
 private const val FLIPPER_ITEM_CONTENT = 2
 
+
+// TODO: landscape
 internal class GroupDetailsBottomSheet :
-    BaseBottomSheetDialogFragment(R.layout.fragment_group_details, expandByDefault = false) {
+    BaseBottomSheetDialogFragment(R.layout.fragment_group_details, expandByDefault = true) {
 
     private val presenter: GroupDetailsPresenter by lazy(NONE) {
         val groupId = arguments?.getInt(ARG_GROUP_ID) ?: 0

@@ -6,19 +6,36 @@
     android:orientation="vertical">
 
     <com.lounah.vkmc.core.ui.AspectRatioFrameLayout
-        android:id="@+id/imageContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:foreground="@drawable/selector_user_group">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/image"
-            android:background="?selectableItemBackgroundBorderless"
+        <FrameLayout
+            android:id="@+id/imageContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            tools:ignore="ContentDescription" />
+            android:foreground="@drawable/selector_user_group">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="?selectableItemBackgroundBorderless"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <View
+            android:id="@+id/checkmark"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="5dp"
+            android:scaleY="0"
+            android:scaleX="0"
+            android:layout_marginBottom="5dp"
+            android:background="@color/uikit_accent" />
 
     </com.lounah.vkmc.core.ui.AspectRatioFrameLayout>
 
