@@ -35,6 +35,11 @@ internal class PermissionsHelper(
         }
     }
 
+    fun hasGalleryPermissions(): Boolean {
+        return EasyPermissions.hasPermissions(bottomSheet.context!!, *galleryPermissions)
+    }
+
+
     fun handlePermissionsGrant(requestCode: Int, permissions: List<String>, action: () -> Unit) {
         val isCameraGranted = cameraPermissions.all(permissions::contains)
         val isGalleryGranted = galleryPermissions.all(permissions::contains)

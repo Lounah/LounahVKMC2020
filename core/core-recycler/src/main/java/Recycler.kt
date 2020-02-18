@@ -67,7 +67,7 @@ private class RecyclerImpl<T : ViewTyped>(
     }
 
     override fun updateItems(items: List<T>) {
-        val unique = items.filter(recyclerAdapter.items::contains)
+        val unique = items.filterNot(recyclerAdapter.items::contains)
         if (unique.isNotEmpty())
             recyclerAdapter.items = recyclerAdapter.items + unique
     }

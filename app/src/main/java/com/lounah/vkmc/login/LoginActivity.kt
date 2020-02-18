@@ -10,6 +10,7 @@ import com.lounah.vkmc.R
 import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
+import com.lounah.vkmc.feature.feature_sharing.ui.ShareMediaActivity
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.UserGroupsActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
@@ -34,7 +35,7 @@ internal class LoginActivity : AppCompatActivity() {
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)
         loginBtn.throttledClick(clickLock) {
-            VK.login(this, UserGroupsActivity.authScopes)
+            VK.login(this, ShareMediaActivity.authScopes)
         }
     }
 
@@ -49,12 +50,12 @@ internal class LoginActivity : AppCompatActivity() {
             startMainActivity()
             finish()
         } else {
-            VK.login(this, UserGroupsActivity.authScopes)
+            VK.login(this, ShareMediaActivity.authScopes)
         }
     }
 
     private fun startMainActivity() {
-        UserGroupsActivity.start(this)
+        ShareMediaActivity.start(this)
         finish()
     }
 

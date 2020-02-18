@@ -1,6 +1,7 @@
 package com.lounah.vkmc.feature.feature_image_picker.presentation
 
 import com.lounah.vkmc.core.recycler.base.ViewTyped
+import com.lounah.vkmc.core.recycler.base.items.EmptyContent
 import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerAction.OnImageSelected
 import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerAction.OnImagesLoaded
 import com.lounah.vkmc.feature.feature_image_picker.ui.viewholders.GalleryImageUi
@@ -18,7 +19,9 @@ internal fun ImagePickerState.reduce(action: ImagePickerAction): ImagePickerStat
                 else -> copy(selectedImagePath = action.path)
             }
         }
-        is OnImagesLoaded -> copy(galleryPhotos = action.images.map { GalleryImageUi(it) })
+        is OnImagesLoaded -> {
+            copy(galleryPhotos = action.images.map { GalleryImageUi(it) })
+        }
         else -> this
     }
 }

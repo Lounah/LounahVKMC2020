@@ -130,7 +130,11 @@ internal class ImagePickerBottomSheet : BottomSheetDialogFragment(),
     }
 
     private fun renderState(state: ImagePickerState) {
-        if (state.galleryPhotos.isEmpty()) emptyView.show() else emptyView.hide()
+        if (state.galleryPhotos.isEmpty() && permissionsHelper.hasGalleryPermissions()) {
+            emptyView.show()
+        } else {
+            emptyView.hide()
+        }
         recycler.updateItems(listOf(CameraPickerUi) + state.galleryPhotos)
     }
 
