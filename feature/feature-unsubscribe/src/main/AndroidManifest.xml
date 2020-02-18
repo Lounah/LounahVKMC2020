@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".ui.UserGroupsActivity"
+            android:name="com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.UserGroupsActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:theme="@style/VKMCAppTheme" />
     </application>

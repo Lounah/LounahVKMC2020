@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.*
 import java.lang.Math.max
 
 fun Dialog.attachStickyFooter(stickyView: View,
+                              dismissOnHalfCollapse: Boolean = true,
                               doOnShow: () -> Unit = {},
                               doOnDismiss: () -> Unit = {}) {
     check(this is AppCompatDialog) {
@@ -25,13 +26,14 @@ fun Dialog.attachStickyFooter(stickyView: View,
         dismiss()
     }
 
-    setOnShowListener(StickyFooterDialogHelper(this, stickyView, doOnShow, onDismiss))
+    setOnShowListener(StickyFooterDialogHelper(this, stickyView, dismissOnHalfCollapse, doOnShow, onDismiss))
 }
 
 private const val STICKY_VIEW_DISMISS_MULTIPLIER = 1.4f
 
 class StickyFooterDialogHelper(private val target: Dialog,
                                private val stickyView: View,
+                               private val dismissOnHalfCollapse: Boolean = true,
                                private val onShow: () -> Unit,
                                private val dismissCallback: () -> Unit)
     : DialogInterface.OnShowListener {
@@ -52,12 +54,13 @@ class StickyFooterDialogHelper(private val target: Dialog,
         stickyView.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT, BOTTOM)
         containerLayout.addView(stickyView, containerLayout.childCount)
 
-        setBottomSheetCallback(dialogView, slideCallback, dismissCallback, onShow)
+        setBottomSheetCallback(dialogView, slideCallback, dismissOnHalfCollapse, dismissCallback, onShow)
     }
 }
 
 private fun setBottomSheetCallback(bottomSheet: ViewGroup,
                                    slide: (View, Float) -> Unit,
+                                   dismissOnHalfCollapse: Boolean = true,
                                    dismiss: () -> Unit,
                                    show: () -> Unit) {
     BottomSheetBehavior.from(bottomSheet)
@@ -67,7 +70,8 @@ private fun setBottomSheetCallback(bottomSheet: ViewGroup,
                 slide(bottomSheet, harmonizedOffset)
             }
             override fun onStateChanged(bottomSheet: View, state: Int) = when (state) {
-                STATE_HIDDEN, STATE_COLLAPSED -> dismiss()
+                STATE_HIDDEN -> dismiss()
+                STATE_COLLAPSED -> if (dismissOnHalfCollapse) dismiss() else Unit
                 STATE_HALF_EXPANDED -> show()
                 else -> Unit
             }

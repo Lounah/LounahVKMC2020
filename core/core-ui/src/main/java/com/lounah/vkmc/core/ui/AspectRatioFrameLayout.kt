@@ -2,8 +2,7 @@ package com.lounah.vkmc.core.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View.MeasureSpec.*
-import androidx.cardview.widget.CardView
+import android.widget.FrameLayout
 
 private const val DEFAULT_ASPECT_RATIO = 1f
 
@@ -11,7 +10,7 @@ class AspectRatioFrameLayout @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttrs: Int = 0
-) : CardView(context, attributeSet, defStyleAttrs) {
+) : FrameLayout(context, attributeSet, defStyleAttrs) {
 
     private var aspectRatio: Float = DEFAULT_ASPECT_RATIO
 
@@ -22,19 +21,20 @@ class AspectRatioFrameLayout @JvmOverloads constructor(
 
             aspectRatio =
                 typedArray.getFloat(
-                    R.styleable.AspectRatioFrameLayout_aspect_ratio,
+                    R.styleable.AspectRatioFrameLayout_aspfl_aspect_ratio,
                     DEFAULT_ASPECT_RATIO
                 )
 
             typedArray.recycle()
         }
-
-        cardElevation = 0f
     }
 
     override fun onMeasure(widthSpec: Int, heightSpec: Int) {
         val heightReconciledSpec =
-            makeMeasureSpec((getSize(widthSpec) * aspectRatio).toInt(), EXACTLY)
+            MeasureSpec.makeMeasureSpec(
+                (MeasureSpec.getSize(widthSpec) * aspectRatio).toInt(),
+                MeasureSpec.EXACTLY
+            )
         super.onMeasure(widthSpec, heightReconciledSpec)
     }
 }

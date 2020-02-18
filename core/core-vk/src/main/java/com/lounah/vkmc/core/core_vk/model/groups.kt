@@ -30,6 +30,8 @@ data class GroupByIdResponse(
 data class GroupById(
     val id: Int,
     val name: String,
+    @SerializedName("screen_name")
+    val screenName: String,
     val description: String,
     @SerializedName("members_count")
     val subscribers: Int,
@@ -41,7 +43,8 @@ data class GroupById(
 data class ExtendedGroup(
     val id: Int,
     val name: String,
-    val photo: String,
+    @SerializedName("screen_name")
+    val screenName: String,
     val subscribers: Int,
     val friendsCount: Int,
     val description: String,

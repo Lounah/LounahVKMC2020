@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_unsubscribe.ui
+package com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui
 
 import android.graphics.Rect
 import android.view.View

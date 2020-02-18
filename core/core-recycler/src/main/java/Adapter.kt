@@ -36,6 +36,11 @@ class Adapter<T : ViewTyped>(private val holderFactory: HolderFactory) :
         else super.onBindViewHolder(holder, position, payloads)
     }
 
+    fun updateItems(newItems: List<T>) {
+        localItems.clear()
+        localItems.addAll(newItems)
+    }
+
     fun getItem(position: Int): T = localItems[position]
 
     fun isEmpty(): Boolean = localItems.isEmpty()

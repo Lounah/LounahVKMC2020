@@ -21,7 +21,7 @@ internal class VKExtendedGroupInfoCommand(
         return ExtendedGroup(
             groupId,
             groupById.name,
-            groupById.photo,
+            groupById.screenName,
             groupById.subscribers,
             groupFriends,
             groupById.description,

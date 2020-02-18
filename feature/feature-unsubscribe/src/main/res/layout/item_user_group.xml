@@ -5,22 +5,19 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.lounah.vkmc.core.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.lounah.vkmc.core.ui.AspectRatioFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="0dp">
+        android:foreground="@drawable/bg_community_stroke">
 
         <ImageView
             android:id="@+id/image"
+            android:background="?selectableItemBackgroundBorderless"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:foreground="@drawable/bg_community_stroke"
             android:scaleType="centerCrop"
             tools:ignore="ContentDescription" />
-
 
     </com.lounah.vkmc.core.ui.AspectRatioFrameLayout>
 

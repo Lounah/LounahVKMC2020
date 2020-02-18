@@ -5,8 +5,11 @@ import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerComponent
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerDependencies
 import com.lounah.vkmc.feature.feature_sharing.di.SharingComponent
 import com.lounah.vkmc.feature.feature_sharing.di.SharingDependencies
+import com.lounah.vkmc.feature.feature_unsubscribe.di.UserGroupsComponent
+import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.di.GroupDetailsComponent
+import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.di.GroupDetailsDependencies
 
-interface AppComponent : SharingDependencies, ImagePickerDependencies {
+interface AppComponent : SharingDependencies, ImagePickerDependencies, GroupDetailsDependencies {
 
     companion object {
         operator fun invoke(context: Context): AppComponent {
@@ -23,5 +26,13 @@ interface AppComponent : SharingDependencies, ImagePickerDependencies {
 
     fun imagePickerComponent(): ImagePickerComponent {
         return ImagePickerComponent(this)
+    }
+
+    fun userGroupsComponent(): UserGroupsComponent {
+        return UserGroupsComponent()
+    }
+
+    fun groupDetailsComponent(): GroupDetailsComponent {
+        return GroupDetailsComponent(this)
     }
 }

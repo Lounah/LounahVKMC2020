@@ -12,7 +12,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lounah.vkmc.core.ui.R
 
 abstract class BaseBottomSheetDialogFragment(
-    @LayoutRes private val layout: Int
+    @LayoutRes private val layout: Int,
+    private val expandByDefault: Boolean = true
 ) : BottomSheetDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -28,7 +29,8 @@ abstract class BaseBottomSheetDialogFragment(
 
     override fun onStart() {
         super.onStart()
-        dialog?.setState(BottomSheetBehavior.STATE_EXPANDED)
+        if (expandByDefault)
+            dialog?.setState(BottomSheetBehavior.STATE_EXPANDED)
     }
 
     protected fun argsString(key: String): String {

@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_unsubscribe.ui.viewholders
+package com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.viewholders
 
 import com.lounah.vkmc.core.recycler.base.ViewTyped
 import com.lounah.vkmc.feature.feature_unsubscribe.R

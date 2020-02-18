@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_unsubscribe.ui.viewholders
+package com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.viewholders
 
 import android.view.View
 import com.bumptech.glide.request.RequestOptions
@@ -9,10 +9,11 @@ import com.lounah.vkmc.core.ui.imageloader.load
 import com.lounah.vkmc.feature.feature_unsubscribe.R
 import kotlinx.android.synthetic.main.item_user_group.*
 
-internal class UserGroupUi(
+data class UserGroupUi(
     override val uid: String,
     val photoUrl: String,
     val name: String,
+    val isSelected: Boolean = false,
     override val viewType: Int = R.layout.item_user_group
 ) : ViewTyped
 
@@ -23,10 +24,14 @@ internal class UserGroupViewHolder(
 
     init {
         clicks.accept(this)
+        clicks.acceptLongClick(this)
     }
 
     override fun bind(item: UserGroupUi) {
         title.text = item.name
-        image.load(item.photoUrl, RequestOptions().circleCrop())
+        image.load(
+            item.photoUrl,
+            RequestOptions().circleCrop()
+        )
     }
 }

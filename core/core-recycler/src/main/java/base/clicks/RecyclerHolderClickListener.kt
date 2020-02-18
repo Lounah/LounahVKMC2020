@@ -9,10 +9,11 @@ import io.reactivex.subjects.PublishSubject
 
 interface RecyclerHolderClickListener {
     fun accept(viewHolder: BaseViewHolder<*>, onClick: () -> Unit = {})
+    fun acceptLongClick(viewHolder: BaseViewHolder<*>, onClick: () -> Unit = {})
     fun accept(view: View, viewHolder: BaseViewHolder<*>, onClick: () -> Unit = {})
 }
 
-data class ItemClick(val viewType: Int, val position: Int, val view: View)
+data class ItemClick(val viewType: Int, val position: Int, val view: View, val longClick: Boolean)
 class RecyclerItemClicksObservable : Observable<ItemClick>(),
     RecyclerHolderClickListener {
 
@@ -20,6 +21,12 @@ class RecyclerItemClicksObservable : Observable<ItemClick>(),
 
     override fun accept(viewHolder: BaseViewHolder<*>, onClick: () -> Unit) {
         viewHolder.itemView.run { setOnClickListener(Listener(source, viewHolder, this, onClick)) }
+    }
+
+    override fun acceptLongClick(viewHolder: BaseViewHolder<*>, onClick: () -> Unit) {
+        viewHolder.itemView.run {
+            setOnLongClickListener(Listener(source, viewHolder, this, onClick))
+        }
     }
 
     override fun accept(view: View, viewHolder: BaseViewHolder<*>, onClick: () -> Unit) {
@@ -35,16 +42,28 @@ class RecyclerItemClicksObservable : Observable<ItemClick>(),
         private val viewHolder: BaseViewHolder<*>,
         private val clickedView: View,
         private val onClick: () -> Unit
-    ) : View.OnClickListener {
+    ) : View.OnClickListener, View.OnLongClickListener {
+
+        override fun onLongClick(v: View): Boolean {
+            if (viewHolder.adapterPosition != RecyclerView.NO_POSITION) {
+                propagateClick(long = true)
+                return true
+            } else return false
+        }
 
         override fun onClick(v: View) {
+            propagateClick(long = false)
+        }
+
+        private fun propagateClick(long: Boolean) {
             if (viewHolder.adapterPosition != RecyclerView.NO_POSITION) {
                 onClick()
                 source.onNext(
                     ItemClick(
                         viewHolder.itemViewType,
                         viewHolder.adapterPosition,
-                        clickedView
+                        clickedView,
+                        long
                     )
                 )
             }

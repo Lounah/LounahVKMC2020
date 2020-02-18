@@ -39,9 +39,9 @@
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
         android:clipToPadding="false"
+        android:overScrollMode="never"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
-        android:overScrollMode="never"
         android:paddingBottom="56dp" />
 
     <LinearLayout
@@ -85,5 +85,21 @@
             android:textColor="@color/uikit_accent" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/no_photos"
+        android:textAlignment="center"
+        android:textColor="@color/uikit_gray"
+        android:textSize="15sp"
+        android:visibility="gone" />
 
 </FrameLayout>

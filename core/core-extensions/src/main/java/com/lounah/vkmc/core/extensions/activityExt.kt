@@ -3,6 +3,7 @@
 package com.lounah.vkmc.core.extensions
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
@@ -16,6 +17,13 @@ inline fun AppCompatActivity.toast(msg: Int, length: Int = Toast.LENGTH_SHORT) {
 
 inline fun Fragment.toast(msg: Int, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(requireContext(), msg, length).show()
+}
+
+fun Context.vkViewIntent(subject: String) {
+    Intent().apply {
+        action = Intent.ACTION_VIEW
+        data = Uri.parse("https://vk.com/$subject")
+    }.also(this::startActivity)
 }
 
 fun Activity.cameraIntent(code: Int, fileUri: Uri) {
