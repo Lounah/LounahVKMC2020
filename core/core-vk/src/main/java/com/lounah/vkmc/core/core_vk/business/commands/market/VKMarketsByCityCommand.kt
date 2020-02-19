@@ -14,7 +14,7 @@ internal class VKMarketsByCityCommand(
 ) : VKApiCommandWrapper<List<Market>>() {
 
     override val arguments: Map<String, String> =
-        mapOf("city_id" to cityId, "market" to "1", "count" to "50", "offset" to "$offset")
+        mapOf("city_id" to cityId, "q" to "Adidas", "market" to "1", "count" to "50", "offset" to "$offset")
 
     private class VKMarketByCityResponseParser(
         private val gson: Gson = Gson()
