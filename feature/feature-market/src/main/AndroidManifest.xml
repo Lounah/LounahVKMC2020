@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="com.lounah.vkmc.feature.feature_market.ui.MarketGroupsActivity"
+            android:name="com.lounah.vkmc.feature.feature_market.container.MarketGroupsActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/VKMCAppTheme" />
