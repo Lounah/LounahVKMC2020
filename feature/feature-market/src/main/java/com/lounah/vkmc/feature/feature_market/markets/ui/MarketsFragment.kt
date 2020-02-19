@@ -84,6 +84,7 @@ internal class MarketsFragment : Fragment() {
     }
 
     private fun onMarketClicked(market: MarketUi) {
+
     }
 
     private fun initClickListeners() {
