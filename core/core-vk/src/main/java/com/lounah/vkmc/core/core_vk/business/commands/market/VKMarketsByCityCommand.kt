@@ -14,13 +14,14 @@ internal class VKMarketsByCityCommand(
 ) : VKApiCommandWrapper<List<Market>>() {
 
     override val arguments: Map<String, String> =
-        mapOf("city_id" to cityId, "q" to "Adidas", "market" to "1", "count" to "50", "offset" to "$offset")
+        mapOf("city_id" to cityId, "q" to "*", "market" to "1", "count" to "50", "offset" to "$offset")
 
     private class VKMarketByCityResponseParser(
         private val gson: Gson = Gson()
     ) : VKApiResponseParser<List<Market>> {
         override fun parse(response: String): List<Market> {
-            return gson.fromJson(response, MarketReponse::class.java).response.items
+            return gson.fromJson(response, MarketReponse::class.java)
+                .response.items.filterNot(Market::closed)
         }
     }
 }

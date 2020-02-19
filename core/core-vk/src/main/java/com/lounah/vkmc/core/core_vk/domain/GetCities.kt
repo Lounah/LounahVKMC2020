@@ -30,6 +30,13 @@ class GetCities : () -> Single<List<City>> {
     }
 }
 
+class GetCityById : (CityId) -> Single<City> {
+
+    override fun invoke(cityId: CityId): Single<City> {
+        return Single.just(inMemoryCities.firstOrNull { it.id == cityId })
+    }
+}
+
 data class City(
     val id: String,
     val title: String,

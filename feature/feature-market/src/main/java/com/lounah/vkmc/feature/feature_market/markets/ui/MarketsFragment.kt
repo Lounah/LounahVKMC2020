@@ -43,6 +43,7 @@ internal class MarketsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
         initBindings()
+        toolbar.setOnClickListener { recyclerView.smoothScrollToPosition(0) }
     }
 
     private fun initBindings() {
@@ -55,6 +56,7 @@ internal class MarketsFragment : Fragment() {
 
     private fun render(state: MarketsState) {
         marketsAdapter.setItems(state.markets)
+        title.text = getString(R.string.shops_in, state.city)
     }
 
     private fun initRecycler() {

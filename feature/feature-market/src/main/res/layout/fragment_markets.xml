@@ -14,6 +14,7 @@
         android:overScrollMode="never" />
 
     <FrameLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:background="@color/uikit_white"
         android:layout_height="56dp">
@@ -26,12 +27,13 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="32dp"
             android:drawableEnd="@drawable/ic_dropdown_flipped_16"
+            android:gravity="center"
             android:drawablePadding="6dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingStart="16dp"
             tools:ignore="RtlSymmetry"
-            android:text="Магазины в Краснодаре" />
+            tools:text="Магазины в Краснодаре" />
 
         <include
             layout="@layout/view_elevation_light_bottom"

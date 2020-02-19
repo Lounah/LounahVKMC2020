@@ -4,6 +4,7 @@ import android.util.Log
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
+import com.lounah.vkmc.core.core_vk.domain.City
 import com.lounah.vkmc.core.core_vk.domain.CityId
 import com.lounah.vkmc.core.core_vk.domain.Offset
 import com.lounah.vkmc.core.core_vk.model.Market
@@ -20,6 +21,7 @@ private typealias MarketsSideEffect = SideEffect<MarketsState, MarketsAction>
 
 class MarketsFragmentPresenter(
     private val getMarketsByCity: (CityId, Offset) -> Single<List<Market>>,
+    private val getCityById: (CityId) -> Single<City>,
     private val userGroupsMapper: (List<Market>) -> List<MarketUi>
 ) {
 
@@ -39,7 +41,11 @@ class MarketsFragmentPresenter(
         ).distinctUntilChanged()
 
     private fun initialLoading(): MarketsSideEffect {
-        return { _, state -> loadMarkets(0, state().cityId) }
+        return { _, state ->
+            loadMarkets(0, state().cityId).mergeWith(
+                getCityById(state().cityId).map(::OnCityLoaded)
+            )
+        }
     }
 
     private fun loadPagedMarkets(): MarketsSideEffect {
@@ -67,7 +73,6 @@ class MarketsFragmentPresenter(
             .observeOn(AndroidSchedulers.mainThread())
             .toObservable()
             .map<MarketsAction> { OnMarketsLoaded(userGroupsMapper(it)) }
-            .doOnError { Log.i("error", "$it") }
             .onErrorReturnItem(OnLoadingError)
             .startWith(OnLoadingStarted)
     }

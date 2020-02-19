@@ -14,9 +14,14 @@ data class MarketReponse(
 data class Market(
     val id: String,
     val name: String,
+    @SerializedName("is_closed")
+    val isClosed: Int,
     @SerializedName("photo_100")
     val photo: String
-)
+) {
+    val closed: Boolean
+        get() = isClosed == 1
+}
 
 @Keep
 data class ProductsResponse(

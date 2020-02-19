@@ -11,6 +11,7 @@ private const val MOSCOW_CITY_ID = "1"
 
 data class MarketsState(
     val cityId: String = MOSCOW_CITY_ID,
+    val city: String = "",
     val markets: List<ViewTyped> = emptyList(),
     val errorView: ViewTyped = ErrorView(),
     val pagedProgress: ViewTyped = PagedProgressUi(),
@@ -24,8 +25,9 @@ internal fun MarketsState.reduce(action: MarketsAction): MarketsState {
         is OnMarketsLoaded -> {
             val newItems =
                 (markets - ProgressItem - errorView - pagedProgress - pagedError) + action.markets - ProgressItem
-            copy(markets = newItems)
+            copy(markets = newItems, city = city)
         }
+        is OnCityLoaded -> copy(city = action.city.inclined)
         is OnCityIdChanged -> copy(cityId = action.cityId, pageOffset = 0, markets = listOf(ProgressItem))
         is OnLoadingStarted -> {
             val newItems = if (pageOffset == 0) listOf(ProgressItem) else {
