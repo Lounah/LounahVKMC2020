@@ -12,11 +12,13 @@ internal object InjectorInitializer {
         val userGroupsComponent = appComponent.userGroupsComponent()
         val groupDetailsComponent = appComponent.groupDetailsComponent()
         val marketsComponent = appComponent.marketsComponent()
+        val citiesListComponent = appComponent.citiesListComponent()
 
         ComponentStorage.addComponent(appComponent)
         ComponentStorage.addComponent(challengeFeatureComponent)
         ComponentStorage.addComponent(imagePickerComponent)
         ComponentStorage.addComponent(groupDetailsComponent)
+        ComponentStorage.addComponent(citiesListComponent)
         ComponentStorage.addComponent(marketsComponent)
         ComponentStorage.addComponent(userGroupsComponent)
     }

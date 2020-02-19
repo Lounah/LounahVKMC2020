@@ -1,6 +1,5 @@
 package com.lounah.vkmc.feature.feature_market.markets.presentation
 
-import android.util.Log
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
@@ -35,6 +34,7 @@ class MarketsFragmentPresenter(
                 loadPagedMarkets(),
                 initialLoading(),
                 repeatLoadMarkets(),
+                changeCityId(),
                 handleCityChanges()
             ),
             reducer = MarketsState::reduce
@@ -64,6 +64,15 @@ class MarketsFragmentPresenter(
         return { actions, state ->
             actions.ofType<OnRetryLoadingClicked>()
                 .flatMap { loadMarkets(state().pageOffset, state().cityId) }
+        }
+    }
+
+    private fun changeCityId(): MarketsSideEffect {
+        return { actions, _ ->
+            actions.ofType<ChangeCityId>().flatMap {
+                getCityById(it.cityId).map<MarketsAction>(::OnCityLoaded)
+                    .toObservable()
+            }
         }
     }
 

@@ -9,6 +9,7 @@ sealed class MarketsAction {
     object OnLoadingStarted : MarketsAction()
     object OnRetryLoadingClicked : MarketsAction()
     class OnCityIdChanged(val cityId: String) : MarketsAction()
+    class ChangeCityId(val cityId: String) : MarketsAction()
     class OnCityLoaded(val city: City) : MarketsAction()
     class OnMarketsLoaded(val markets: List<ViewTyped>) : MarketsAction()
 }

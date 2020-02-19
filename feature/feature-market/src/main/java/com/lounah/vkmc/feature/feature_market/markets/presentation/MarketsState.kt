@@ -25,7 +25,7 @@ internal fun MarketsState.reduce(action: MarketsAction): MarketsState {
         is OnMarketsLoaded -> {
             val newItems =
                 (markets - ProgressItem - errorView - pagedProgress - pagedError) + action.markets - ProgressItem
-            copy(markets = newItems, city = city)
+            copy(markets = newItems)
         }
         is OnCityLoaded -> copy(city = action.city.inclined)
         is OnCityIdChanged -> copy(cityId = action.cityId, pageOffset = 0, markets = listOf(ProgressItem))
