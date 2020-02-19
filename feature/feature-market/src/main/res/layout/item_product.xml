@@ -9,7 +9,7 @@
     <com.lounah.vkmc.core.ui.AspectRatioCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_product_stroke"
+        android:foreground="@drawable/bg_product_stroke"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp">
 

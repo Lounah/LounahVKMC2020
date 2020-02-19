@@ -1,6 +1,6 @@
 package com.lounah.vkmc.feature.feature_market.markets.ui
 
-import android.app.Activity.*
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,14 +15,15 @@ import com.lounah.vkmc.core.extensions.subscribeTo
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_market.R
 import com.lounah.vkmc.feature.feature_market.cities.ui.CitiesListFragment
+import com.lounah.vkmc.feature.feature_market.goods.ui.MarketGoodsFragment
 import com.lounah.vkmc.feature.feature_market.markets.di.MarketsComponent
 import com.lounah.vkmc.feature.feature_market.markets.presentation.MarketsAction.*
 import com.lounah.vkmc.feature.feature_market.markets.presentation.MarketsFragmentPresenter
 import com.lounah.vkmc.feature.feature_market.markets.presentation.MarketsState
 import com.lounah.vkmc.feature.feature_market.markets.ui.recycler.MarketUi
 import com.lounah.vkmc.feature.feature_market.markets.ui.recycler.MarketsAdapter
-import io.reactivex.android.schedulers.AndroidSchedulers.*
-import io.reactivex.schedulers.Schedulers.*
+import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
+import io.reactivex.schedulers.Schedulers.io
 import kotlinx.android.synthetic.main.fragment_markets.*
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -84,7 +85,14 @@ internal class MarketsFragment : Fragment() {
     }
 
     private fun onMarketClicked(market: MarketUi) {
-
+        val marketFragment = MarketGoodsFragment.newInstance(market.uid, market.title)
+        activity!!.supportFragmentManager.run {
+            beginTransaction()
+                .hide(this@MarketsFragment)
+                .add(R.id.container, marketFragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     private fun initClickListeners() {

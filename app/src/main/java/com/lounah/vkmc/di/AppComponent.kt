@@ -4,6 +4,7 @@ import android.content.Context
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerComponent
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerDependencies
 import com.lounah.vkmc.feature.feature_market.cities.di.CitiesListComponent
+import com.lounah.vkmc.feature.feature_market.goods.di.MarketGoodsComponent
 import com.lounah.vkmc.feature.feature_market.markets.di.MarketsComponent
 import com.lounah.vkmc.feature.feature_sharing.di.SharingComponent
 import com.lounah.vkmc.feature.feature_sharing.di.SharingDependencies
@@ -44,5 +45,9 @@ interface AppComponent : SharingDependencies, ImagePickerDependencies, GroupDeta
 
     fun citiesListComponent(): CitiesListComponent {
         return CitiesListComponent()
+    }
+
+    fun goodsComponent(): MarketGoodsComponent {
+        return MarketGoodsComponent()
     }
 }

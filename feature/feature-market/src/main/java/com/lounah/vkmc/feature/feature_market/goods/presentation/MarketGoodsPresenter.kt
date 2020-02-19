@@ -3,16 +3,11 @@ package com.lounah.vkmc.feature.feature_market.goods.presentation
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
-import com.lounah.vkmc.core.core_vk.domain.City
-import com.lounah.vkmc.core.core_vk.domain.GetProductsByMarket
 import com.lounah.vkmc.core.core_vk.domain.MarketId
 import com.lounah.vkmc.core.core_vk.domain.Offset
-import com.lounah.vkmc.core.core_vk.model.Market
 import com.lounah.vkmc.core.core_vk.model.Product
-import com.lounah.vkmc.feature.feature_market.markets.presentation.MarketsAction
-import com.lounah.vkmc.feature.feature_market.markets.presentation.MarketsState
-import com.lounah.vkmc.feature.feature_market.markets.presentation.reduce
-import com.lounah.vkmc.feature.feature_market.markets.ui.recycler.MarketUi
+import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsAction.*
+import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.ProductUi
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,72 +15,62 @@ import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.schedulers.Schedulers
 
-private typealias MarketGoodsSideEffect = SideEffect<MarketGoodsState, MarketGoodsState>
+private typealias MarketGoodsSideEffect = SideEffect<MarketGoodsState, MarketGoodsAction>
 
-class MarketsFragmentPresenter(
+class MarketGoodsPresenterFactory(
+    private val getGoodsByMarket: (MarketId, Offset) -> Single<List<Product>>,
+    private val goodsMapper: (List<Product>) -> List<ProductUi>
+) : (MarketId) -> MarketGoodsPresenter {
+
+    override fun invoke(marketId: MarketId): MarketGoodsPresenter {
+        return MarketGoodsPresenter(marketId, getGoodsByMarket, goodsMapper)
+    }
+}
+
+class MarketGoodsPresenter(
+    private val marketId: MarketId,
     private val getGoodsByMarket: (MarketId, Offset) -> Single<List<Product>>,
     private val goodsMapper: (List<Product>) -> List<ProductUi>
 ) {
 
-    private val inputRelay = PublishRelay.create<MarketsAction>()
+    private val inputRelay = PublishRelay.create<MarketGoodsAction>()
 
-    val input: Consumer<MarketsAction> = inputRelay
-    val state: Observable<MarketsState> = inputRelay
+    val input: Consumer<MarketGoodsAction> = inputRelay
+    val state: Observable<MarketGoodsState> = inputRelay
         .reduxStore(
-            initialState = MarketsState(),
+            initialState = MarketGoodsState(marketId),
             sideEffects = listOf(
-                loadPagedMarkets(),
+                loadPagedGoods(),
                 initialLoading(),
-                repeatLoadMarkets(),
-                changeCityId(),
-                handleCityChanges()
+                repeatLoadGoods()
             ),
-            reducer = MarketsState::reduce
+            reducer = MarketGoodsState::reduce
         ).distinctUntilChanged()
 
-    private fun initialLoading(): MarketsSideEffect {
-        return { _, state ->
-            loadMarkets(0, state().cityId).mergeWith(
-                getCityById(state().cityId).map(MarketsAction::OnCityLoaded)
-            )
-        }
+    private fun initialLoading(): MarketGoodsSideEffect {
+        return { _, _ -> loadGoods(0, marketId) }
     }
 
-    private fun loadPagedMarkets(): MarketsSideEffect {
-        return { actions, state ->
-            actions.ofType<MarketsAction.OnNextPage>().flatMap { loadMarkets(it.offset, state().cityId) }
-        }
-    }
-
-    private fun handleCityChanges(): MarketsSideEffect {
+    private fun loadPagedGoods(): MarketGoodsSideEffect {
         return { actions, _ ->
-            actions.ofType<MarketsAction.OnCityIdChanged>().flatMap { loadMarkets(0, it.cityId) }
+            actions.ofType<OnNextPage>().flatMap { loadGoods(it.offset, marketId) }
         }
     }
 
-    private fun repeatLoadMarkets(): MarketsSideEffect {
+    private fun repeatLoadGoods(): MarketGoodsSideEffect {
         return { actions, state ->
-            actions.ofType<MarketsAction.OnRetryLoadingClicked>()
-                .flatMap { loadMarkets(state().pageOffset, state().cityId) }
+            actions.ofType<OnRetryLoadingClicked>()
+                .flatMap { loadGoods(state().pageOffset, marketId) }
         }
     }
 
-    private fun changeCityId(): MarketsSideEffect {
-        return { actions, _ ->
-            actions.ofType<MarketsAction.ChangeCityId>().flatMap {
-                getCityById(it.cityId).map<MarketsAction>(MarketsAction::OnCityLoaded)
-                    .toObservable()
-            }
-        }
-    }
-
-    private fun loadMarkets(offset: Int, cityId: CityId): Observable<MarketsAction> {
-        return getMarketsByCity(cityId, offset)
+    private fun loadGoods(offset: Int, marketId: MarketId): Observable<MarketGoodsAction> {
+        return getGoodsByMarket(marketId, offset)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
             .toObservable()
-            .map<MarketsAction> { MarketsAction.OnMarketsLoaded(userGroupsMapper(it)) }
-            .onErrorReturnItem(MarketsAction.OnLoadingError)
-            .startWith(MarketsAction.OnLoadingStarted)
+            .map<MarketGoodsAction> { OnGoodsLoaded(goodsMapper(it)) }
+            .onErrorReturnItem(OnLoadingError)
+            .startWith(OnLoadingStarted)
     }
 }
