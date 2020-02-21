@@ -45,7 +45,7 @@ data class Product(
 
     data class Price(val currency: Currency,
                      val amount: String) {
-        val formattedAmount: String
+        val harmonizedAmount: String
             get() = "${amount.toLong() / 100}"
     }
 

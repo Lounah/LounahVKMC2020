@@ -7,10 +7,12 @@
     android:orientation="vertical">
 
     <com.lounah.vkmc.core.ui.AspectRatioCardView
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:foreground="@drawable/bg_product_stroke"
         app:cardCornerRadius="8dp"
+        android:background="?selectableItemBackground"
         app:cardElevation="0dp">
 
         <ImageView
@@ -41,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:maxLines="2"
         android:textColor="@color/uikit_black"

@@ -18,6 +18,7 @@ abstract class BasePagedAdapter(
         return when (viewType) {
             R.layout.item_progress -> BaseViewHolder2(view)
             R.layout.item_paging_loading -> BaseViewHolder2(view)
+            R.layout.item_empty_content -> EmptyContentViewHolder(view).asType()
             R.layout.item_paging_error -> PagedErrorViewHolder(onRepeatPagedLoading, view).asType()
             R.layout.item_error -> FullScreenErrorViewHolder(onRepeatPagedLoading, view).asType()
             else -> createViewHolder(view, viewType)

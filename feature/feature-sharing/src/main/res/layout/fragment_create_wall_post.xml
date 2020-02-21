@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_medium"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:text="@string/share_on_the_wall"

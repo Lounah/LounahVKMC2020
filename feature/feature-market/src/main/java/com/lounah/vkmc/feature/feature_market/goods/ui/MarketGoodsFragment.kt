@@ -12,6 +12,7 @@ import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.subscribeTo
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_market.R
+import com.lounah.vkmc.feature.feature_market.gooddetails.GoodDetailsFragment
 import com.lounah.vkmc.feature.feature_market.goods.di.MarketGoodsComponent
 import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsAction.OnNextPage
 import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsAction.OnRetryLoadingClicked
@@ -48,7 +49,7 @@ internal class MarketGoodsFragment : Fragment() {
         initRecycler()
         initBindings()
         val marketName = arguments?.getString(ARG_MARKET_NAME).orEmpty()
-        title.text = getString(R.string.shops_in, marketName)
+        title.text = getString(R.string.goods_of, marketName)
         closeBtn.setOnClickListener { activity!!.supportFragmentManager.popBackStack() }
     }
 
@@ -63,6 +64,7 @@ internal class MarketGoodsFragment : Fragment() {
     private fun render(state: MarketGoodsState) {
         productsAdapter.setItems(state.goods)
     }
+
     private fun initRecycler() {
         recyclerView.apply {
             val lm = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
@@ -75,7 +77,12 @@ internal class MarketGoodsFragment : Fragment() {
     }
 
     private fun onProductClicked(product: ProductUi) {
-
+        val details = GoodDetailsFragment.newInstance(product.uid, product.name, product.photo, product.price)
+        activity!!.supportFragmentManager.beginTransaction()
+            .add(R.id.container, details)
+            .addToBackStack(null)
+            .hide(this)
+            .commit()
     }
 
     private fun onRepeatPagedLoading() {
