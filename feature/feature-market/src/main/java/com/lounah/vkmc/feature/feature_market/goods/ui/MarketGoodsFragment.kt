@@ -12,7 +12,7 @@ import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.subscribeTo
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_market.R
-import com.lounah.vkmc.feature.feature_market.gooddetails.GoodDetailsFragment
+import com.lounah.vkmc.feature.feature_market.gooddetails.ProductDetailsFragment
 import com.lounah.vkmc.feature.feature_market.goods.di.MarketGoodsComponent
 import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsAction.OnNextPage
 import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsAction.OnRetryLoadingClicked
@@ -23,7 +23,6 @@ import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.ProductUi
 import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.ProductsAdapter
 import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.ProductsSpanSizeLookUp
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
-import io.reactivex.schedulers.Schedulers.io
 import kotlinx.android.synthetic.main.fragment_goods.*
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -55,7 +54,6 @@ internal class MarketGoodsFragment : Fragment() {
 
     private fun initBindings() {
         presenter.state
-            .subscribeOn(io())
             .observeOn(mainThread())
             .subscribeTo(onNext = ::render)
             .disposeOnDestroy(this)
@@ -77,7 +75,7 @@ internal class MarketGoodsFragment : Fragment() {
     }
 
     private fun onProductClicked(product: ProductUi) {
-        val details = GoodDetailsFragment.newInstance(product.uid, product.name, product.photo, product.price)
+        val details = ProductDetailsFragment.newInstance(product)
         activity!!.supportFragmentManager.beginTransaction()
             .add(R.id.container, details)
             .addToBackStack(null)

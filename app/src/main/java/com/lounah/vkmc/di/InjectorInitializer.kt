@@ -14,6 +14,7 @@ internal object InjectorInitializer {
         val marketsComponent = appComponent.marketsComponent()
         val goodsComponent = appComponent.goodsComponent()
         val citiesListComponent = appComponent.citiesListComponent()
+        val productDetailsComponent = appComponent.productDetailsComponent()
 
         ComponentStorage.addComponent(appComponent)
         ComponentStorage.addComponent(challengeFeatureComponent)
@@ -23,5 +24,6 @@ internal object InjectorInitializer {
         ComponentStorage.addComponent(goodsComponent)
         ComponentStorage.addComponent(marketsComponent)
         ComponentStorage.addComponent(userGroupsComponent)
+        ComponentStorage.addComponent(productDetailsComponent)
     }
 }

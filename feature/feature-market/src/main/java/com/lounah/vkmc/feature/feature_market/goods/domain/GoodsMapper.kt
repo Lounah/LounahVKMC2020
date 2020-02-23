@@ -14,6 +14,7 @@ internal class GoodsMapper : (List<Product>) -> List<ProductUi> {
                 uid = it.id,
                 name = it.title,
                 photo = it.photo,
+                description = it.description,
                 price = "${getMoneyAmount(it.price)} ${getCurrencySign(it.price.currency)}"
             )
         }
