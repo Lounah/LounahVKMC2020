@@ -1,12 +1,18 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/emptyText"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="24dp"
-    android:layout_marginEnd="16dp"
-    android:fontFamily="sans-serif-medium"
-    android:textColor="@color/uikit_black"
-    android:textSize="16sp"
-    tools:text="This is a simple text placeholder, which can be used as an empty view." />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/emptyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/uikit_black"
+        android:textSize="16sp"
+        tools:text="This is a simple text placeholder, which can be used as an empty view." />
+
+</FrameLayout>

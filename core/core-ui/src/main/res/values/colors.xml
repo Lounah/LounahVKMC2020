@@ -10,7 +10,9 @@
     <color name="uikit_black_40">#66000000</color>
     <color name="uikit_black">#000</color>
     <color name="uikit_gray">#818C99</color>
+    <color name="uikit_gray_sub">#909499</color>
     <color name="uikit_gray_light">#c4cdd1</color>
     <color name="uikit_transparent">#00000000</color>
     <color name="uikit_white">#fff</color>
+    <color name="uikit_white_6">#F7F7F7</color>
 </resources>

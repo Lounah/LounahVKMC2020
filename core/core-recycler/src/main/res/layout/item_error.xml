@@ -10,7 +10,7 @@
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:drawablePadding="16dp"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/roboto_medium"
         android:gravity="center_horizontal"
         android:text="@string/cannot_load_data"
         android:textColor="@color/uikit_black"

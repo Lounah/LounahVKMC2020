@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shops_in">Магазины в %1s</string>
+    <string name="goods_of">Товары сообщества %1s</string>
+    <string name="good_item_transition_name">good_item_transition</string>
+    <string name="city">Город</string>
+    <string name="market_no_goods">Товаров нет</string>
+    <string name="remove_from_fav">Удалить из избранного</string>
+    <string name="add_to_fav">Добавить в избранное</string>
+</resources>
