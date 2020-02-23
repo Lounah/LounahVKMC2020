@@ -3,8 +3,12 @@ package com.lounah.vkmc.feature.feature_market.gooddetails.presentation
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
+import com.lounah.vkmc.core.core_vk.domain.ProductId
 import com.lounah.vkmc.feature.feature_market.data.FavProductsDao
-import com.lounah.vkmc.feature.feature_market.gooddetails.presentation.ProductDetailsAction.*
+import com.lounah.vkmc.feature.feature_market.productdetails.presentation.ProductDetailsAction
+import com.lounah.vkmc.feature.feature_market.productdetails.presentation.ProductDetailsAction.*
+import com.lounah.vkmc.feature.feature_market.productdetails.presentation.ProductDetailsState
+import com.lounah.vkmc.feature.feature_market.productdetails.presentation.reduce
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.ofType
@@ -13,7 +17,7 @@ typealias ProductDetailsSideEffect = SideEffect<ProductDetailsState, ProductDeta
 
 class ProductDetailsPresenterFactory(
     private val productsDao: FavProductsDao
-) : (String) -> ProductDetailsPresenter {
+) : (ProductId) -> ProductDetailsPresenter {
     override fun invoke(productId: String): ProductDetailsPresenter {
         return ProductDetailsPresenter(productId, productsDao)
     }

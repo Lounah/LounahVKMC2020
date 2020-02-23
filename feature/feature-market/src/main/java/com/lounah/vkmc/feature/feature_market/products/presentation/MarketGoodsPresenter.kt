@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_market.goods.presentation
+package com.lounah.vkmc.feature.feature_market.products.presentation
 
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
@@ -6,8 +6,8 @@ import com.jakewharton.rxrelay2.PublishRelay
 import com.lounah.vkmc.core.core_vk.domain.MarketId
 import com.lounah.vkmc.core.core_vk.domain.Offset
 import com.lounah.vkmc.core.core_vk.model.Product
-import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsAction.*
-import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.ProductUi
+import com.lounah.vkmc.feature.feature_market.products.presentation.MarketGoodsAction.*
+import com.lounah.vkmc.feature.feature_market.products.ui.recycler.ProductUi
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers

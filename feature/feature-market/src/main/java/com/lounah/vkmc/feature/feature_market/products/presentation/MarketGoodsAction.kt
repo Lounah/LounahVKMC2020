@@ -1,8 +1,6 @@
-package com.lounah.vkmc.feature.feature_market.goods.presentation
+package com.lounah.vkmc.feature.feature_market.products.presentation
 
-import com.lounah.vkmc.core.core_vk.domain.City
 import com.lounah.vkmc.core.recycler.base.ViewTyped
-import com.lounah.vkmc.feature.feature_market.markets.presentation.MarketsAction
 
 sealed class MarketGoodsAction {
     class OnNextPage(val offset: Int) : MarketGoodsAction()

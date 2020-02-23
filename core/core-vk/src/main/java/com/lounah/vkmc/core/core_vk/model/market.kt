@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class MarketReponse(
+data class MarketResponse(
     val response: Markets
 ) {
 

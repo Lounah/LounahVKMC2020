@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_market.goods.ui.recycler
+package com.lounah.vkmc.feature.feature_market.products.ui.recycler
 
 import android.os.Parcelable
 import android.view.View
@@ -27,7 +27,10 @@ class ProductViewHolder(
 
     override fun bind(item: ProductUi) {
         super.bind(item)
-        image.load(item.photo, RequestOptions().encodeQuality(80))
+        image.load(
+            item.photo,
+            RequestOptions().encodeQuality(80).placeholder(R.drawable.placeholder_product_preview)
+        )
         name.text = item.name
         price.text = item.price
     }

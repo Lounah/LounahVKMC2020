@@ -133,28 +133,14 @@
         <include
             layout="@layout/view_elevation_light_top"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="4dp"
             android:layout_gravity="top" />
 
-        <FrameLayout
+        <com.lounah.vkmc.core.ui.loadingbutton.VKLoadingButton
+            android:id="@+id/progressButton"
+            android:layout_marginTop="4dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:background="@color/uikit_white_6">
-
-            <Button
-                android:id="@+id/addToFav"
-                style="@style/Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:textColor="@color/selector_fav_button"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/selector_button_add_to_fav" />
-
-        </FrameLayout>
+            android:layout_height="wrap_content"/>
 
     </FrameLayout>
 

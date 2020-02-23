@@ -1,7 +1,7 @@
-package com.lounah.vkmc.feature.feature_market.goods.domain
+package com.lounah.vkmc.feature.feature_market.products.domain
 
 import com.lounah.vkmc.core.core_vk.model.Product
-import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.ProductUi
+import com.lounah.vkmc.feature.feature_market.products.ui.recycler.ProductUi
 import java.text.NumberFormat
 
 private val moneyFormatter = NumberFormat.getCurrencyInstance()

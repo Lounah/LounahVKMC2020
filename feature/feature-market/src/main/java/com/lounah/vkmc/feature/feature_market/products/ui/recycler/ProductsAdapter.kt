@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_market.goods.ui.recycler
+package com.lounah.vkmc.feature.feature_market.products.ui.recycler
 
 import android.view.View
 import com.lounah.vkmc.core.extensions.asType

@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_market.gooddetails.di
+package com.lounah.vkmc.feature.feature_market.productdetails.di
 
 import android.content.Context
 

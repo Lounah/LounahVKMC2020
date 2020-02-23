@@ -15,13 +15,13 @@ import com.lounah.vkmc.core.extensions.subscribeTo
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_market.R
 import com.lounah.vkmc.feature.feature_market.cities.ui.CitiesListFragment
-import com.lounah.vkmc.feature.feature_market.goods.ui.MarketGoodsFragment
 import com.lounah.vkmc.feature.feature_market.markets.di.MarketsComponent
 import com.lounah.vkmc.feature.feature_market.markets.presentation.MarketsAction.*
 import com.lounah.vkmc.feature.feature_market.markets.presentation.MarketsFragmentPresenter
 import com.lounah.vkmc.feature.feature_market.markets.presentation.MarketsState
 import com.lounah.vkmc.feature.feature_market.markets.ui.recycler.MarketUi
 import com.lounah.vkmc.feature.feature_market.markets.ui.recycler.MarketsAdapter
+import com.lounah.vkmc.feature.feature_market.products.ui.MarketGoodsFragment
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.schedulers.Schedulers.io
 import kotlinx.android.synthetic.main.fragment_markets.*

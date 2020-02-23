@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_market.goods.presentation
+package com.lounah.vkmc.feature.feature_market.products.presentation
 
 import com.lounah.vkmc.core.core_vk.domain.MarketId
 import com.lounah.vkmc.core.recycler.base.ViewTyped
@@ -8,7 +8,7 @@ import com.lounah.vkmc.core.recycler.paging.core.EmptyContentUi
 import com.lounah.vkmc.core.recycler.paging.core.PagedErrorUi
 import com.lounah.vkmc.core.recycler.paging.core.PagedProgressUi
 import com.lounah.vkmc.feature.feature_market.R
-import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsAction.*
+import com.lounah.vkmc.feature.feature_market.products.presentation.MarketGoodsAction.*
 
 data class MarketGoodsState(
     val marketId: MarketId,

@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_market.goods.ui
+package com.lounah.vkmc.feature.feature_market.products.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,18 +12,18 @@ import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.subscribeTo
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_market.R
-import com.lounah.vkmc.feature.feature_market.gooddetails.ProductDetailsFragment
-import com.lounah.vkmc.feature.feature_market.goods.di.MarketGoodsComponent
-import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsAction.OnNextPage
-import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsAction.OnRetryLoadingClicked
-import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsPresenter
-import com.lounah.vkmc.feature.feature_market.goods.presentation.MarketGoodsState
-import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.GridSpacesDecoration
-import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.ProductUi
-import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.ProductsAdapter
-import com.lounah.vkmc.feature.feature_market.goods.ui.recycler.ProductsSpanSizeLookUp
+import com.lounah.vkmc.feature.feature_market.productdetails.ui.ProductDetailsFragment
+import com.lounah.vkmc.feature.feature_market.products.di.MarketGoodsComponent
+import com.lounah.vkmc.feature.feature_market.products.presentation.MarketGoodsAction.OnNextPage
+import com.lounah.vkmc.feature.feature_market.products.presentation.MarketGoodsAction.OnRetryLoadingClicked
+import com.lounah.vkmc.feature.feature_market.products.presentation.MarketGoodsPresenter
+import com.lounah.vkmc.feature.feature_market.products.presentation.MarketGoodsState
+import com.lounah.vkmc.feature.feature_market.products.ui.recycler.GridSpacesDecoration
+import com.lounah.vkmc.feature.feature_market.products.ui.recycler.ProductUi
+import com.lounah.vkmc.feature.feature_market.products.ui.recycler.ProductsAdapter
+import com.lounah.vkmc.feature.feature_market.products.ui.recycler.ProductsSpanSizeLookUp
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
-import kotlinx.android.synthetic.main.fragment_goods.*
+import kotlinx.android.synthetic.main.fragment_products.*
 import kotlin.LazyThreadSafetyMode.NONE
 
 internal class MarketGoodsFragment : Fragment() {
@@ -32,8 +32,11 @@ internal class MarketGoodsFragment : Fragment() {
         ProductsAdapter(::onProductClicked, ::onRepeatPagedLoading)
     }
 
+    private val marketId: String by lazy(NONE) {
+        arguments?.getString(ARG_MARKET_ID).orEmpty()
+    }
+
     private val presenter: MarketGoodsPresenter by lazy(NONE) {
-        val marketId = arguments?.getString(ARG_MARKET_ID).orEmpty()
         getComponent<MarketGoodsComponent>().presenterFactory(marketId)
     }
 
@@ -41,7 +44,7 @@ internal class MarketGoodsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_goods, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_products, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -75,7 +78,7 @@ internal class MarketGoodsFragment : Fragment() {
     }
 
     private fun onProductClicked(product: ProductUi) {
-        val details = ProductDetailsFragment.newInstance(product)
+        val details = ProductDetailsFragment.newInstance(product, marketId)
         activity!!.supportFragmentManager.beginTransaction()
             .add(R.id.container, details)
             .addToBackStack(null)

@@ -6,8 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.lounah.vkmc.feature.feature_market.R
 import com.lounah.vkmc.feature.feature_market.markets.ui.MarketsFragment
-import com.vk.api.sdk.auth.VKScope.ADS
-import com.vk.api.sdk.auth.VKScope.MARKET
+import com.vk.api.sdk.auth.VKScope.*
 
 class MarketGroupsActivity : AppCompatActivity() {
 
@@ -22,7 +21,7 @@ class MarketGroupsActivity : AppCompatActivity() {
     }
 
     companion object {
-        val authScopes = listOf(MARKET, ADS)
+        val authScopes = listOf(MARKET, ADS, NOTES, WALL)
 
         fun start(context: Context) {
             Intent(context, MarketGroupsActivity::class.java).also(context::startActivity)

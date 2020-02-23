@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_market.goods.ui.recycler
+package com.lounah.vkmc.feature.feature_market.products.ui.recycler
 
 import android.graphics.Rect
 import android.view.View
