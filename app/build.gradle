@@ -54,6 +54,7 @@ dependencies {
     implementation project(Modules.featureMarket)
     implementation project(Modules.featureAlbums)
     implementation project(Modules.featureImagePicker)
+    implementation project(Modules.featureEventsMap)
 
     implementation Libraries.kotlin
     implementation Libraries.rxJava

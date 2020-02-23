@@ -9,6 +9,7 @@ include Modules.app,
         Modules.featureUnsubscribe,
         Modules.featureAlbums,
         Modules.featureMarket,
+        Modules.featureEventsMap,
         Modules.featureImagePicker,
         Modules.featureSharing
 
