@@ -4,7 +4,7 @@ import com.lounah.vkmc.feature.feature_market.data.FavProductSelectQueryEngine
 import com.lounah.vkmc.feature.feature_market.data.FavProductsDaoImpl
 import com.lounah.vkmc.feature.feature_market.data.core.DatabaseHelper
 import com.lounah.vkmc.feature.feature_market.data.sql.InsertQueryEngine
-import com.lounah.vkmc.feature.feature_market.gooddetails.presentation.ProductDetailsPresenterFactory
+import com.lounah.vkmc.feature.feature_market.productdetails.presentation.ProductDetailsPresenterFactory
 
 interface ProductDetailsComponent {
     val presenterFactory: ProductDetailsPresenterFactory
@@ -19,5 +19,7 @@ fun ProductDetailsComponent(deps: ProductDetailsDependencies): ProductDetailsCom
             FavProductsDaoImpl(db, FavProductSelectQueryEngine(), InsertQueryEngine())
 
         override val presenterFactory: ProductDetailsPresenterFactory =
-            ProductDetailsPresenterFactory(productsDao)
+            ProductDetailsPresenterFactory(
+                productsDao
+            )
     }

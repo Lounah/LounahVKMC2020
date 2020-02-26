@@ -1,13 +1,10 @@
 package com.lounah.vkmc.core.recycler.paging.core
 
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.lounah.vkmc.core.extensions.asType
-import com.lounah.vkmc.core.recycler.base.BaseViewHolder
 import com.lounah.vkmc.core.recycler.base.ViewTyped
-import com.lounah.vkmc.core.ui.util.ClickLock
 import kotlinx.android.extensions.LayoutContainer
 
 open class BaseViewHolder2<T : ViewTyped>(
@@ -41,10 +38,11 @@ abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder2<ViewTyped>>() 
         get() = itemsInternal
 
     open fun setItems(items: List<ViewTyped>) {
-        val callback = ViewTypedDiffCallback(itemsInternal, items)
+        val uniqueItems = items.distinct()
+        val callback = ViewTypedDiffCallback(itemsInternal, uniqueItems)
         val diff = DiffUtil.calculateDiff(callback)
         itemsInternal.clear()
-        itemsInternal.addAll(items)
+        itemsInternal.addAll(uniqueItems)
         diff.dispatchUpdatesTo(this)
     }
 

@@ -14,9 +14,9 @@ import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.subscribeTo
 import com.lounah.vkmc.core.ui.imageloader.load
 import com.lounah.vkmc.feature.feature_market.R
-import com.lounah.vkmc.feature.feature_market.gooddetails.presentation.ProductDetailsPresenter
 import com.lounah.vkmc.feature.feature_market.productdetails.di.ProductDetailsComponent
 import com.lounah.vkmc.feature.feature_market.productdetails.presentation.ProductDetailsAction.OnFavButtonClicked
+import com.lounah.vkmc.feature.feature_market.productdetails.presentation.ProductDetailsPresenter
 import com.lounah.vkmc.feature.feature_market.productdetails.presentation.ProductDetailsState
 import com.lounah.vkmc.feature.feature_market.products.ui.recycler.ProductUi
 import com.lounah.vkmc.feature.image_viewer.ui.ImageViewerActivity

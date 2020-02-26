@@ -18,7 +18,7 @@
             app:contentScrim="@color/uikit_transparent"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|snap">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <com.lounah.vkmc.core.ui.AspectRatioFrameLayout
                 android:id="@+id/imageContainer"
@@ -37,7 +37,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp">
+                android:layout_height="58dp">
 
                 <ImageView
                     android:id="@+id/back"
@@ -45,7 +45,8 @@
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
-                    android:background="?selectableItemBackground"
+                    android:layout_marginBottom="2dp"
+                    android:background="?selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_back"
                     tools:ignore="ContentDescription" />
 
@@ -57,6 +58,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="42dp"
                     android:ellipsize="end"
+                    android:paddingBottom="2dp"
                     android:maxLines="1"
                     android:paddingStart="64dp"
                     tools:ignore="RtlSymmetry"

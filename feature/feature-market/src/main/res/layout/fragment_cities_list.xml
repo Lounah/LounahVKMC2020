@@ -14,8 +14,9 @@
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:background="?selectableItemBackground"
-            android:src="@drawable/ic_cancel" />
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_cancel"
+            tools:ignore="ContentDescription" />
 
         <TextView
             style="@style/TitleText"
@@ -23,7 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingStart="64dp"
-            android:text="@string/city" />
+            android:text="@string/city"
+            tools:ignore="RtlSymmetry" />
 
         <include
             layout="@layout/view_elevation_light_bottom"

@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -13,11 +14,11 @@
         android:clipToPadding="false"
         android:overScrollMode="never" />
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:background="@color/uikit_white"
-        android:layout_height="56dp">
+        android:layout_height="58dp">
 
         <TextView
             android:id="@+id/title"
@@ -26,21 +27,36 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="32dp"
-            android:drawableEnd="@drawable/ic_dropdown_flipped_16"
             android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:drawablePadding="6dp"
+            android:paddingBottom="2dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingStart="16dp"
             tools:ignore="RtlSymmetry"
             tools:text="Магазины в Краснодаре" />
 
+        <View
+            android:layout_width="16dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            android:background="@drawable/ic_dropdown_flipped_16"/>
+
         <include
             layout="@layout/view_elevation_light_bottom"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_gravity="bottom" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="2dp" />
 
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
