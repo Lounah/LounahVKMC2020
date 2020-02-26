@@ -10,3 +10,6 @@ fun Context.vkViewIntent(subject: String) {
         data = Uri.parse("https://vk.com/$subject")
     }.also(this::startActivity)
 }
+
+fun Context.vkViewWallPostIntent(ownerId: String, postId: String) =
+    vkViewIntent("id${ownerId}?w=wall${ownerId}_${postId}")

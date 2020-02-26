@@ -2,6 +2,7 @@ package com.lounah.vkmc.feature.feature_sharing.ui
 
 import android.os.Bundle
 import android.view.View
+import com.lounah.vkmc.core.core_vk.domain.WallPost
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
 import com.lounah.vkmc.core.extensions.*
 import com.lounah.vkmc.core.ui.bottomsheet.BaseBottomSheetDialogFragment
@@ -74,7 +75,7 @@ internal class CreateWallPostBottomSheetDialog :
 
     private fun handleEvent(event: ShareMediaEvent) {
         when (event) {
-            is OnPostSuccessfullyShared -> onPostSuccessfullyCreated()
+            is OnPostSuccessfullyShared -> onPostSuccessfullyCreated(event.post)
             is ShowUploadingError -> {
                 hideProgress()
                 toast(R.string.error_sharing_photo)
@@ -82,8 +83,8 @@ internal class CreateWallPostBottomSheetDialog :
         }
     }
 
-    private fun onPostSuccessfullyCreated() {
-        toast(R.string.successfully_created_wall_post)
+    private fun onPostSuccessfullyCreated(post: WallPost) {
+        requireActivity().asType<ShareMediaActivity>().showWallPost(post)
         dismiss()
     }
 

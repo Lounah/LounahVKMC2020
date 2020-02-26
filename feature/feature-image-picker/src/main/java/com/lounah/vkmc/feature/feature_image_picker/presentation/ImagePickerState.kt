@@ -1,10 +1,9 @@
 package com.lounah.vkmc.feature.feature_image_picker.presentation
 
 import com.lounah.vkmc.core.recycler.base.ViewTyped
-import com.lounah.vkmc.core.recycler.base.items.EmptyContent
 import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerAction.OnImageSelected
 import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerAction.OnImagesLoaded
-import com.lounah.vkmc.feature.feature_image_picker.ui.viewholders.GalleryImageUi
+import com.lounah.vkmc.feature.feature_image_picker.ui.recycler.GalleryImageUi
 
 data class ImagePickerState(
     val selectedImagePath: String? = null,

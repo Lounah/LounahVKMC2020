@@ -1,6 +1,6 @@
 package com.lounah.vkmc.feature.feature_sharing.presentation
 
-import com.lounah.vkmc.core.core_vk.model.WallPost
+import com.lounah.vkmc.core.core_vk.domain.WallPost
 
 sealed class ShareMediaEvent {
     class OnPostSuccessfullyShared(val post: WallPost) : ShareMediaEvent()

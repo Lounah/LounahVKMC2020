@@ -29,7 +29,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="end|center_vertical"
-            android:background="@drawable/layer_list_cancel_button" />
+            android:background="@drawable/layer_list_cancel" />
 
     </FrameLayout>
 

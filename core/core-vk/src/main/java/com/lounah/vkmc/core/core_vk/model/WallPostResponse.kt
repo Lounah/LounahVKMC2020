@@ -4,7 +4,11 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class WallPost(
+data class WallPostResponse(
+    val response: WallPostId
+)
+
+data class WallPostId(
     @SerializedName("post_id")
-    val id: Int
+    val id: String
 )

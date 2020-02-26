@@ -1,10 +1,11 @@
 package com.lounah.vkmc.feature.feature_sharing.presentation
 
 import android.net.Uri
+import android.util.Log
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
-import com.lounah.vkmc.core.core_vk.model.WallPost
+import com.lounah.vkmc.core.core_vk.domain.WallPost
 import com.lounah.vkmc.feature.feature_sharing.presentation.ShareMediaAction.OnShareWallPostClicked
 import com.lounah.vkmc.feature.feature_sharing.presentation.ShareMediaAction.UploadError
 import com.lounah.vkmc.feature.feature_sharing.presentation.ShareMediaEvent.OnPostSuccessfullyShared
@@ -38,7 +39,9 @@ class ShareMediaPresenter(
             actions.ofType<OnShareWallPostClicked>().switchMap {
                 createWallPost(state().commentText, listOf(state().selectedImage))
                     .subscribeOn(single())
-                    .doOnError { eventsRelay.accept(ShowUploadingError) }
+                    .doOnError {
+                        Log.i("error", "$it")
+                        eventsRelay.accept(ShowUploadingError) }
                     .doOnSuccess { eventsRelay.accept(OnPostSuccessfullyShared(it)) }
                     .flatMapObservable<ShareMediaAction> { Observable.empty() }
                     .onErrorResumeNext(Observable.just(UploadError))

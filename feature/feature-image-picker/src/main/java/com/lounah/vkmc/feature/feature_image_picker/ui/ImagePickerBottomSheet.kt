@@ -21,12 +21,12 @@ import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerActi
 import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerEvent.RequestCameraAccess
 import com.lounah.vkmc.feature.feature_image_picker.presentation.ImagePickerEvent.ShowSelectedImage
 import com.lounah.vkmc.feature.feature_image_picker.ui.ImagePickerActivity.Companion.EXTRA_PICKED_IMAGE
+import com.lounah.vkmc.feature.feature_image_picker.ui.recycler.CameraPickerUi
+import com.lounah.vkmc.feature.feature_image_picker.ui.recycler.ImagePickerRecyclerClicks
+import com.lounah.vkmc.feature.feature_image_picker.ui.recycler.ImagePickerViewHolderFactory
 import com.lounah.vkmc.feature.feature_image_picker.ui.util.GridSpacesDecoration
 import com.lounah.vkmc.feature.feature_image_picker.ui.util.ImagePickerSpanSizeLookup
 import com.lounah.vkmc.feature.feature_image_picker.ui.util.Value
-import com.lounah.vkmc.feature.feature_image_picker.ui.viewholders.CameraPickerUi
-import com.lounah.vkmc.feature.feature_image_picker.ui.viewholders.ImagePickerRecyclerClicks
-import com.lounah.vkmc.feature.feature_image_picker.ui.viewholders.ImagePickerViewHolderFactory
 import com.lounah.vkmc.feature.image_viewer.ui.ImageViewerActivity
 import com.lounah.vkmc.feature.image_viewer.ui.ImageViewerActivity.Companion.PICKER_RC
 import com.lounah.vkmc.feature.image_viewer.ui.ImageViewerActivity.Companion.PICKER_RESULT

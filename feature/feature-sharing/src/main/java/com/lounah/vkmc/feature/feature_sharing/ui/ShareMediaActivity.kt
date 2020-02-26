@@ -6,6 +6,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import com.lounah.vkmc.core.core_vk.domain.WallPost
+import com.lounah.vkmc.core.core_vk.vkViewWallPostIntent
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
 import com.lounah.vkmc.feature.feature_image_picker.ui.ImagePickerActivity
@@ -34,6 +37,12 @@ class ShareMediaActivity : AppCompatActivity() {
             CreateWallPostBottomSheetDialog.newInstance(selectedPic)
                 .show(supportFragmentManager, null)
         }
+    }
+
+    fun showWallPost(wallPost: WallPost) {
+        Snackbar.make(root, R.string.successfully_created_wall_post, Snackbar.LENGTH_LONG)
+            .setAction(R.string.look) { vkViewWallPostIntent(wallPost.userId, wallPost.id) }
+            .show()
     }
 
     companion object {

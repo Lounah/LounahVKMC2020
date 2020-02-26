@@ -9,4 +9,5 @@
     <string name="error_sharing_photo">Произошла ошибка. Попробуйте позднее</string>
     <string name="successfully_created_wall_post">Пост успешно создан</string>
     <string name="check_post">Посмотреть</string>
+    <string name="look">Посмотреть</string>
 </resources>

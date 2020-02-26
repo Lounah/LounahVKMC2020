@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_image_picker.ui.viewholders
+package com.lounah.vkmc.feature.feature_image_picker.ui.recycler
 
 import android.graphics.Bitmap.CompressFormat.JPEG
 import android.view.View
