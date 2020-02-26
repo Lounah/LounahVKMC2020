@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui
+package com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.recycler
 
 import androidx.recyclerview.widget.GridLayoutManager
 import com.lounah.vkmc.core.recycler.base.ViewTyped

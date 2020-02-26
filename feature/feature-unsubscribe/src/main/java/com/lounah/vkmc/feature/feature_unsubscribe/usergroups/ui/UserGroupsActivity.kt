@@ -10,7 +10,6 @@ import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
 import com.lounah.vkmc.core.extensions.*
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
@@ -25,8 +24,10 @@ import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserG
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsEvent.ShowGroupsLeaveError
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsPresenter
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsState
+import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.recycler.GridSpacesDecoration
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.recycler.UserGroupUi
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.recycler.UserGroupsAdapter
+import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.recycler.UserGroupsSpanSizeLookup
 import com.vk.api.sdk.auth.VKScope
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

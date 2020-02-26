@@ -25,9 +25,10 @@ internal class ExtendedGroupDetailsMapper(
     }
 
     private fun getSubscribersFullInfo(subscribersCount: Int, friendsCount: Int): String {
-        return "${numbersFormatter(subscribersCount)} ${getSubsString(subscribersCount)} • ${numbersFormatter(
+        return "${numbersFormatter(subscribersCount)} ${getSubsString(subscribersCount)}" +
+                if (friendsCount != 0) " • ${numbersFormatter(
             friendsCount
-        )} ${getFriendsString(friendsCount)}"
+        )} ${getFriendsString(friendsCount)}" else ""
     }
 
     private fun getSubsString(subscribersCount: Int): String {

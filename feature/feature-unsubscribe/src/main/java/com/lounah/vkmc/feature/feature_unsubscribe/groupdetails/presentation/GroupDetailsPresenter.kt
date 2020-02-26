@@ -14,6 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.schedulers.Schedulers.single
+import java.util.concurrent.TimeUnit.MILLISECONDS
 
 
 private typealias GroupDetailsSideEffect = SideEffect<GroupDetailsState, GroupDetailsAction>
@@ -71,6 +72,7 @@ class GroupDetailsPresenter(
             getExtendedGroupInfo(groupId)
                 .subscribeOn(single())
                 .observeOn(mainThread())
+                .delay(500, MILLISECONDS)
                 .flatMapObservable<GroupDetailsAction> {
                     Observable.just(OnGroupLoaded(groupDetailsMapper(it)))
                 }
