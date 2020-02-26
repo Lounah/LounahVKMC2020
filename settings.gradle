@@ -7,6 +7,7 @@ include Modules.app,
         Modules.coreNavigation,
         Modules.featureImageViewer,
         Modules.featureUnsubscribe,
+        Modules.featureAlbums,
         Modules.featureMarket,
         Modules.featureImagePicker,
         Modules.featureSharing

@@ -12,6 +12,7 @@ object Modules {
     const val coreVk = ":core:core-vk"
     const val featureSharing = ":feature:feature-sharing"
     const val featureMarket = ":feature:feature-market"
+    const val featureAlbums = ":feature:feature-albums"
     const val featureUnsubscribe = ":feature:feature-unsubscribe"
     const val featureImageViewer = ":feature:feature-image-viewer"
     const val featureImagePicker = ":feature:feature-image-picker"

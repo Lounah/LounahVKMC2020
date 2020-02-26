@@ -1,0 +1,22 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+    implementation project(Modules.featureImagePicker)
+    implementation project(Modules.featureImageViewer)
+    implementation project(Modules.coreExtensions)
+    implementation project(Modules.coreUi)
+    implementation project(Modules.coreDi)
+    implementation project(Modules.coreVk)
+
+    implementation Libraries.rxJava
+    implementation Libraries.rxKotlin
+    implementation Libraries.rxRedux
+    implementation Libraries.rxRelay
+    implementation Libraries.glide
+    implementation Libraries.vkSdk
+    implementation Libraries.rxAndroid
+    implementation SupportLibraries.design
+    implementation SupportLibraries.appcompat
+    implementation SupportLibraries.recyclerview
+    implementation Libraries.constraintLayout
+}
