@@ -21,7 +21,7 @@ import com.lounah.vkmc.feature.feature_map.map.presentation.EventsMapAction.*
 import com.lounah.vkmc.feature.feature_map.map.presentation.EventsMapPresenter
 import com.lounah.vkmc.feature.feature_map.map.presentation.EventsMapState
 import com.lounah.vkmc.feature.feature_map.map.presentation.RenderType
-import com.lounah.vkmc.feature.feature_map.map.ui.map.MapMarker
+import com.lounah.vkmc.feature.feature_map.map.ui.map.markers.MapMarker
 import com.lounah.vkmc.feature.image_viewer.ui.ImageViewerActivity
 import com.vk.api.sdk.auth.VKScope.*
 import io.reactivex.android.schedulers.AndroidSchedulers

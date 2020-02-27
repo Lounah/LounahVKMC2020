@@ -5,7 +5,7 @@ import com.lounah.vkmc.core.core_vk.model.GroupWithAddress
 import com.lounah.vkmc.core.core_vk.model.PhotoByLatLng
 import com.lounah.vkmc.feature.feature_map.map.presentation.RenderType
 import com.lounah.vkmc.feature.feature_map.map.presentation.RenderType.*
-import com.lounah.vkmc.feature.feature_map.map.ui.map.MapMarker
+import com.lounah.vkmc.feature.feature_map.map.ui.map.markers.MapMarker
 import io.reactivex.Observable
 import io.reactivex.Single
 

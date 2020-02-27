@@ -2,7 +2,7 @@ package com.lounah.vkmc.feature.feature_map.map.presentation
 
 import com.google.android.gms.maps.model.LatLng
 import com.lounah.vkmc.core.core_vk.domain.market.CityId
-import com.lounah.vkmc.feature.feature_map.map.ui.map.MapMarker
+import com.lounah.vkmc.feature.feature_map.map.ui.map.markers.MapMarker
 
 sealed class EventsMapAction {
     object StartLoading : EventsMapAction()

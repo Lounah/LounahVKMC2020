@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_map.map.ui.map
+package com.lounah.vkmc.feature.feature_map.map.ui.map.markers
 
 import android.content.Context
 import com.google.android.gms.maps.GoogleMap

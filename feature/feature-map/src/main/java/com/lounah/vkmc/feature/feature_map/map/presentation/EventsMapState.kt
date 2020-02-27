@@ -3,7 +3,7 @@ package com.lounah.vkmc.feature.feature_map.map.presentation
 import com.lounah.vkmc.core.core_vk.domain.market.CityId
 import com.lounah.vkmc.feature.feature_map.map.presentation.EventsMapAction.*
 import com.lounah.vkmc.feature.feature_map.map.presentation.RenderType.EVENTS
-import com.lounah.vkmc.feature.feature_map.map.ui.map.MapMarker
+import com.lounah.vkmc.feature.feature_map.map.ui.map.markers.MapMarker
 
 enum class RenderType {
     EVENTS, GROUPS, PHOTOS

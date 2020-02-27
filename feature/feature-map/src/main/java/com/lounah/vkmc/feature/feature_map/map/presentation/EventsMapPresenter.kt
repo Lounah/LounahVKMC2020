@@ -7,7 +7,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.jakewharton.rxrelay2.PublishRelay
 import com.lounah.vkmc.core.core_vk.domain.market.CityId
 import com.lounah.vkmc.feature.feature_map.map.presentation.EventsMapAction.*
-import com.lounah.vkmc.feature.feature_map.map.ui.map.MapMarker
+import com.lounah.vkmc.feature.feature_map.map.ui.map.markers.MapMarker
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.ofType

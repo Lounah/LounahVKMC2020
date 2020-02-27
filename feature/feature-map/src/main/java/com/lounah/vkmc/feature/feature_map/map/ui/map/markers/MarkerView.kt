@@ -1,4 +1,4 @@
-package com.lounah.vkmc.feature.feature_map.map.ui.map
+package com.lounah.vkmc.feature.feature_map.map.ui.map.markers
 
 import android.graphics.Bitmap
 import androidx.annotation.DrawableRes

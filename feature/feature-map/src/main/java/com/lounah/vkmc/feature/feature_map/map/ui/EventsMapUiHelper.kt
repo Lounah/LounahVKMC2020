@@ -7,9 +7,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.core.extensions.toggleTranslationY
 import com.lounah.vkmc.feature.feature_map.R
-import com.lounah.vkmc.feature.feature_map.map.ui.map.EventsMapClusterManager
-import com.lounah.vkmc.feature.feature_map.map.ui.map.MapMarker
-import com.lounah.vkmc.feature.feature_map.map.ui.map.MapMarkerRenderer
+import com.lounah.vkmc.feature.feature_map.map.ui.map.IconCacheImpl
+import com.lounah.vkmc.feature.feature_map.map.ui.map.markers.EventsMapClusterManager
+import com.lounah.vkmc.feature.feature_map.map.ui.map.markers.MapMarker
+import com.lounah.vkmc.feature.feature_map.map.ui.map.renderer.GroupsClusterRenderer
+import com.lounah.vkmc.feature.feature_map.map.ui.map.renderer.MapMarkerRenderer
+import com.lounah.vkmc.feature.feature_map.map.ui.map.renderer.PhotosClusterRenderer
 import kotlinx.android.synthetic.main.activity_events_map.*
 
 
@@ -61,26 +64,46 @@ internal class EventsMapUiHelper(
     }
 
     private fun setUpClusterer(onMapIdle: () -> Unit) {
-        clusterer = EventsMapClusterManager(activity, gMap, onMapIdle)
+        val iconCache =
+            IconCacheImpl(activity)
+        clusterer =
+            EventsMapClusterManager(
+                activity,
+                gMap,
+                onMapIdle
+            )
         clusterer.setAnimation(true)
+        val groupsRendererDelegate = GroupsClusterRenderer(iconCache, activity)
+        val photosRendererDelegate = PhotosClusterRenderer(iconCache, activity)
+        val renderer =
+            MapMarkerRenderer(
+                clusterer,
+                activity,
+                gMap,
+                groupsRendererDelegate,
+                photosRendererDelegate
+            )
         gMap.setOnCameraIdleListener(clusterer)
         gMap.setOnMarkerClickListener(clusterer)
-        clusterer.renderer = MapMarkerRenderer(clusterer, activity, gMap)
+        clusterer.renderer = renderer
         clusterer.setOnClusterItemClickListener {
             gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.latlng, DEFAULT_ZOOM_LEVEL),
                 1000, object : GoogleMap.CancelableCallback {
-                override fun onFinish() = onClusterItemClicked(it)
-                override fun onCancel() = Unit
-            })
+                    override fun onFinish() = onClusterItemClicked(it)
+                    override fun onCancel() = Unit
+                })
             true
         }
 
         clusterer.setOnClusterClickListener {
-            gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.items.first().latlng, DEFAULT_ZOOM_LEVEL),
+            gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                it.items.first().latlng,
+                DEFAULT_ZOOM_LEVEL
+            ),
                 1000, object : GoogleMap.CancelableCallback {
-                override fun onFinish() = onClusterClicked(it.items)
-                override fun onCancel() = Unit
-            })
+                    override fun onFinish() = onClusterClicked(it.items)
+                    override fun onCancel() = Unit
+                })
             true
         }
     }
