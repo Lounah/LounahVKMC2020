@@ -1,21 +1,18 @@
 package com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation
 
-import android.util.Log
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
-import com.lounah.vkmc.core.core_vk.domain.Count
-import com.lounah.vkmc.core.core_vk.domain.Offset
+import com.lounah.vkmc.core.core_vk.domain.groups.Count
+import com.lounah.vkmc.core.core_vk.domain.groups.Offset
 import com.lounah.vkmc.core.core_vk.model.Group
-import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.core.recycler.paging.DEFAULT_PAGE_SIZE
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsAction.*
-import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsEvent.*
+import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsEvent.OpenExtraGroupInfoDialog
+import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.presentation.UserGroupsEvent.ShowGroupsLeaveError
 import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.recycler.UserGroupUi
-import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.ofType
@@ -69,7 +66,7 @@ class UserGroupsPresenter(
     private fun handleGroupLongTap(): UserGroupsSideEffect {
         return { actions, _ ->
             actions.ofType<OnGroupLongTapped>().flatMap {
-                val groupId = it.uid.toInt()
+                val groupId = it.uid
                 eventsRelay.accept(OpenExtraGroupInfoDialog(groupId))
                 Observable.empty<UserGroupsAction>()
             }

@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.request.RequestOptions
-import com.lounah.vkmc.core.core_vk.domain.MarketId
+import com.lounah.vkmc.core.core_vk.domain.market.MarketId
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
 import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.subscribeTo

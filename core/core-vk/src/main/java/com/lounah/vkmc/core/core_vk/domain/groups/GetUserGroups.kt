@@ -1,12 +1,9 @@
-package com.lounah.vkmc.core.core_vk.domain
+package com.lounah.vkmc.core.core_vk.domain.groups
 
-import android.util.Log
 import com.lounah.vkmc.core.core_vk.business.commands.groups.VKGroupsCommand
 import com.lounah.vkmc.core.core_vk.model.Group
 import com.vk.api.sdk.VK
 import io.reactivex.Single
-import java.util.concurrent.TimeUnit
-import kotlin.random.Random
 
 typealias Offset = Int
 typealias Count = Int

@@ -7,7 +7,7 @@ import com.vk.api.sdk.VKApiManager
 import com.vk.api.sdk.internal.ApiCommand
 
 internal class VKExtendedGroupInfoCommand(
-    private val groupId: Int,
+    private val groupId: String,
     private val getGroupById: VKApiCommandWrapper<GroupById> = VKGetGroupByIdCommand(groupId),
     private val getGroupFriends: VKApiCommandWrapper<Int> = VKGetGroupFriendsCountCommand(groupId),
     private val getGroupLastPostTime: VKApiCommandWrapper<Long> = VKGetGroupLastPostTimeCommand(groupId)

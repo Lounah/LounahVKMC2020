@@ -5,6 +5,7 @@ dependencies {
     implementation project(Modules.featureImageViewer)
     implementation project(Modules.coreUi)
     implementation project(Modules.coreDi)
+    implementation project(Modules.coreRecycler)
     implementation project(Modules.coreVk)
 
     implementation Libraries.rxJava
@@ -18,4 +19,5 @@ dependencies {
     implementation SupportLibraries.design
     implementation SupportLibraries.appcompat
     implementation Libraries.constraintLayout
+    implementation 'com.google.maps.android:android-maps-utils:0.6.2'
 }

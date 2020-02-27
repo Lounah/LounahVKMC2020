@@ -29,3 +29,23 @@ internal class VKGetPhotosCommand(
         }
     }
 }
+
+internal class VKGetPhotosCommand(
+    latLng: Pair<Double, Double>,
+    override val method: String = "photos.search",
+    override val responseParser: VKApiResponseParser<List<PhotoByLatLng>> = VKGetPhotosResponseParser()
+) : VKApiCommandWrapper<List<PhotoByLatLng>>() {
+
+    override val arguments: Map<String, String> = mapOf(
+        "lat" to "${latLng.first}",
+        "long" to "${latLng.second}",
+        "count" to "300"
+    )
+
+    private class VKGetPhotosResponseParser : VKApiResponseParser<List<PhotoByLatLng>> {
+        override fun parse(response: String?): List<PhotoByLatLng> {
+            Log.i("groups", "photos: $response")
+            return gson.fromJson(response, PhotosByLatLngResponse::class.java).response.items
+        }
+    }
+}

@@ -9,7 +9,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
         <activity
-            android:name=".EventsMapActivity"
+            android:name="com.lounah.vkmc.feature.feature_map.map.ui.EventsMapActivity"
+            android:theme="@style/VKMCAppTheme"
             android:configChanges="keyboard|keyboardHidden"
             android:screenOrientation="portrait" />
     </application>

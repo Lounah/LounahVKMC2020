@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lounah.vkmc.core.core_vk.domain.CityId
+import com.lounah.vkmc.core.core_vk.domain.market.CityId
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
 import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.subscribeTo

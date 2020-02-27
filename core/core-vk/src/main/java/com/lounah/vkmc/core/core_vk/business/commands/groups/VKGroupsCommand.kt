@@ -1,7 +1,7 @@
 package com.lounah.vkmc.core.core_vk.business.commands.groups
 
-import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
+import com.lounah.vkmc.core.core_vk.business.gson
 import com.lounah.vkmc.core.core_vk.model.Group
 import com.lounah.vkmc.core.core_vk.model.GroupsResponse
 import com.vk.api.sdk.VKApiManager
@@ -11,6 +11,7 @@ internal class VKGroupsCommand(
     offset: Int = 0,
     count: Int = 50,
     extended: Boolean = true,
+    filter: String = "groups,publics",
     private val reversed: Boolean = false,
     override val method: String = "groups.get",
     override val responseParser: VKApiResponseParser<List<Group>> = VKGroupsResponseParser()
@@ -18,7 +19,7 @@ internal class VKGroupsCommand(
 
     override val arguments: Map<String, String> = mapOf(
         "extended" to if (extended) "1" else "0",
-        "filter" to "groups,publics",
+        "filter" to filter,
         "offset" to "$offset",
         "count" to "$count"
     )
@@ -29,9 +30,7 @@ internal class VKGroupsCommand(
         return if (reversed) response.reversed() else response
     }
 
-    private class VKGroupsResponseParser(
-        private val gson: Gson = Gson()
-    ) : VKApiResponseParser<List<Group>> {
+    private class VKGroupsResponseParser : VKApiResponseParser<List<Group>> {
         override fun parse(response: String): List<Group> {
             return gson.fromJson(response, GroupsResponse::class.java).response.items
         }

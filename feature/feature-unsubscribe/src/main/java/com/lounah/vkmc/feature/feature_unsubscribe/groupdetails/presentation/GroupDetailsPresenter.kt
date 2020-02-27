@@ -3,7 +3,7 @@ package com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.presentation
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
-import com.lounah.vkmc.core.core_vk.domain.GroupId
+import com.lounah.vkmc.core.core_vk.domain.groups.GroupId
 import com.lounah.vkmc.core.core_vk.model.ExtendedGroup
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.presentation.GroupDetailsAction.*
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.presentation.GroupDetailsEvent.OpenGroupDetails
@@ -31,7 +31,7 @@ class GroupDetailsPresenterCreator(
 class GroupDetailsPresenter(
     private val getExtendedGroupInfo: (GroupId) -> Single<ExtendedGroup>,
     private val groupDetailsMapper: (ExtendedGroup) -> ExtendedGroupUi,
-    private val groupId: Int
+    private val groupId: String
 ) {
 
     private val inputRelay = PublishRelay.create<GroupDetailsAction>()

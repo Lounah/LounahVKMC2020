@@ -1,7 +1,7 @@
 package com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.di
 
 import android.content.Context
-import com.lounah.vkmc.core.core_vk.domain.GetExtendedGroupInfo
+import com.lounah.vkmc.core.core_vk.domain.groups.GetExtendedGroupInfo
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.domain.ExtendedGroupDetailsMapper
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.domain.NiceDateFormatter
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.domain.NiceNumbersFormatter

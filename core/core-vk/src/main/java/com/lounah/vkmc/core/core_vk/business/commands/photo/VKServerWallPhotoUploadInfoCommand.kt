@@ -1,7 +1,7 @@
 package com.lounah.vkmc.core.core_vk.business.commands.photo
 
-import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
+import com.lounah.vkmc.core.core_vk.business.gson
 import com.lounah.vkmc.core.core_vk.domain.AlbumId
 import com.lounah.vkmc.core.core_vk.model.VKServerUploadInfo
 import com.lounah.vkmc.core.core_vk.model.VKServerUploadInfoResponse
@@ -13,9 +13,7 @@ internal class VKServerWallPhotoUploadInfoCommand(
     override val responseParser: VKApiResponseParser<VKServerUploadInfo> = ServerUploadInfoParser()
 ) : VKApiCommandWrapper<VKServerUploadInfo>() {
 
-    private class ServerUploadInfoParser(
-        private val gson: Gson = Gson()
-    ) : VKApiResponseParser<VKServerUploadInfo> {
+    private class ServerUploadInfoParser : VKApiResponseParser<VKServerUploadInfo> {
         override fun parse(response: String): VKServerUploadInfo {
             return gson.fromJson(response, VKServerUploadInfoResponse::class.java).response
         }

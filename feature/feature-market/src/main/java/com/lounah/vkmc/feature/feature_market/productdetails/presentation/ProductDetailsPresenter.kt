@@ -3,7 +3,7 @@ package com.lounah.vkmc.feature.feature_market.productdetails.presentation
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
-import com.lounah.vkmc.core.core_vk.domain.ProductId
+import com.lounah.vkmc.core.core_vk.domain.market.ProductId
 import com.lounah.vkmc.feature.feature_market.data.FavProductsDao
 import com.lounah.vkmc.feature.feature_market.productdetails.presentation.ProductDetailsAction.*
 import io.reactivex.Observable
