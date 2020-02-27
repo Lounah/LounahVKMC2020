@@ -11,7 +11,7 @@ import com.lounah.vkmc.core.extensions.show
 import com.lounah.vkmc.core.ui.imageloader.load
 import com.lounah.vkmc.feature.image_viewer.R
 import com.lounah.vkmc.feature.image_viewer.core.*
-import kotlinx.android.synthetic.main.item_image.view.*
+import kotlinx.android.synthetic.main.item_imageviewer_image.view.*
 
 internal class ImageViewerViewPagerAdapter(
     private val images: ArrayList<String>,
@@ -48,7 +48,7 @@ internal class ImageViewerViewPagerAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): View =
         LayoutInflater.from(container.context)
-            .inflate(R.layout.item_image, container, false)
+            .inflate(R.layout.item_imageviewer_image, container, false)
             .apply {
                 imageContainer.gestureListener = dismissGestureListener(imageContainer)
                 image.load(images[position], success = {

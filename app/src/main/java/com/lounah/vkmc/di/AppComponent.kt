@@ -1,6 +1,8 @@
 package com.lounah.vkmc.di
 
 import android.content.Context
+import com.lounah.vkmc.feature.feature_albums.di.AlbumsComponent
+import com.lounah.vkmc.feature.feature_albums.di.AlbumsDependencies
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerComponent
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerDependencies
 import com.lounah.vkmc.feature.feature_market.cities.di.CitiesListComponent
@@ -15,7 +17,7 @@ import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.di.GroupDetailsC
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.di.GroupDetailsDependencies
 
 interface AppComponent : SharingDependencies, ImagePickerDependencies, GroupDetailsDependencies,
-    ProductDetailsDependencies {
+    ProductDetailsDependencies, AlbumsDependencies {
 
     companion object {
         operator fun invoke(context: Context): AppComponent {
@@ -56,5 +58,9 @@ interface AppComponent : SharingDependencies, ImagePickerDependencies, GroupDeta
 
     fun productDetailsComponent(): ProductDetailsComponent {
         return ProductDetailsComponent(this)
+    }
+
+    fun albumsComponent(): AlbumsComponent {
+        return AlbumsComponent(this)
     }
 }

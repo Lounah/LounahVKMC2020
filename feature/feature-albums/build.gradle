@@ -6,6 +6,7 @@ dependencies {
     implementation project(Modules.coreExtensions)
     implementation project(Modules.coreUi)
     implementation project(Modules.coreDi)
+    implementation project(Modules.coreRecycler)
     implementation project(Modules.coreVk)
 
     implementation Libraries.rxJava

@@ -1,10 +1,10 @@
-package com.lounah.vkmc.feature.feature_market.products.ui.recycler
+package com.lounah.vkmc.feature.feature_albums.albums.ui.recycler
 
 import androidx.recyclerview.widget.GridLayoutManager
 import com.lounah.vkmc.core.recycler.base.ViewTyped
-import com.lounah.vkmc.feature.feature_market.R
+import com.lounah.vkmc.feature.feature_albums.R
 
-class ProductsSpanSizeLookUp(
+class AlbumsSpanSizeLookUp(
     private val items: () -> List<ViewTyped>
 ) :
     GridLayoutManager.SpanSizeLookup() {

@@ -1,10 +1,10 @@
-package com.lounah.vkmc.feature.feature_market.products.ui.recycler
+package com.lounah.vkmc.feature.feature_albums.photos.ui.recycler
 
 import androidx.recyclerview.widget.GridLayoutManager
 import com.lounah.vkmc.core.recycler.base.ViewTyped
-import com.lounah.vkmc.feature.feature_market.R
+import com.lounah.vkmc.feature.feature_albums.R
 
-class ProductsSpanSizeLookUp(
+class PhotosSpanSizeLookUp(
     private val items: () -> List<ViewTyped>
 ) :
     GridLayoutManager.SpanSizeLookup() {
@@ -18,7 +18,8 @@ class ProductsSpanSizeLookUp(
         val isFullScreenError = items()[position].viewType == R.layout.item_error
         val isFullScreenProgress = items()[position].viewType == R.layout.item_progress
         val isEmptyContent = items()[position].viewType == R.layout.item_empty_content
+        val isHeader = items()[position].viewType == R.layout.item_album_header
 
-        return if (isFullScreenError || isProgress || isErrorLoading || isFullScreenProgress || isEmptyContent) 2 else 1
+        return if (isHeader || isFullScreenError || isProgress || isErrorLoading || isFullScreenProgress || isEmptyContent) 3 else 1
     }
 }

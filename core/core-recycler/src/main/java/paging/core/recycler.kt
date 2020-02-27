@@ -27,7 +27,9 @@ open class BaseViewHolder2<T : ViewTyped>(
         itemView.tag = item
     }
 
-    open fun bind(item: T, payloads: List<Any>) = Unit
+    open fun bind(item: T, payloads: List<Any>) {
+        itemView.tag = item
+    }
 }
 
 abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder2<ViewTyped>>() {
