@@ -82,6 +82,14 @@ inline fun List<View>.setVisible(isVisible: Boolean) {
     forEach { if (isVisible) it.show() else it.gone() }
 }
 
+fun View.showForceKeyboard() {
+    post {
+        this.requestFocus()
+        val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(this, 0)
+    }
+}
+
 inline fun View.hide() {
     visibility = View.INVISIBLE
 }

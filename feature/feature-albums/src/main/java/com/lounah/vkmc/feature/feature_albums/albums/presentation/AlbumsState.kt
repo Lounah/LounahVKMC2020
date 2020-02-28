@@ -39,6 +39,9 @@ internal fun AlbumsState.reduce(action: AlbumsAction): AlbumsState {
             }.toList()
             copy(inEditMode = false, albums = newItems)
         }
+        is OnAlbumDeleted -> {
+            copy(albums = albums.filterNot { it.uid == action.albumId })
+        }
         is OnNextPage -> copy(offset = action.offset)
         is OnAlbumsLoaded -> {
             val newItems =
@@ -49,7 +52,7 @@ internal fun AlbumsState.reduce(action: AlbumsAction): AlbumsState {
                 copy(albums = newItems)
         }
         is OnLoadingStarted -> {
-            val newItems = if (offset == 0) listOf(ProgressItem) else {
+            val newItems = if (offset == 0 && albums.isEmpty()) listOf(ProgressItem) else {
                 (albums - errorView - pagedError - ProgressItem - pagedProgress - emptyView) + pagedProgress
             }.toList()
             copy(albums = newItems)

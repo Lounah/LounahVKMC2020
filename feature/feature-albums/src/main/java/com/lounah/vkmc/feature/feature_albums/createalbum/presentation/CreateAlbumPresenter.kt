@@ -12,6 +12,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.ofType
+import io.reactivex.schedulers.Schedulers.single
 
 typealias CreateAlbumSideEffect = SideEffect<CreateAlbumState, CreateAlbumAction>
 
@@ -29,13 +30,14 @@ class CreateAlbumPresenter(
             initialState = CreateAlbumState(),
             sideEffects = listOf(onCreateClicked()),
             reducer = CreateAlbumState::reduce
-        ).distinctUntilChanged()
+        )
 
     private fun onCreateClicked(): CreateAlbumSideEffect {
         return { actions, state ->
             actions.ofType<OnCreateClicked>().switchMap {
                 val createBody = state().run { CreateAlbumBody(title, description, isPrivate) }
                 createAlbum(createBody)
+                    .subscribeOn(single())
                     .doOnError { eventsRelay.accept(ShowError) }
                     .doOnSuccess { eventsRelay.accept(OnCreateSucceed) }
                     .flatMapObservable { Observable.empty<CreateAlbumAction>() }

@@ -56,6 +56,7 @@ internal class AlbumViewHolder(
         if (item.isEditable.not() && item.isInEditMode) {
             root.foreground = drawable(R.drawable.bg_album_dim)
         } else {
+            delete.animateScale(0)
             root.foreground = null
         }
     }

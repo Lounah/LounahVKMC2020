@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
-import com.lounah.vkmc.core.extensions.animateScale
-import com.lounah.vkmc.core.extensions.disposeOnDestroy
-import com.lounah.vkmc.core.extensions.subscribeTo
-import com.lounah.vkmc.core.extensions.toast
+import com.lounah.vkmc.core.extensions.*
 import com.lounah.vkmc.feature.feature_albums.R
+import com.lounah.vkmc.feature.feature_albums.createalbum.presentation.CreateAlbumAction
+import com.lounah.vkmc.feature.feature_albums.createalbum.presentation.CreateAlbumAction.*
 import com.lounah.vkmc.feature.feature_albums.createalbum.presentation.CreateAlbumEvent
 import com.lounah.vkmc.feature.feature_albums.createalbum.presentation.CreateAlbumEvent.OnCreateSucceed
 import com.lounah.vkmc.feature.feature_albums.createalbum.presentation.CreateAlbumEvent.ShowError
@@ -35,6 +34,8 @@ internal class CreateAlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBindings()
+        initListeners()
+        title.showForceKeyboard()
     }
 
     private fun initBindings() {
@@ -50,22 +51,46 @@ internal class CreateAlbumFragment : Fragment() {
     }
 
     private fun render(state: CreateAlbumState) {
-        if (state.isLoading) {
-            checkmark.animateScale(0)
-            progress.animateScale(1)
-        } else {
-            if (state.canCreateAlbum)
+        when {
+            state.isLoading -> {
+                checkmark.animateScale(0)
+                progress.animateScale(1)
+            }
+            state.canCreateAlbum -> {
+                progress.animateScale(0)
                 checkmark.animateScale(1)
-            progress.animateScale(0)
+            }
+            else -> {
+                progress.animateScale(0)
+                checkmark.animateScale(0)
+            }
         }
     }
 
     private fun handleEvent(event: CreateAlbumEvent) {
         when (event) {
             is ShowError -> toast(R.string.could_not_create_album)
-            is OnCreateSucceed -> requireActivity().supportFragmentManager.popBackStack()
+            is OnCreateSucceed -> performBack()
         }
     }
+
+    private fun initListeners() {
+        cancel.setOnClickListener { performBack() }
+        title.onTextChange { OnTitleChanged(it).accept() }
+        description.onTextChange { OnDescriptionChanged(it).accept() }
+        switchPrivacy.setOnClickListener { OnPrivacyChanged(switchPrivacy.isChecked).accept() }
+        confirmBtn.setOnClickListener {
+            it.hideKeyboard()
+            OnCreateClicked.accept()
+        }
+    }
+
+    private fun performBack() {
+        view!!.hideKeyboard()
+        requireActivity().supportFragmentManager.popBackStack()
+    }
+
+    private fun CreateAlbumAction.accept() = presenter.input.accept(this)
 
     companion object {
         fun newInstance(): CreateAlbumFragment = CreateAlbumFragment()

@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.GridLayoutManager.VERTICAL
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
 import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.subscribeTo
+import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_albums.OnBackPressedListener
 import com.lounah.vkmc.feature.feature_albums.R
 import com.lounah.vkmc.feature.feature_albums.albums.presentation.AlbumsAction
 import com.lounah.vkmc.feature.feature_albums.albums.presentation.AlbumsAction.*
+import com.lounah.vkmc.feature.feature_albums.albums.presentation.AlbumsEvent
+import com.lounah.vkmc.feature.feature_albums.albums.presentation.AlbumsEvent.ErrorDeletingAlbum
 import com.lounah.vkmc.feature.feature_albums.albums.presentation.AlbumsPresenter
 import com.lounah.vkmc.feature.feature_albums.albums.presentation.AlbumsState
 import com.lounah.vkmc.feature.feature_albums.albums.ui.recycler.AlbumsAdapter
@@ -24,7 +27,7 @@ import com.lounah.vkmc.feature.feature_albums.albums.ui.recycler.holder.AlbumUi
 import com.lounah.vkmc.feature.feature_albums.createalbum.ui.CreateAlbumFragment
 import com.lounah.vkmc.feature.feature_albums.di.AlbumsComponent
 import com.lounah.vkmc.feature.feature_albums.photos.ui.PhotosFragment
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import kotlinx.android.synthetic.main.fragment_albums.*
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -53,6 +56,11 @@ internal class AlbumsFragment : Fragment(), OnBackPressedListener {
         initBindings()
     }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        LoadAlbums.accept()
+    }
+
     override fun onBackPressed(): Boolean {
         return if (toolbarFlipper.displayedChild == TOOLBAR_FLIPPER_EDIT_MODE) {
             OnCancelEditClicked.accept()
@@ -62,9 +70,16 @@ internal class AlbumsFragment : Fragment(), OnBackPressedListener {
 
     private fun initBindings() {
         presenter.state
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(mainThread())
             .subscribeTo(onNext = ::render)
             .disposeOnDestroy(viewLifecycleOwner)
+
+        presenter.events
+            .observeOn(mainThread())
+            .subscribeTo(onNext = ::handleEvent)
+            .disposeOnDestroy(viewLifecycleOwner)
+
+        LoadAlbums.accept()
     }
 
     private fun render(state: AlbumsState) {
@@ -74,6 +89,12 @@ internal class AlbumsFragment : Fragment(), OnBackPressedListener {
             TOOLBAR_FLIPPER_REGULAR
         }
         albumsAdapter.setItems(state.albums)
+    }
+
+    private fun handleEvent(event: AlbumsEvent) {
+        when (event) {
+            is ErrorDeletingAlbum -> toast(R.string.could_not_delete_album)
+        }
     }
 
     private fun initUi() {
@@ -101,9 +122,7 @@ internal class AlbumsFragment : Fragment(), OnBackPressedListener {
 
     private fun onAlbumLongClicked(album: AlbumUi) = OnEditClicked.accept()
 
-    private fun onDeleteClicked(album: AlbumUi) {
-
-    }
+    private fun onDeleteClicked(album: AlbumUi) = OnDeleteAlbumClicked(album.uid).accept()
 
     private fun onRepeatLoading() = OnRepeatLoadClicked.accept()
 

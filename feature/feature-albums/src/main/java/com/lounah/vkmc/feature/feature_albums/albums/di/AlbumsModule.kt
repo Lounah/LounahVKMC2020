@@ -1,5 +1,6 @@
 package com.lounah.vkmc.feature.feature_albums.albums.di
 
+import com.lounah.vkmc.core.core_vk.domain.DeleteAlbum
 import com.lounah.vkmc.core.core_vk.domain.GetAlbums
 import com.lounah.vkmc.feature.feature_albums.albums.domain.AlbumsMapper
 import com.lounah.vkmc.feature.feature_albums.albums.presentation.AlbumsPresenter
@@ -14,5 +15,5 @@ fun AlbumsModule(
 ): AlbumsModule = object : AlbumsModule {
 
     override val albumsPresenter: AlbumsPresenter =
-        AlbumsPresenter(GetAlbums(), AlbumsMapper(deps.appContext))
+        AlbumsPresenter(DeleteAlbum(), GetAlbums(), AlbumsMapper(deps.appContext))
 }
