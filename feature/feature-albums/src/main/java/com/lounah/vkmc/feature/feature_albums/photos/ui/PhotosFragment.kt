@@ -1,5 +1,7 @@
 package com.lounah.vkmc.feature.feature_albums.photos.ui
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +18,14 @@ import com.lounah.vkmc.feature.feature_albums.R
 import com.lounah.vkmc.feature.feature_albums.di.AlbumsComponent
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.OnNextPage
+import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.OnRepeatLoadClicked
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosPresenter
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosState
 import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotoUi
 import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotosAdapter
 import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotosItemDecoration
 import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotosSpanSizeLookUp
+import com.lounah.vkmc.feature.feature_image_picker.ui.ImagePickerActivity
 import com.lounah.vkmc.feature.image_viewer.ui.ImageViewerActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_photos.*
@@ -51,6 +55,13 @@ internal class PhotosFragment : Fragment() {
         initBindings()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_RC && resultCode == RESULT_OK) {
+            val selectedPic = data?.getStringExtra(ImagePickerActivity.EXTRA_PICKED_IMAGE).orEmpty()
+        }
+    }
+
     private fun initBindings() {
         presenter.state
             .observeOn(AndroidSchedulers.mainThread())
@@ -60,6 +71,9 @@ internal class PhotosFragment : Fragment() {
 
     private fun initUi() {
         initRecycler()
+        addBtn.setOnClickListener {
+            ImagePickerActivity.start(requireActivity(), PICK_IMAGE_RC)
+        }
     }
 
     private fun initRecycler() {
@@ -79,13 +93,12 @@ internal class PhotosFragment : Fragment() {
         ImageViewerActivity.start(requireContext(), arrayListOf(photo.path))
     }
 
-    private fun onRepeatLoading() {
-
-    }
+    private fun onRepeatLoading() = OnRepeatLoadClicked.accept()
 
     private fun PhotosAction.accept() = presenter.input.accept(this)
 
     companion object {
+        private const val PICK_IMAGE_RC = 123
         private const val ARG_ALBUM_ID = "album_id"
         private const val ARG_ALBUM_NAME = "album_name"
 

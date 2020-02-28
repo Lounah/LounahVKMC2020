@@ -7,6 +7,7 @@
     <string name="new_album">Новый альбом</string>
     <string name="new_album_privacy">Закрытый альбом</string>
     <string name="no_albums">Альбомов нет</string>
+    <string name="could_not_create_album">Не удалось создать альбом</string>
 
     <plurals name="photosCount">
         <item quantity="one">фотография</item>

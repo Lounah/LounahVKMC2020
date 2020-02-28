@@ -21,6 +21,7 @@ import com.lounah.vkmc.feature.feature_albums.albums.ui.recycler.AlbumsAdapter
 import com.lounah.vkmc.feature.feature_albums.albums.ui.recycler.AlbumsSpanSizeLookUp
 import com.lounah.vkmc.feature.feature_albums.albums.ui.recycler.GridSpacesDecoration
 import com.lounah.vkmc.feature.feature_albums.albums.ui.recycler.holder.AlbumUi
+import com.lounah.vkmc.feature.feature_albums.createalbum.ui.CreateAlbumFragment
 import com.lounah.vkmc.feature.feature_albums.di.AlbumsComponent
 import com.lounah.vkmc.feature.feature_albums.photos.ui.PhotosFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -81,9 +82,9 @@ internal class AlbumsFragment : Fragment(), OnBackPressedListener {
     }
 
     private fun initClickListeners() {
-        add.setOnClickListener { }
+        addBtn.setOnClickListener { navigateTo(CreateAlbumFragment.newInstance()) }
         cancel.setOnClickListener { OnCancelEditClicked.accept() }
-        edit.setOnClickListener { OnEditClicked.accept() }
+        editBtn.setOnClickListener { OnEditClicked.accept() }
     }
 
     private fun initRecycler() {
@@ -95,13 +96,8 @@ internal class AlbumsFragment : Fragment(), OnBackPressedListener {
         albums.pagedScrollListener { OnNextPage(it).accept() }
     }
 
-    private fun onAlbumClicked(album: AlbumUi) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .add(R.id.container, PhotosFragment.newInstance(album.uid, album.title))
-            .hide(this)
-            .addToBackStack(null)
-            .commit()
-    }
+    private fun onAlbumClicked(album: AlbumUi) =
+        navigateTo(PhotosFragment.newInstance(album.uid, album.title))
 
     private fun onAlbumLongClicked(album: AlbumUi) = OnEditClicked.accept()
 
@@ -110,6 +106,14 @@ internal class AlbumsFragment : Fragment(), OnBackPressedListener {
     }
 
     private fun onRepeatLoading() = OnRepeatLoadClicked.accept()
+
+    private fun navigateTo(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .add(R.id.container, fragment)
+            .hide(this)
+            .addToBackStack(null)
+            .commit()
+    }
 
     private fun AlbumsAction.accept() = presenter.input.accept(this)
 }

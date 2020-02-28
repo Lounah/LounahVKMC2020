@@ -35,8 +35,30 @@
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="16dp"
             android:background="?selectableItemBackgroundBorderless"
+            android:scaleX="0"
+            android:scaleY="0"
             android:src="@drawable/ic_check_blue"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            tools:scaleX="1"
+            tools:scaleY="1" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="16dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            tools:scaleX="1"
+            tools:scaleY="1" />
+
+        <View
+            android:id="@+id/confirmBtn"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end"
+            android:background="?selectableItemBackgroundBorderless" />
 
     </FrameLayout>
 

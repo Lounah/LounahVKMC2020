@@ -28,6 +28,13 @@
             android:src="@drawable/ic_add"
             tools:ignore="ContentDescription" />
 
+        <View
+            android:id="@+id/addBtn"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end"
+            android:background="?selectableItemBackgroundBorderless" />
+
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView

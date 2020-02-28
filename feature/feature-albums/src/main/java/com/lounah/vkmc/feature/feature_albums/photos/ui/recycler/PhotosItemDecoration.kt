@@ -18,10 +18,13 @@ internal class PhotosItemDecoration : RecyclerView.ItemDecoration() {
         val lastInARow = position % 3 == 0
 
         with(outRect) {
-            if (position % 3 == 2) {
-                left = 2.dp(view.context)
-                right = 2.dp(view.context)
-            }
+            right = 1.dp(view.context)
+            left = 1.dp(view.context)
+            bottom = 2.dp(view.context)
+//            if (position % 3 == 2) {
+//                left = 2.dp(view.context)
+//                right = 2.dp(view.context)
+//            }
 //            right = 1.dp(view.context)
 //            left = 1.dp(view.context)
 //            bottom = 2.dp(view.context)
@@ -33,8 +36,8 @@ internal class PhotosItemDecoration : RecyclerView.ItemDecoration() {
 //                    left = 2.dp(view.context)
 //                }
 //                else -> {
-////                    left = 1.dp(view.context)
-////                    right = 1.dp(view.context)
+//                    left = 1.dp(view.context)
+//                    right = 1.dp(view.context)
 //                    left = 1.dp(view.context)
 //                }
 //            }
