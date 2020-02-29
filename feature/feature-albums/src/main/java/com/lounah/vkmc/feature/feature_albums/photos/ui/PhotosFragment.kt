@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.VERTICAL
 import com.lounah.vkmc.core.core_vk.domain.AlbumId
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
+import com.lounah.vkmc.core.extensions.animateScale
 import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.subscribeTo
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
@@ -87,6 +88,7 @@ internal class PhotosFragment : Fragment() {
 
     private fun render(state: PhotosState) {
         photosAdapter.setItems(state.photos)
+        if (state.albumId.toInt() > 0) add.animateScale(1)
     }
 
     private fun onPhotoClicked(photo: PhotoUi) {

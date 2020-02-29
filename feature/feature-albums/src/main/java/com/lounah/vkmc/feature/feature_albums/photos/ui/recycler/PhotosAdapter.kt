@@ -5,6 +5,7 @@ import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.core.recycler.base.ViewTyped
 import com.lounah.vkmc.core.recycler.paging.core.BasePagedAdapter
 import com.lounah.vkmc.core.recycler.paging.core.BaseViewHolder2
+import com.lounah.vkmc.core.recycler.paging.core.EmptyContentViewHolder
 import com.lounah.vkmc.feature.feature_albums.R
 
 internal class PhotosAdapter(
@@ -25,6 +26,7 @@ internal class PhotosAdapter(
         when (item.viewType) {
             R.layout.item_album_photo -> (holder as PhotoViewHolder).bind(item.asType())
             R.layout.item_album_header -> (holder as AlbumHeaderViewHolder).bind(item.asType())
+            R.layout.item_empty_content -> (holder as EmptyContentViewHolder).bind(item.asType())
         }
     }
 }

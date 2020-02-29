@@ -9,10 +9,12 @@
     <string name="no_albums">Альбомов нет</string>
     <string name="could_not_create_album">Не удалось создать альбом</string>
     <string name="could_not_delete_album">Не удалось удалить альбом</string>
+    <string name="no_photos_in_album">Вы еще не добавили ни одной фотографии</string>
 
     <plurals name="photosCount">
+        <item quantity="zero">фотографий</item>
         <item quantity="one">фотография</item>
-        <item quantity="two">фотографии</item>
+        <item quantity="few">фотографии</item>
         <item quantity="other">фотографий</item>
     </plurals>
 
