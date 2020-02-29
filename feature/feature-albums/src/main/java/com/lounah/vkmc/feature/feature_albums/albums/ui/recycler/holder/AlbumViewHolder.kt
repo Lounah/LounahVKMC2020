@@ -30,7 +30,7 @@ internal class AlbumViewHolder(
     onDeleteClick: (AlbumUi) -> Unit
 ) : BaseViewHolder2<AlbumUi>(view, onAlbumClick, onAlbumLongClick) {
 
-    private val shakingAnimations = listOf(
+    val shakingAnimations = listOf(
         AnimationUtils.loadAnimation(itemView.context, R.anim.shaking_ltr),
         AnimationUtils.loadAnimation(itemView.context, R.anim.shaking_rtl)
     )
@@ -53,11 +53,19 @@ internal class AlbumViewHolder(
         title.text = item.title
         subtitle.text = item.subtitle
         image.load(item.thumb, RequestOptions().placeholder(R.drawable.bg_album_placeholder))
-        if (item.isEditable.not() && item.isInEditMode) {
-            root.foreground = drawable(R.drawable.bg_album_dim)
-        } else {
-            delete.animateScale(0)
-            root.foreground = null
+        when {
+            item.isInEditMode && item.isEditable -> {
+                delete.animateScale(1)
+                root.startAnimation(shakingAnimations.random())
+            }
+            !item.isEditable && item.isInEditMode -> {
+                root.foreground = drawable(R.drawable.bg_album_dim)
+            }
+            else -> {
+                delete.animateScale(0)
+                root.clearAnimation()
+                root.foreground = null
+            }
         }
     }
 

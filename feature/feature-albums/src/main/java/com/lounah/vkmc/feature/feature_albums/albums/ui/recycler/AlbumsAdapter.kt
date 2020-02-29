@@ -18,6 +18,16 @@ internal class AlbumsAdapter(
     onRepeatPagedLoading: () -> Unit
 ) : BasePagedAdapter(onRepeatPagedLoading) {
 
+    override fun onViewAttachedToWindow(holder: BaseViewHolder2<ViewTyped>) {
+        super.onViewAttachedToWindow(holder)
+        runCatching {
+            val holder = holder.asType<AlbumViewHolder>()
+            val album = holder.itemView.tag.asType<AlbumUi>()
+            if (album.isInEditMode && album.isEditable)
+                holder.itemView.startAnimation(holder.shakingAnimations.random())
+        }
+    }
+
     override fun createViewHolder(view: View, viewType: Int): BaseViewHolder2<ViewTyped> {
         return when (viewType) {
             R.layout.item_album -> AlbumViewHolder(
