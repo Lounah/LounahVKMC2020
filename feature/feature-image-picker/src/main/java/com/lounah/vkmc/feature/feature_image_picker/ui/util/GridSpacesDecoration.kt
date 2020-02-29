@@ -3,6 +3,7 @@ package com.lounah.vkmc.feature.feature_image_picker.ui.util
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.lounah.vkmc.core.extensions.dp
 
 internal class GridSpacesDecoration(
     private val space: Int
@@ -14,10 +15,20 @@ internal class GridSpacesDecoration(
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        with(outRect) {
-            left = space / 2
-            right = space / 2
-            top = space
+        val position = parent.getChildAdapterPosition(view)
+        if (position > 0) {
+            val column = (position - 1) % 3
+            val spacing = 2.dp(view.context)
+            with(outRect) {
+                left = column * spacing / 3
+                right = spacing - (column + 1) * spacing / 3
+
+                if (position >= 4)
+                    top = spacing
+            }
+        } else {
+            outRect.top = 2.dp(view.context)
+            outRect.bottom = 2.dp(view.context)
         }
     }
 }

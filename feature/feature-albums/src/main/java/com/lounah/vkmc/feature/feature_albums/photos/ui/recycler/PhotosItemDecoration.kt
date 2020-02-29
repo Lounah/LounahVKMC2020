@@ -14,55 +14,19 @@ internal class PhotosItemDecoration : RecyclerView.ItemDecoration() {
         state: RecyclerView.State
     ) {
         val position = parent.getChildAdapterPosition(view)
-        val firstInARow = position % 3 == 1
-        val lastInARow = position % 3 == 0
+        if (position > 0) {
+            val column = (position - 1) % 3
+            val spacing = 2.dp(view.context)
+            with(outRect) {
+                left = column * spacing / 3
+                right = spacing - (column + 1) * spacing / 3
 
-        with(outRect) {
-            right = 1.dp(view.context)
-            left = 1.dp(view.context)
-            bottom = 2.dp(view.context)
-//            if (position % 3 == 2) {
-//                left = 2.dp(view.context)
-//                right = 2.dp(view.context)
-//            }
-//            right = 1.dp(view.context)
-//            left = 1.dp(view.context)
-//            bottom = 2.dp(view.context)
-//            when {
-//                firstInARow -> {
-//                    bottom = 2.dp(view.context)
-//                }
-//                lastInARow -> {
-//                    left = 2.dp(view.context)
-//                }
-//                else -> {
-//                    left = 1.dp(view.context)
-//                    right = 1.dp(view.context)
-//                    left = 1.dp(view.context)
-//                }
-//            }
+                if (position >= 4)
+                    top = spacing
+            }
+        } else {
+            outRect.top = 2.dp(view.context)
+            outRect.bottom = 2.dp(view.context)
         }
     }
 }
-
-/*
-
-//            right = 1.dp(view.context)
-//            left = 1.dp(view.context)
-//            bottom = 2.dp(view.context)
-
-            when {
-                firstInARow -> {
-                    bottom = 2.dp(view.context)
-                    right = 1.dp(view.context)
-                }
-                lastInARow -> {
-                    left = 1.dp(view.context)
-                }
-                else -> {
-//                    left = 1.dp(view.context)
-//                    right = 1.dp(view.context)
-                    left = 1.dp(view.context)
-                }
-            }
- */

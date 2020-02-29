@@ -31,10 +31,8 @@ class AspectRatioFrameLayout @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthSpec: Int, heightSpec: Int) {
-        val heightReconciledSpec = makeMeasureSpec(
-            ((getSize(widthSpec)) * aspectRatio).toInt(),
-            EXACTLY
-        )
+        val heightReconciledSpec =
+            makeMeasureSpec(((getSize(widthSpec)) * aspectRatio).toInt(), EXACTLY)
         super.onMeasure(widthSpec, heightReconciledSpec)
     }
 }
