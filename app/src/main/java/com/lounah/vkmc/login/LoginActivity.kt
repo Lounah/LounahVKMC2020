@@ -10,7 +10,7 @@ import com.lounah.vkmc.R
 import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
-import com.lounah.vkmc.feature.feature_market.container.MarketGroupsActivity
+import com.lounah.vkmc.feature.feature_map.map.ui.EventsMapActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -34,7 +34,7 @@ internal class LoginActivity : AppCompatActivity() {
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)
         loginBtn.throttledClick(clickLock) {
-            VK.login(this, MarketGroupsActivity.authScopes)
+            VK.login(this, EventsMapActivity.authScopes)
         }
     }
 
@@ -49,12 +49,12 @@ internal class LoginActivity : AppCompatActivity() {
             startMainActivity()
             finish()
         } else {
-            VK.login(this, MarketGroupsActivity.authScopes)
+            VK.login(this, EventsMapActivity.authScopes)
         }
     }
 
     private fun startMainActivity() {
-        MarketGroupsActivity.start(this)
+        EventsMapActivity.start(this)
         finish()
     }
 
