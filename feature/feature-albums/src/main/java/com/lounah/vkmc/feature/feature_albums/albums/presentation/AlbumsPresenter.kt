@@ -47,7 +47,14 @@ class AlbumsPresenter(
                 deleteAlbum(onDelete.albumId)
                     .subscribeOn(single())
                     .doOnError { eventsRelay.accept(ErrorDeletingAlbum) }
-                    .flatMapObservable { Observable.just(OnAlbumDeleted(onDelete.albumId)) }
+                    .onErrorReturnItem(false)
+                    .flatMapObservable { deleted ->
+                        if (deleted) {
+                            Observable.just(OnAlbumDeleted(onDelete.albumId))
+                        } else {
+                            Observable.empty()
+                        }
+                    }
             }
         }
     }

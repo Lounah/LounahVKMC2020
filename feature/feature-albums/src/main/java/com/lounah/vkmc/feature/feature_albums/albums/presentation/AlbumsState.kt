@@ -52,7 +52,7 @@ internal fun AlbumsState.reduce(action: AlbumsAction): AlbumsState {
                 copy(albums = newItems)
         }
         is OnLoadingStarted -> {
-            val newItems = if (offset == 0 && albums.isEmpty()) listOf(ProgressItem) else {
+            val newItems = if (offset < 50 && albums.filterIsInstance<AlbumUi>().isEmpty()) listOf(ProgressItem) else {
                 (albums - errorView - pagedError - ProgressItem - pagedProgress - emptyView) + pagedProgress
             }.toList()
             copy(albums = newItems)

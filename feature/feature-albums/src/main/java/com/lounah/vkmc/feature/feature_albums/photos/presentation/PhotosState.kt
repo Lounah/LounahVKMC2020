@@ -33,16 +33,18 @@ internal fun PhotosState.reduce(action: PhotosAction): PhotosState {
             if (newItems.size == 1) copy(photos = listOf(titleItem) + emptyView) else copy(photos = newItems)
         }
         is OnLoadingStarted -> {
-            val newItems = if (offset == 0) listOf(ProgressItem) else {
+            val newItems = if (offset < 50 && photos.filterIsInstance<PhotoUi>().isEmpty()) listOf(ProgressItem) else {
                 (photos - errorView - pagedError - ProgressItem - pagedProgress - emptyView) + pagedProgress
             }.toList()
             copy(photos = newItems)
         }
         is OnPhotoUploaded -> copy(photos = photos + PhotoUi(action.id, action.photo, albumId, true))
         is OnLoadingError -> {
-            val newItems = when (offset) {
-                0 -> listOf(errorView)
-                else -> photos - pagedError + pagedError - pagedProgress - emptyView
+            val newItems = when {
+                offset < 50 && photos.filterIsInstance<PhotoUi>().isEmpty() -> listOf(titleItem) + errorView
+                else -> {
+                    listOf(titleItem) + photos - pagedError - pagedProgress - emptyView - errorView - ProgressItem + pagedError
+                }
             }
             copy(photos = newItems)
         }
