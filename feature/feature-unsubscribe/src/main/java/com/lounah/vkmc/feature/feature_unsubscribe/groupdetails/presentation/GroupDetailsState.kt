@@ -4,7 +4,7 @@ import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.presentation.Gro
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.ui.ExtendedGroupUi
 
 data class GroupDetailsState(
-    val groupId: Int,
+    val groupId: String,
     val fullScreenLoading: Boolean = true,
     val fullScreenError: Boolean = false,
     val groupDetails: ExtendedGroupUi? = null

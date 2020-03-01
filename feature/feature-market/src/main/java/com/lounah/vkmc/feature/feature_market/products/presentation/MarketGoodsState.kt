@@ -1,6 +1,6 @@
 package com.lounah.vkmc.feature.feature_market.products.presentation
 
-import com.lounah.vkmc.core.core_vk.domain.MarketId
+import com.lounah.vkmc.core.core_vk.domain.market.MarketId
 import com.lounah.vkmc.core.recycler.base.ViewTyped
 import com.lounah.vkmc.core.recycler.base.items.ErrorView
 import com.lounah.vkmc.core.recycler.base.items.ProgressItem

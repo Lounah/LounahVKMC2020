@@ -1,8 +1,8 @@
 package com.lounah.vkmc.core.core_vk.business.commands.wall
 
-import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
 import com.lounah.vkmc.core.core_vk.business.commands.wall.VKSaveWallPhotoCommand.SaveInfoParser
+import com.lounah.vkmc.core.core_vk.business.gson
 import com.lounah.vkmc.core.core_vk.model.VKFileUploadInfo
 import com.lounah.vkmc.core.core_vk.model.VKSaveInfo
 import com.lounah.vkmc.core.core_vk.model.VKSaveInfoResponse
@@ -34,7 +34,7 @@ internal class VKSaveWallPhotoCommand(
         "hash" to fileUploadInfo.hash
     )
 
-    class SaveInfoParser(private val gson: Gson = Gson()) : VKApiResponseParser<VKSaveInfo> {
+    class SaveInfoParser : VKApiResponseParser<VKSaveInfo> {
         override fun parse(response: String): VKSaveInfo {
             return gson.fromJson(response, VKSaveInfoResponse::class.java).response.first()
         }

@@ -1,0 +1,23 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+    implementation project(Modules.coreExtensions)
+    implementation project(Modules.featureImageViewer)
+    implementation project(Modules.coreUi)
+    implementation project(Modules.coreDi)
+    implementation project(Modules.coreRecycler)
+    implementation project(Modules.coreVk)
+
+    implementation Libraries.rxJava
+    implementation Libraries.rxKotlin
+    implementation Libraries.rxRedux
+    implementation Libraries.rxRelay
+    implementation Libraries.glide
+    implementation Libraries.vkSdk
+    implementation Libraries.rxAndroid
+    implementation Libraries.gmaps
+    implementation SupportLibraries.design
+    implementation SupportLibraries.appcompat
+    implementation Libraries.constraintLayout
+    implementation 'com.google.maps.android:android-maps-utils:0.6.2'
+}

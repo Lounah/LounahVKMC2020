@@ -1,6 +1,6 @@
 package com.lounah.vkmc.feature.feature_market.cities.presentation
 
-import com.lounah.vkmc.core.core_vk.domain.CityId
+import com.lounah.vkmc.core.core_vk.domain.market.CityId
 import com.lounah.vkmc.feature.feature_market.cities.presentation.CitiesListAction.*
 import com.lounah.vkmc.feature.feature_market.cities.ui.recycler.CityUi
 

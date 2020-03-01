@@ -4,7 +4,7 @@ import android.net.Uri
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
-import com.lounah.vkmc.core.core_vk.domain.WallPost
+import com.lounah.vkmc.core.core_vk.domain.wall.WallPost
 import com.lounah.vkmc.feature.feature_sharing.presentation.ShareMediaAction.OnShareWallPostClicked
 import com.lounah.vkmc.feature.feature_sharing.presentation.ShareMediaAction.UploadError
 import com.lounah.vkmc.feature.feature_sharing.presentation.ShareMediaEvent.OnPostSuccessfullyShared
@@ -36,7 +36,7 @@ class ShareMediaPresenter(
     private fun createWallPost(): SharingSideEffect {
         return { actions, state ->
             actions.ofType<OnShareWallPostClicked>().switchMap {
-                createWallPost(state().commentText, listOf(state().selectedImage))
+                createWallPost(state().commentText.trim(), listOf(state().selectedImage))
                     .subscribeOn(single())
                     .doOnError { eventsRelay.accept(ShowUploadingError) }
                     .doOnSuccess { eventsRelay.accept(OnPostSuccessfullyShared(it)) }

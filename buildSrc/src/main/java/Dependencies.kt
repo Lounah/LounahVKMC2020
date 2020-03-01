@@ -13,6 +13,7 @@ object Modules {
     const val featureSharing = ":feature:feature-sharing"
     const val featureMarket = ":feature:feature-market"
     const val featureAlbums = ":feature:feature-albums"
+    const val featureEventsMap = ":feature:feature-map"
     const val featureUnsubscribe = ":feature:feature-unsubscribe"
     const val featureImageViewer = ":feature:feature-image-viewer"
     const val featureImagePicker = ":feature:feature-image-picker"
@@ -47,6 +48,7 @@ object Versions {
     const val permissions = "3.0.0"
 
     const val glide = "4.10.0"
+    const val gMaps = "17.0.0"
 }
 
 object Libraries {
@@ -65,6 +67,7 @@ object Libraries {
     const val glideAp = "com.github.bumptech.glide:compiler:${Versions.glide}"
     const val vkSdk = "com.vk:androidsdk:${Versions.vkSdk}"
     const val permissions = "pub.devrel:easypermissions:${Versions.permissions}"
+    const val gmaps = "com.google.android.gms:play-services-maps:${Versions.gMaps}"
 }
 
 object SupportLibraries {

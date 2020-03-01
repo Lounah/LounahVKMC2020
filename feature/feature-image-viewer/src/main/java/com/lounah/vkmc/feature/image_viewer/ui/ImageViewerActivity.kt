@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.lounah.vkmc.core.core_vk.domain.AlbumId
-import com.lounah.vkmc.core.core_vk.domain.Offset
+import com.lounah.vkmc.core.core_vk.domain.groups.Offset
 import com.lounah.vkmc.core.extensions.animateAlpha
 import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.getOrThrow

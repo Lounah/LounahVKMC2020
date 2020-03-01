@@ -4,7 +4,7 @@ import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
 import com.lounah.vkmc.core.core_vk.domain.AlbumId
-import com.lounah.vkmc.core.core_vk.domain.Offset
+import com.lounah.vkmc.core.core_vk.domain.groups.Offset
 import com.lounah.vkmc.core.core_vk.model.Album
 import com.lounah.vkmc.feature.feature_albums.albums.presentation.AlbumsAction.*
 import com.lounah.vkmc.feature.feature_albums.albums.presentation.AlbumsEvent.ErrorDeletingAlbum

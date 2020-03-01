@@ -1,4 +1,4 @@
-package com.lounah.vkmc.core.core_vk.domain
+package com.lounah.vkmc.core.core_vk.domain.market
 
 import com.lounah.vkmc.core.core_vk.business.commands.market.VKAddProductToFaveCommand
 import com.lounah.vkmc.core.core_vk.business.commands.market.VKGetFaveProducts

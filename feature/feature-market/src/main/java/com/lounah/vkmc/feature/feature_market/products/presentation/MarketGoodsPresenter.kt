@@ -3,8 +3,8 @@ package com.lounah.vkmc.feature.feature_market.products.presentation
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
-import com.lounah.vkmc.core.core_vk.domain.MarketId
-import com.lounah.vkmc.core.core_vk.domain.Offset
+import com.lounah.vkmc.core.core_vk.domain.groups.Offset
+import com.lounah.vkmc.core.core_vk.domain.market.MarketId
 import com.lounah.vkmc.core.core_vk.model.Product
 import com.lounah.vkmc.feature.feature_market.products.presentation.MarketGoodsAction.*
 import com.lounah.vkmc.feature.feature_market.products.ui.recycler.ProductUi

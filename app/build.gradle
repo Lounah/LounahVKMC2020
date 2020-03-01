@@ -43,6 +43,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            universalApk true
+        }
+    }
 }
 
 dependencies {
@@ -54,6 +63,7 @@ dependencies {
     implementation project(Modules.featureMarket)
     implementation project(Modules.featureAlbums)
     implementation project(Modules.featureImagePicker)
+    implementation project(Modules.featureEventsMap)
 
     implementation Libraries.kotlin
     implementation Libraries.rxJava

@@ -18,11 +18,16 @@ inline fun View.animateScale(to: Int, duration: Long = 150) {
         .start()
 }
 
-inline fun View.animateTranslationY(to: Int, duration: Long = 150, startDelay: Long = 0) = animate()
-    .translationY(to.toFloat())
-    .setDuration(duration)
-    .setStartDelay(startDelay)
-    .start()
+inline fun View.animateTranslationY(to: Int, duration: Long = 150, startDelay: Long = 0) {
+    if (isEnabled && translationY != to.toFloat())
+    animate()
+        .translationY(to.toFloat())
+        .setDuration(duration)
+        .withStartAction { isEnabled = false }
+        .withEndAction { isEnabled = true }
+        .setStartDelay(startDelay)
+        .start()
+}
 
 inline fun View.animateAlpha(to: Int, duration: Long = 250) {
     if (isEnabled && alpha != to.toFloat())
@@ -37,6 +42,10 @@ inline fun View.animateAlpha(to: Int, duration: Long = 250) {
 
 inline fun View.toggleAlpha(duration: Long = 250) {
     if (alpha == 0f) animateAlpha(1, duration) else animateAlpha(0, duration)
+}
+
+inline fun View.toggleTranslationY(duration: Long = 250) {
+    if (translationY == 0f) animateTranslationY(-height, duration) else animateTranslationY(0, duration)
 }
 
 inline fun View.animateReveal(startX: Int, startY: Int = 0, duration: Long = 350) {

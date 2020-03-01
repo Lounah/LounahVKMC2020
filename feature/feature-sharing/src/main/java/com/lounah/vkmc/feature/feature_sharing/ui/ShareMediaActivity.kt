@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.lounah.vkmc.core.core_vk.domain.WallPost
+import com.lounah.vkmc.core.core_vk.domain.wall.WallPost
 import com.lounah.vkmc.core.core_vk.vkViewWallPostIntent
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick

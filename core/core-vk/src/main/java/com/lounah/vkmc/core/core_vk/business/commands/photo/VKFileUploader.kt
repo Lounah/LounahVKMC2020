@@ -1,7 +1,7 @@
 package com.lounah.vkmc.core.core_vk.business.commands.photo
 
 import android.net.Uri
-import com.google.gson.Gson
+import com.lounah.vkmc.core.core_vk.business.gson
 import com.lounah.vkmc.core.core_vk.model.VKFileUploadInfo
 import com.lounah.vkmc.core.core_vk.model.VKServerUploadInfo
 import com.vk.api.sdk.VKApiManager
@@ -26,12 +26,9 @@ internal class VKFileUploader(
         return manager.execute(fileUploadCall, null, FileUploadInfoParser())
     }
 
-    private class FileUploadInfoParser(
-        private val gson: Gson = Gson()
-    ) : VKApiResponseParser<VKFileUploadInfo> {
-        override fun parse(response: String): VKFileUploadInfo {
-            return gson.fromJson<VKFileUploadInfo>(response, VKFileUploadInfo::class.java)
-        }
+    private class FileUploadInfoParser : VKApiResponseParser<VKFileUploadInfo> {
+        override fun parse(response: String): VKFileUploadInfo =
+            gson.fromJson<VKFileUploadInfo>(response, VKFileUploadInfo::class.java)
     }
 }
 

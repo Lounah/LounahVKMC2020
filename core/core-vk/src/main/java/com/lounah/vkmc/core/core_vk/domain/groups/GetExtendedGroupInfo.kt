@@ -1,11 +1,11 @@
-package com.lounah.vkmc.core.core_vk.domain
+package com.lounah.vkmc.core.core_vk.domain.groups
 
 import com.lounah.vkmc.core.core_vk.business.commands.groups.VKExtendedGroupInfoCommand
 import com.lounah.vkmc.core.core_vk.model.ExtendedGroup
 import com.vk.api.sdk.VK
 import io.reactivex.Single
 
-typealias GroupId = Int
+typealias GroupId = String
 
 class GetExtendedGroupInfo : (GroupId) -> Single<ExtendedGroup> {
 

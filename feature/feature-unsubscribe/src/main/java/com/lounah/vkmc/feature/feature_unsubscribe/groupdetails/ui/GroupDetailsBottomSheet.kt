@@ -31,7 +31,7 @@ internal class GroupDetailsBottomSheet :
     BaseBottomSheetDialogFragment(R.layout.fragment_group_details, expandByDefault = false) {
 
     private val presenter: GroupDetailsPresenter by lazy(NONE) {
-        val groupId = arguments?.getInt(ARG_GROUP_ID) ?: 0
+        val groupId = arguments?.getString(ARG_GROUP_ID).orEmpty()
         getComponent<GroupDetailsComponent>().presenterCreator(groupId)
     }
 
@@ -91,10 +91,10 @@ internal class GroupDetailsBottomSheet :
     companion object {
         private const val ARG_GROUP_ID = "ARG_GROUP_ID"
 
-        fun newInstance(groupId: Int): GroupDetailsBottomSheet {
+        fun newInstance(groupId: String): GroupDetailsBottomSheet {
             return GroupDetailsBottomSheet().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_GROUP_ID, groupId)
+                    putString(ARG_GROUP_ID, groupId)
                 }
             }
         }

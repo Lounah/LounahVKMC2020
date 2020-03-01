@@ -5,7 +5,7 @@ import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
 import com.lounah.vkmc.core.core_vk.domain.AlbumId
-import com.lounah.vkmc.core.core_vk.domain.Offset
+import com.lounah.vkmc.core.core_vk.domain.groups.Offset
 import com.lounah.vkmc.core.core_vk.model.Photo
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.*
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosEvent.*

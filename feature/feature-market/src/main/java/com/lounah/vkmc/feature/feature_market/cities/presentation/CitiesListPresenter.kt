@@ -4,7 +4,7 @@ import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.jakewharton.rxrelay2.PublishRelay
 import com.lounah.vkmc.core.core_vk.domain.City
-import com.lounah.vkmc.core.core_vk.domain.CityId
+import com.lounah.vkmc.core.core_vk.domain.market.CityId
 import com.lounah.vkmc.feature.feature_market.cities.presentation.CitiesListAction.OnCitiesLoaded
 import com.lounah.vkmc.feature.feature_market.cities.ui.recycler.CityUi
 import io.reactivex.Observable

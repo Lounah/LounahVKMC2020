@@ -1,9 +1,7 @@
-package com.lounah.vkmc.core.core_vk.domain
+package com.lounah.vkmc.core.core_vk.domain.groups
 
-import android.util.Log
 import com.lounah.vkmc.core.core_vk.business.commands.groups.VKLeaveGroupsCommand
 import com.vk.api.sdk.VK
-import io.reactivex.Completable
 import io.reactivex.Single
 
 class LeaveGroups : (List<String>) -> Single<Boolean> {

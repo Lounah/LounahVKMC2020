@@ -1,6 +1,7 @@
-package com.lounah.vkmc.core.core_vk.domain
+package com.lounah.vkmc.core.core_vk.domain.market
 
 import com.lounah.vkmc.core.core_vk.business.commands.market.VKMarketsByCityCommand
+import com.lounah.vkmc.core.core_vk.domain.groups.Offset
 import com.lounah.vkmc.core.core_vk.model.Market
 import com.vk.api.sdk.VK
 import io.reactivex.Single

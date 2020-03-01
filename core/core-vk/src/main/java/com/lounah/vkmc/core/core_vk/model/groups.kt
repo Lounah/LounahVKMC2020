@@ -15,7 +15,7 @@ data class Groups(
 
 @Keep
 data class Group(
-    val id: Int,
+    val id: String,
     val name: String,
     @SerializedName("photo_200")
     val photo: String
@@ -41,7 +41,7 @@ data class GroupById(
 
 @Keep
 data class ExtendedGroup(
-    val id: Int,
+    val id: String,
     val name: String,
     @SerializedName("screen_name")
     val screenName: String,

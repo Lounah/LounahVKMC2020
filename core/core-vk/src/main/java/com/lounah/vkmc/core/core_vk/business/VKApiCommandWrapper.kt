@@ -5,7 +5,7 @@ import com.vk.api.sdk.VKApiResponseParser
 import com.vk.api.sdk.VKMethodCall
 import com.vk.api.sdk.internal.ApiCommand
 
-internal abstract class VKApiCommandWrapper<T> : ApiCommand<T>() {
+ abstract class VKApiCommandWrapper<T> : ApiCommand<T>() {
 
     abstract val method: String
     abstract val arguments: Map<String, String>

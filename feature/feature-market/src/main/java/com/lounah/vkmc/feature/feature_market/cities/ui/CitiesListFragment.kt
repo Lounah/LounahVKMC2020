@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lounah.vkmc.core.core_vk.domain.CityId
+import com.lounah.vkmc.core.core_vk.domain.market.CityId
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
 import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.core.extensions.disposeOnDestroy
@@ -13,7 +13,6 @@ import com.lounah.vkmc.core.extensions.subscribeTo
 import com.lounah.vkmc.core.ui.bottomsheet.BaseBottomSheetDialogFragment
 import com.lounah.vkmc.feature.feature_market.R
 import com.lounah.vkmc.feature.feature_market.cities.di.CitiesListComponent
-import com.lounah.vkmc.feature.feature_market.cities.presentation.CitiesListAction.InitialLoading
 import com.lounah.vkmc.feature.feature_market.cities.presentation.CitiesListAction.OnCitySelected
 import com.lounah.vkmc.feature.feature_market.cities.presentation.CitiesListPresenter
 import com.lounah.vkmc.feature.feature_market.cities.presentation.CitiesListState

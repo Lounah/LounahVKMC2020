@@ -1,4 +1,4 @@
-package com.lounah.vkmc.core.core_vk.domain
+package com.lounah.vkmc.core.core_vk.domain.wall
 
 import android.net.Uri
 import android.os.Parcelable

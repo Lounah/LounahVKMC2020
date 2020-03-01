@@ -1,6 +1,6 @@
 package com.lounah.vkmc.feature.feature_market.products.di
 
-import com.lounah.vkmc.core.core_vk.domain.GetProductsByMarket
+import com.lounah.vkmc.core.core_vk.domain.market.GetProductsByMarket
 import com.lounah.vkmc.feature.feature_market.products.domain.GoodsMapper
 import com.lounah.vkmc.feature.feature_market.products.presentation.MarketGoodsPresenterFactory
 
