@@ -38,6 +38,7 @@ internal class GroupsClusterRenderer(
     override fun onClusterItemRendered(clusterItem: MapMarker, marker: Marker) {
         iconCache.get(clusterItem.photo)?.let(singleGroupIcon::setImage)
             ?: singleGroupIcon.setIcon(clusterItem.photo)
+        singleGroupIcon.setBackground(R.drawable.bg_cluster_gray)
         val icon = groupIconGenerator.makeIcon()
         marker.setIcon(BitmapDescriptorFactory.fromBitmap(icon))
     }
@@ -46,6 +47,7 @@ internal class GroupsClusterRenderer(
         iconCache.put(item.photo, false)
         iconCache.get(item.photo)?.let(singleGroupIcon::setImage)
             ?: singleGroupIcon.setIcon(item.photo)
+        singleGroupIcon.setBackground(R.drawable.bg_cluster_gray)
         val icon = groupIconGenerator.makeIcon()
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon))
     }

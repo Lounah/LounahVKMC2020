@@ -15,8 +15,7 @@ internal interface IconCache {
     fun get(path: String): Bitmap?
 
     companion object {
-        operator fun invoke(context: Context): IconCacheImpl =
-            IconCacheImpl(context)
+        operator fun invoke(context: Context): IconCacheImpl = IconCacheImpl(context)
     }
 }
 
@@ -25,7 +24,6 @@ class IconCacheImpl(private val context: Context) :
 
     override val cache: MutableMap<String, Bitmap> = ConcurrentHashMap()
 
-    @Synchronized
     override fun put(path: String, isPhoto: Boolean) {
         if (cache[path] == null) {
             GlideApp.with(context).asBitmap().load(path)

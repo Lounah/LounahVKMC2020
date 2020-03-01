@@ -52,7 +52,7 @@ internal class PhotosClusterRenderer(
 
     override fun onClusterRendered(cluster: Cluster<MapMarker>, marker: Marker) {
         clusterPhotoIcon.setCounter(cluster.size)
-        iconCache.get(cluster.items.first().photo)?.let(clusterPhotoIcon::setImage)
+        cluster.items.firstOrNull()?.let { iconCache.get(it.photo)?.let(clusterPhotoIcon::setImage) }
         val icon = clusterPhotoIconGenerator.makeIcon()
         marker.setIcon(BitmapDescriptorFactory.fromBitmap(icon))
     }
@@ -61,7 +61,7 @@ internal class PhotosClusterRenderer(
         cluster: Cluster<MapMarker>,
         markerOptions: MarkerOptions
     ) {
-        iconCache.put(cluster.items.first().photo, true)
+        cluster.items.firstOrNull()?.let { iconCache.put(it.photo, true) }
         clusterPhotoIcon.setCounter(cluster.size)
         clusterPhotoIcon.setBackground(R.drawable.bg_cluster_gray)
         val icon = clusterPhotoIconGenerator.makeIcon()

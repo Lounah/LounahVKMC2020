@@ -13,9 +13,12 @@ import com.lounah.vkmc.feature.feature_map.map.presentation.EventsMapPresenter
 interface EventsMapComponent {
     val eventsMapPresenter: EventsMapPresenter
     val groupOrEventPresenterFactory: GroupOrEventDetailsPresenterFactory
+    val isFirstLaunch: Boolean
 }
 
-fun EventsMapComponent() : EventsMapComponent = object : EventsMapComponent {
+fun EventsMapComponent(
+    deps: MapsDependencies
+) : EventsMapComponent = object : EventsMapComponent, MapsDependencies by deps {
 
     private val getNearestCity = GetNearestCity()
     private val getMapItems = GetMapItems(

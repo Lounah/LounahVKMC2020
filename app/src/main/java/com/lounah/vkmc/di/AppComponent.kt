@@ -6,6 +6,7 @@ import com.lounah.vkmc.feature.feature_albums.di.AlbumsDependencies
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerComponent
 import com.lounah.vkmc.feature.feature_image_picker.di.ImagePickerDependencies
 import com.lounah.vkmc.feature.feature_map.di.EventsMapComponent
+import com.lounah.vkmc.feature.feature_map.di.MapsDependencies
 import com.lounah.vkmc.feature.feature_market.cities.di.CitiesListComponent
 import com.lounah.vkmc.feature.feature_market.markets.di.MarketsComponent
 import com.lounah.vkmc.feature.feature_market.productdetails.di.ProductDetailsComponent
@@ -18,13 +19,21 @@ import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.di.GroupDetailsC
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.di.GroupDetailsDependencies
 
 interface AppComponent : SharingDependencies, ImagePickerDependencies, GroupDetailsDependencies,
-    ProductDetailsDependencies, AlbumsDependencies {
+    ProductDetailsDependencies, MapsDependencies, AlbumsDependencies {
 
     companion object {
         operator fun invoke(context: Context): AppComponent {
             return object : AppComponent {
                 override val appContext: Context
                     get() = context
+
+                override val isFirstLaunch: Boolean
+                    get() {
+                        val prefs = appContext.getSharedPreferences("app", Context.MODE_PRIVATE)
+                        val isFirst = prefs.getBoolean("firstLaunch", true)
+                        prefs.edit().putBoolean("firstLaunch", false).apply()
+                        return isFirst
+                    }
             }
         }
     }
@@ -66,6 +75,6 @@ interface AppComponent : SharingDependencies, ImagePickerDependencies, GroupDeta
     }
 
     fun eventsMapComponent(): EventsMapComponent {
-        return EventsMapComponent()
+        return EventsMapComponent(this)
     }
 }

@@ -35,6 +35,8 @@ class EventsMapActivity : AppCompatActivity(), OnMapReadyCallback {
         getComponent<EventsMapComponent>().eventsMapPresenter
     }
 
+    private val isFirstLaunch = getComponent<EventsMapComponent>().isFirstLaunch
+
     private val uiHelper: EventsMapUiHelper by lazy(NONE) {
         EventsMapUiHelper(this, ::onClusterClicked, ::onClusterItemClicked)
     }
@@ -92,6 +94,7 @@ class EventsMapActivity : AppCompatActivity(), OnMapReadyCallback {
                 else -> error("Unknown tab position")
             }.also(presenter.input::accept)
         }
+        if (isFirstLaunch) FeatureRationaleDialog().show(supportFragmentManager, null)
     }
 
     private fun onClusterClicked(items: Collection<MapMarker>) {

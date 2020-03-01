@@ -1,6 +1,5 @@
 package com.lounah.vkmc.feature.feature_map.map.presentation
 
-import android.util.Log
 import com.freeletics.rxredux.SideEffect
 import com.freeletics.rxredux.reduxStore
 import com.google.android.gms.maps.model.LatLng
@@ -46,7 +45,6 @@ class EventsMapPresenter(
                                 .subscribeOn(io())
                                 .map<EventsMapAction>(::OnMapItemsLoaded)
                                 .startWith(StartLoading)
-                                .doOnError { Log.i("error", "$it") }
                                 .onErrorReturnItem(ErrorLoading),
                             Observable.just(OnCityIdChanged(cityId))
                         )
