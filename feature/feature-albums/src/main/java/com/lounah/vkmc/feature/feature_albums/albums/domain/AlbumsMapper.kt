@@ -15,6 +15,7 @@ internal class AlbumsMapper(
                 uid = album.id,
                 thumb = album.photo,
                 title = album.title,
+                size = album.size,
                 isEditable = album.id.toInt() > 0,
                 subtitle = "${album.size} ${getPhotosQuantity(album.size)}"
             )

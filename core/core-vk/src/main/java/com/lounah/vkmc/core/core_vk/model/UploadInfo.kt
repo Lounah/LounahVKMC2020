@@ -1,16 +1,13 @@
 package com.lounah.vkmc.core.core_vk.model
 
-import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 
-@Keep
-class VKSaveInfoResponse(
+data class VKSaveInfoResponse(
     val response: List<VKSaveInfo>
 )
 
-@Keep
-class VKSaveInfo(
+data class VKSaveInfo(
     val id: Int,
     @SerializedName("album_id")
     val albumId: Int,
@@ -20,16 +17,21 @@ class VKSaveInfo(
     fun getAttachment() = "photo${ownerId}_$id"
 }
 
-@Keep
-class VKFileUploadInfo(val server: String, val photo: String, val hash: String)
+data class VKFileUploadInfo(
+    @SerializedName("aid")
+    val albumId: String? = "",
+    val server: String,
+    val photo: String? = "",
+    @SerializedName("photos_list")
+    val photos: String? = "",
+    val hash: String
+)
 
-@Keep
-class VKServerUploadInfoResponse(
+data class VKServerUploadInfoResponse(
     val response: VKServerUploadInfo
 )
 
-@Keep
-class VKServerUploadInfo(
+data class VKServerUploadInfo(
     @SerializedName("upload_url")
     val uploadUrl: String,
     @SerializedName("album_id")

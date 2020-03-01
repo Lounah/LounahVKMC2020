@@ -18,8 +18,7 @@ import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_albums.R
 import com.lounah.vkmc.feature.feature_albums.di.AlbumsComponent
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction
-import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.OnNextPage
-import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.OnRepeatLoadClicked
+import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.*
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosPresenter
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosState
 import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotoUi
@@ -28,7 +27,7 @@ import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotosItemDecor
 import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotosSpanSizeLookUp
 import com.lounah.vkmc.feature.feature_image_picker.ui.ImagePickerActivity
 import com.lounah.vkmc.feature.image_viewer.ui.ImageViewerActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import kotlinx.android.synthetic.main.fragment_photos.*
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -38,9 +37,12 @@ internal class PhotosFragment : Fragment() {
         PhotosAdapter(::onPhotoClicked, ::onRepeatLoading)
     }
 
+    private val albumId by lazy(NONE) {
+        arguments!!.getString(ARG_ALBUM_ID).orEmpty()
+    }
+
     private val presenter: PhotosPresenter by lazy(NONE) {
         val albumName = arguments!!.getString(ARG_ALBUM_NAME).orEmpty()
-        val albumId = arguments!!.getString(ARG_ALBUM_ID).orEmpty()
         getComponent<AlbumsComponent>().photosPresenterFactory(albumName, albumId)
     }
 
@@ -60,12 +62,13 @@ internal class PhotosFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_RC && resultCode == RESULT_OK) {
             val selectedPic = data?.getStringExtra(ImagePickerActivity.EXTRA_PICKED_IMAGE).orEmpty()
+            OnPhotoSelected(selectedPic).accept()
         }
     }
 
     private fun initBindings() {
         presenter.state
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(mainThread())
             .subscribeTo(onNext = ::render)
             .disposeOnDestroy(viewLifecycleOwner)
     }
@@ -83,7 +86,7 @@ internal class PhotosFragment : Fragment() {
         photos.layoutManager = lm
         photos.adapter = photosAdapter
         photos.addItemDecoration(PhotosItemDecoration())
-        photos.pagedScrollListener { OnNextPage(it).accept() }
+        photos.pagedScrollListener { OnNextPage(it - 1).accept() }
     }
 
     private fun render(state: PhotosState) {
@@ -92,7 +95,16 @@ internal class PhotosFragment : Fragment() {
     }
 
     private fun onPhotoClicked(photo: PhotoUi) {
-        ImageViewerActivity.start(requireContext(), arrayListOf(photo.path))
+        val photos = photosAdapter.items.filterIsInstance<PhotoUi>()
+        val startFrom = photos.indexOf(photo)
+        ImageViewerActivity.startAsVkViewer(
+            requireActivity(),
+            ArrayList(photos.map(PhotoUi::path)),
+            photo.path,
+            startFrom,
+            arguments!!.getInt(ARG_ALBUM_SIZE) + photos.filter(PhotoUi::isNew).size,
+            photo.albumId
+        )
     }
 
     private fun onRepeatLoading() = OnRepeatLoadClicked.accept()
@@ -103,12 +115,14 @@ internal class PhotosFragment : Fragment() {
         private const val PICK_IMAGE_RC = 123
         private const val ARG_ALBUM_ID = "album_id"
         private const val ARG_ALBUM_NAME = "album_name"
+        private const val ARG_ALBUM_SIZE = "album_size"
 
-        fun newInstance(albumId: AlbumId, albumName: String): PhotosFragment {
+        fun newInstance(albumId: AlbumId, albumName: String, albumSize: Int): PhotosFragment {
             return PhotosFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_ALBUM_ID, albumId)
                     putString(ARG_ALBUM_NAME, albumName)
+                    putInt(ARG_ALBUM_SIZE, albumSize)
                 }
             }
         }

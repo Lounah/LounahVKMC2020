@@ -9,6 +9,7 @@ internal class PhotosMapper : (List<Photo>) -> List<PhotoUi> {
         return photos.map {
             PhotoUi(
                 uid = it.id,
+                albumId = it.albumId,
                 path = it.photo
             )
         }

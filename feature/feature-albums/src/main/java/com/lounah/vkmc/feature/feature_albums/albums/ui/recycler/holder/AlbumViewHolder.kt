@@ -7,21 +7,10 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.request.RequestOptions
 import com.lounah.vkmc.core.extensions.animateScale
 import com.lounah.vkmc.core.extensions.asType
-import com.lounah.vkmc.core.recycler.base.ViewTyped
 import com.lounah.vkmc.core.recycler.paging.core.BaseViewHolder2
 import com.lounah.vkmc.core.ui.imageloader.load
 import com.lounah.vkmc.feature.feature_albums.R
 import kotlinx.android.synthetic.main.item_album.*
-
-data class AlbumUi(
-    override val uid: String,
-    val thumb: String,
-    val title: String,
-    val subtitle: String,
-    val isEditable: Boolean = true,
-    val isInEditMode: Boolean = false,
-    override val viewType: Int = R.layout.item_album
-) : ViewTyped
 
 internal class AlbumViewHolder(
     view: View,

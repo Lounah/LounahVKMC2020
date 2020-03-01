@@ -14,12 +14,13 @@ import com.lounah.vkmc.feature.image_viewer.core.*
 import kotlinx.android.synthetic.main.item_imageviewer_image.view.*
 
 internal class ImageViewerViewPagerAdapter(
-    private val images: ArrayList<String>,
     private val context: Context,
     private val onClickCallback: () -> Unit = {},
     private val onMoveCallback: (Float) -> Unit = {},
     private val dismissCallback: () -> Unit = {}
 ) : PagerAdapter() {
+
+    private val images: ArrayList<String> = ArrayList()
 
     private val contentHeightProvider = object : ContentSizeProvider {
         override fun heightForDismissAnimation() = 240.dp(context)
@@ -36,6 +37,11 @@ internal class ImageViewerViewPagerAdapter(
 
     private val dismissGestureListener: (ImageDismissLayout) -> DismissGestureListener =
         { containerGestureListenerProvider(it) }
+
+    fun addImages(new: List<String>) {
+        images.addAll(new.filterNot(images::contains))
+        notifyDataSetChanged()
+    }
 
     override fun getCount() = images.size
 

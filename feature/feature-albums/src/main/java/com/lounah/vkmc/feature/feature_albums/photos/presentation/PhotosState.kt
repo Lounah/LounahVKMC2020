@@ -9,6 +9,7 @@ import com.lounah.vkmc.core.recycler.paging.core.PagedProgressUi
 import com.lounah.vkmc.feature.feature_albums.R
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.*
 import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.AlbumHeaderUi
+import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotoUi
 
 data class PhotosState(
     val albumName: String = "",
@@ -37,6 +38,7 @@ internal fun PhotosState.reduce(action: PhotosAction): PhotosState {
             }.toList()
             copy(photos = newItems)
         }
+        is OnPhotoUploaded -> copy(photos = photos + PhotoUi(action.id, action.photo, albumId, true))
         is OnLoadingError -> {
             val newItems = when (offset) {
                 0 -> listOf(errorView)

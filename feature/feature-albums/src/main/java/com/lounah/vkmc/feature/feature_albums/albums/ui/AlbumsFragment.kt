@@ -118,7 +118,7 @@ internal class AlbumsFragment : Fragment(), OnBackPressedListener {
     }
 
     private fun onAlbumClicked(album: AlbumUi) =
-        navigateTo(PhotosFragment.newInstance(album.uid, album.title))
+        navigateTo(PhotosFragment.newInstance(album.uid, album.title, album.size))
 
     private fun onAlbumLongClicked(album: AlbumUi) = OnEditClicked.accept()
 

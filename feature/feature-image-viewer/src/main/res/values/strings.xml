@@ -2,4 +2,5 @@
 <resources>
     <string name="photo">Фотография</string>
     <string name="select">Выбрать</string>
+    <string name="offset_counter">%1d из %2d</string>
 </resources>

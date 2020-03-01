@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.item_album_photo.*
 data class PhotoUi(
     override val uid: String,
     val path: String,
+    val albumId: String,
+    val isNew: Boolean = false,
     override val viewType: Int = R.layout.item_album_photo
 ) : ViewTyped
 

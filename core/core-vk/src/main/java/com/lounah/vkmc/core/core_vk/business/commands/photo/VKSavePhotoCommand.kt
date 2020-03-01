@@ -1,20 +1,19 @@
-package com.lounah.vkmc.core.core_vk.business.commands.wall
+package com.lounah.vkmc.core.core_vk.business.commands.photo
 
 import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
-import com.lounah.vkmc.core.core_vk.business.commands.wall.VKSaveWallPhotoCommand.SaveInfoParser
 import com.lounah.vkmc.core.core_vk.model.VKFileUploadInfo
 import com.lounah.vkmc.core.core_vk.model.VKSaveInfo
 import com.lounah.vkmc.core.core_vk.model.VKSaveInfoResponse
 import com.vk.api.sdk.VKApiResponseParser
 
-internal class VKSaveWallPhotoCommandBuilder(
-    private val method: String = "photos.saveWallPhoto",
-    private val responseParser: VKApiResponseParser<VKSaveInfo> = SaveInfoParser()
+internal class VKSavePhotoCommandBuilder(
+    private val method: String = "photos.save",
+    private val responseParser: VKApiResponseParser<VKSaveInfo> = VKSavePhotoCommand.SaveInfoParser()
 ) : (VKFileUploadInfo) -> VKApiCommandWrapper<VKSaveInfo>() {
 
     override fun invoke(fileUploadInfo: VKFileUploadInfo): VKApiCommandWrapper<VKSaveInfo> {
-        return VKSaveWallPhotoCommand(
+        return VKSavePhotoCommand(
             fileUploadInfo,
             method,
             responseParser
@@ -22,15 +21,16 @@ internal class VKSaveWallPhotoCommandBuilder(
     }
 }
 
-internal class VKSaveWallPhotoCommand(
+internal class VKSavePhotoCommand(
     fileUploadInfo: VKFileUploadInfo,
-    override val method: String = "photos.saveWallPhoto",
+    override val method: String = "photos.save",
     override val responseParser: VKApiResponseParser<VKSaveInfo> = SaveInfoParser()
 ) : VKApiCommandWrapper<VKSaveInfo>() {
 
     override val arguments: Map<String, String> = mapOf(
+        "album_id" to fileUploadInfo.albumId.orEmpty(),
         "server" to fileUploadInfo.server,
-        "photo" to fileUploadInfo.photo.orEmpty(),
+        "photos_list" to fileUploadInfo.photos.orEmpty(),
         "hash" to fileUploadInfo.hash
     )
 

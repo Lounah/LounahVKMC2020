@@ -69,7 +69,10 @@ internal class CreateAlbumFragment : Fragment() {
 
     private fun handleEvent(event: CreateAlbumEvent) {
         when (event) {
-            is ShowError -> toast(R.string.could_not_create_album)
+            is ShowError -> {
+                toast(R.string.could_not_create_album)
+                progress.animateScale(0)
+            }
             is OnCreateSucceed -> performBack()
         }
     }
