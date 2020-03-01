@@ -4,4 +4,5 @@ sealed class PhotosEvent {
     object ShowUploadDialog : PhotosEvent()
     object HideUploadDialog : PhotosEvent()
     object ShowError : PhotosEvent()
+    object ErrorDeletePhoto : PhotosEvent()
 }

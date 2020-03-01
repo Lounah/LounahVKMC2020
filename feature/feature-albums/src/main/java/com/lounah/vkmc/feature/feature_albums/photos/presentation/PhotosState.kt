@@ -29,16 +29,34 @@ internal fun PhotosState.reduce(action: PhotosAction): PhotosState {
         is OnPhotosLoaded -> {
             val newItems =
                 listOf(titleItem) + (photos - ProgressItem - errorView - pagedProgress - pagedError - titleItem) +
-                       action.photos - ProgressItem
-            if (newItems.size == 1) copy(photos = listOf(titleItem) + emptyView) else copy(photos = newItems)
+                        action.photos - ProgressItem - emptyView
+            if (newItems.filterIsInstance<PhotoUi>().isEmpty()) {
+                copy(photos = listOf(titleItem) + emptyView)
+            } else {
+                copy(photos = newItems)
+            }
         }
         is OnLoadingStarted -> {
-            val newItems = if (offset < 50 && photos.filterIsInstance<PhotoUi>().isEmpty()) listOf(ProgressItem) else {
-                (photos - errorView - pagedError - ProgressItem - pagedProgress - emptyView) + pagedProgress
-            }.toList()
+            val newItems =
+                if (offset < 50 && photos.filterIsInstance<PhotoUi>().isEmpty()) listOf(ProgressItem) else {
+                    (photos - errorView - pagedError - ProgressItem - pagedProgress - emptyView) + pagedProgress
+                }.toList()
             copy(photos = newItems)
         }
-        is OnPhotoUploaded -> copy(photos = photos + PhotoUi(action.id, action.photo, albumId, true))
+        is OnPhotoDeleted -> {
+            val newItems = photos.filterNot { it.uid == action.id }
+            if (newItems.filterIsInstance<PhotoUi>().isEmpty()) {
+                copy(photos = listOf(titleItem) + emptyView)
+            } else {
+                copy(photos = newItems)
+            }
+        }
+        is OnPhotoUploaded -> {
+            copy(
+                photos = photos - emptyView - ProgressItem - errorView - pagedError - pagedProgress +
+                        PhotoUi(action.id, action.photo, albumId, true)
+            )
+        }
         is OnLoadingError -> {
             val newItems = when {
                 offset < 50 && photos.filterIsInstance<PhotoUi>().isEmpty() -> listOf(titleItem) + errorView

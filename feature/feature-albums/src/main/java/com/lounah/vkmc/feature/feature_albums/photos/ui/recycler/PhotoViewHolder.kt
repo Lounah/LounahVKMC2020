@@ -18,8 +18,9 @@ data class PhotoUi(
 
 internal class PhotoViewHolder(
     view: View,
-    onPhotoClicked: (PhotoUi) -> Unit
-) : BaseViewHolder2<PhotoUi>(view, onPhotoClicked) {
+    onPhotoClicked: (PhotoUi) -> Unit,
+    onPhotoLongClicked: (PhotoUi) -> Unit
+) : BaseViewHolder2<PhotoUi>(view, onPhotoClicked, onPhotoLongClicked) {
 
     override fun bind(item: PhotoUi) {
         super.bind(item)

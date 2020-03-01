@@ -12,12 +12,13 @@ import com.lounah.vkmc.feature.feature_albums.R
 
 internal class PhotosAdapter(
     private val onPhotoClicked: (PhotoUi) -> Unit,
+    private val onPhotoLongClicked: (PhotoUi) -> Unit,
     onRepeatPagedLoading: () -> Unit
 ) : BasePagedAdapter(onRepeatPagedLoading) {
 
     override fun createViewHolder(view: View, viewType: Int): BaseViewHolder2<ViewTyped> {
         return when (viewType) {
-            R.layout.item_album_photo -> PhotoViewHolder(view, onPhotoClicked).asType()
+            R.layout.item_album_photo -> PhotoViewHolder(view, onPhotoClicked, onPhotoLongClicked).asType()
             R.layout.item_album_header -> AlbumHeaderViewHolder(view).asType()
             else -> error("Unknown view type")
         }

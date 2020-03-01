@@ -20,6 +20,10 @@ import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_albums.R
 import com.lounah.vkmc.feature.feature_albums.di.AlbumsComponent
+import com.lounah.vkmc.feature.feature_albums.photos.AdditionalOptionsDialog
+import com.lounah.vkmc.feature.feature_albums.photos.AdditionalOptionsDialog.Companion.ARG_PHOTO_ID
+import com.lounah.vkmc.feature.feature_albums.photos.AdditionalOptionsDialog.Companion.RC_PHOTO_ACTION
+import com.lounah.vkmc.feature.feature_albums.photos.AdditionalOptionsDialog.Companion.RESULT_DELETE
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.*
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosEvent
@@ -39,7 +43,7 @@ import kotlin.LazyThreadSafetyMode.NONE
 internal class PhotosFragment : Fragment() {
 
     private val photosAdapter: PhotosAdapter by lazy(NONE) {
-        PhotosAdapter(::onPhotoClicked, ::onRepeatLoading)
+        PhotosAdapter(::onPhotoClicked, ::onPhotoLongClicked, ::onRepeatLoading)
     }
 
     private val albumId by lazy(NONE) {
@@ -52,6 +56,8 @@ internal class PhotosFragment : Fragment() {
             setCancelable(false)
         }
     }
+
+
 
     private val presenter: PhotosPresenter by lazy(NONE) {
         val albumName = arguments!!.getString(ARG_ALBUM_NAME).orEmpty()
@@ -72,9 +78,17 @@ internal class PhotosFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_RC && resultCode == RESULT_OK) {
-            val selectedPic = data?.getStringExtra(ImagePickerActivity.EXTRA_PICKED_IMAGE).orEmpty()
-            OnPhotoSelected(selectedPic).accept()
+        when (requestCode) {
+            PICK_IMAGE_RC -> {
+                if (resultCode == RESULT_OK) {
+                    val selectedPic = data?.getStringExtra(ImagePickerActivity.EXTRA_PICKED_IMAGE).orEmpty()
+                    OnPhotoSelected(selectedPic).accept()
+                }
+            }
+            RC_PHOTO_ACTION -> {
+                val photoId = data?.getStringExtra(ARG_PHOTO_ID).orEmpty()
+                if (resultCode == RESULT_DELETE) OnDeletePhotoClicked(photoId).accept()
+            }
         }
     }
 
@@ -119,6 +133,7 @@ internal class PhotosFragment : Fragment() {
             is ShowUploadDialog -> uploadingDialog.show()
             is HideUploadDialog -> uploadingDialog.dismiss()
             is ShowError -> toast(R.string.could_not_upload_photo)
+            is ErrorDeletePhoto -> toast(R.string.could_not_delete_photo)
         }
     }
 
@@ -133,6 +148,14 @@ internal class PhotosFragment : Fragment() {
             arguments!!.getInt(ARG_ALBUM_SIZE) + photos.filter(PhotoUi::isNew).size,
             photo.albumId
         )
+    }
+
+    private fun onPhotoLongClicked(photo: PhotoUi) {
+        AdditionalOptionsDialog.newInstance(photo.uid)
+            .apply {
+                setTargetFragment(this@PhotosFragment, RC_PHOTO_ACTION)
+            }
+            .show(requireActivity().supportFragmentManager, null)
     }
 
     private fun onRepeatLoading() = OnRepeatLoadClicked.accept()

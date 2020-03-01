@@ -23,11 +23,12 @@ private typealias PhotosSideEffect = SideEffect<PhotosState, PhotosAction>
 class PhotosPresenterFactory(
     private val getPhotos: (Offset, AlbumId) -> Single<List<Photo>>,
     private val photosMapper: (List<Photo>) -> List<PhotoUi>,
-    private val uploadPhoto: (AlbumId, Uri) -> Single<String>
+    private val uploadPhoto: (AlbumId, Uri) -> Single<String>,
+    private val deletePhoto: (String) -> Single<Boolean>
 ) : (String, AlbumId) -> PhotosPresenter {
 
     override fun invoke(albumName: String, albumId: AlbumId): PhotosPresenter {
-        return PhotosPresenter(albumName, albumId, getPhotos, photosMapper, uploadPhoto)
+        return PhotosPresenter(albumName, albumId, getPhotos, photosMapper, uploadPhoto, deletePhoto)
     }
 }
 
@@ -36,7 +37,8 @@ class PhotosPresenter(
     private val albumId: AlbumId,
     private val getPhotos: (Offset, AlbumId) -> Single<List<Photo>>,
     private val photosMapper: (List<Photo>) -> List<PhotoUi>,
-    private val uploadPhoto: (AlbumId, Uri) -> Single<String>
+    private val uploadPhoto: (AlbumId, Uri) -> Single<String>,
+    private val deletePhoto: (String) -> Single<Boolean>
 ) {
 
     private val inputRelay = PublishRelay.create<PhotosAction>()
@@ -51,7 +53,8 @@ class PhotosPresenter(
                 loadPagedPhotos(),
                 initialLoading(),
                 repeatLoadPhotos(),
-                uploadPhoto()
+                uploadPhoto(),
+                onDeletePhotoClicked()
             ),
             reducer = PhotosState::reduce
         ).distinctUntilChanged()
@@ -67,6 +70,19 @@ class PhotosPresenter(
                     .toObservable()
                     .doOnSubscribe { eventsRelay.accept(ShowUploadDialog) }
                     .doOnComplete { eventsRelay.accept(HideUploadDialog) }
+            }
+        }
+    }
+
+    private fun onDeletePhotoClicked(): PhotosSideEffect {
+        return { actions, _ ->
+            actions.ofType<OnDeletePhotoClicked>().switchMap { action ->
+                deletePhoto(action.id)
+                    .subscribeOn(single())
+                    .map<PhotosAction> { OnPhotoDeleted(action.id) }
+                    .toObservable()
+                    .doOnError { eventsRelay.accept(ErrorDeletePhoto) }
+                    .onErrorResumeNext(Observable.empty())
             }
         }
     }
