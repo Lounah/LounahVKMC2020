@@ -22,6 +22,18 @@
 ## Core-recycler
 Здесь представлено две обертки для работы с ресайклером. Одна из них оказалась ненужной и используется только в feature-image-picker, выпилить эту обертку я не успел :(
 
+## Core-vk
+Нет обработки ошибки, когда vk отдает User authorization failed. Не прикрутил интерсептор и не успел запихнуть в errorHandler rxJava
+
+## Использованные библиотеки
+<li>RxJava, RxAndroid, RxKotlin</li>
+<li>RxRelay</li>
+<li>ReduxStore</li>
+<li>Glide</li>
+<li>Gson</li>
+<li>GoogleMaps + GoogleMapsUtil (0.6.2, а не недавно вышедший 1.0.0, потому что 1.0.0 показался мне нестабильным)</li>
+<li>EasyPermissions</li>
+
 ## TBD
 
 <li>Избавиться от ненужных модулей</li>
