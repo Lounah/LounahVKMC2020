@@ -32,6 +32,16 @@
             android:src="@drawable/ic_arrow_back"
             tools:ignore="ContentDescription,RtlSymmetry" />
 
+        <TextView
+            android:id="@+id/viewerTitle"
+            style="@style/TitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/uikit_white"
+            android:paddingStart="72dp"
+            android:text="@string/photo" />
+
     </FrameLayout>
 
 

@@ -29,8 +29,9 @@ internal class VKFileUploader(
     private class FileUploadInfoParser(
         private val gson: Gson = Gson()
     ) : VKApiResponseParser<VKFileUploadInfo> {
-        override fun parse(response: String): VKFileUploadInfo =
-            gson.fromJson<VKFileUploadInfo>(response, VKFileUploadInfo::class.java)
+        override fun parse(response: String): VKFileUploadInfo {
+            return gson.fromJson<VKFileUploadInfo>(response, VKFileUploadInfo::class.java)
+        }
     }
 }
 

@@ -10,7 +10,7 @@ import com.lounah.vkmc.R
 import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
-import com.lounah.vkmc.feature.feature_unsubscribe.usergroups.ui.UserGroupsActivity
+import com.lounah.vkmc.feature.feature_albums.container.AlbumsActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -34,7 +34,7 @@ internal class LoginActivity : AppCompatActivity() {
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)
         loginBtn.throttledClick(clickLock) {
-            VK.login(this, UserGroupsActivity.authScopes)
+            VK.login(this, AlbumsActivity.authScopes)
         }
     }
 
@@ -49,12 +49,12 @@ internal class LoginActivity : AppCompatActivity() {
             startMainActivity()
             finish()
         } else {
-            VK.login(this, UserGroupsActivity.authScopes)
+            VK.login(this, AlbumsActivity.authScopes)
         }
     }
 
     private fun startMainActivity() {
-        UserGroupsActivity.start(this)
+        AlbumsActivity.start(this)
         finish()
     }
 

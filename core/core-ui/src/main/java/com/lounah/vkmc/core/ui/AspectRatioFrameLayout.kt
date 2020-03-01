@@ -2,6 +2,7 @@ package com.lounah.vkmc.core.ui
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View.MeasureSpec.*
 import android.widget.FrameLayout
 
 private const val DEFAULT_ASPECT_RATIO = 1f
@@ -31,10 +32,7 @@ class AspectRatioFrameLayout @JvmOverloads constructor(
 
     override fun onMeasure(widthSpec: Int, heightSpec: Int) {
         val heightReconciledSpec =
-            MeasureSpec.makeMeasureSpec(
-                (MeasureSpec.getSize(widthSpec) * aspectRatio).toInt(),
-                MeasureSpec.EXACTLY
-            )
+            makeMeasureSpec(((getSize(widthSpec)) * aspectRatio).toInt(), EXACTLY)
         super.onMeasure(widthSpec, heightReconciledSpec)
     }
 }

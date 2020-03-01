@@ -15,8 +15,8 @@ internal class GridSpacesDecoration : RecyclerView.ItemDecoration() {
     ) {
         with(outRect) {
             left = 6.dp(view.context)
-            right = 6.dp.dp(view.context)
-            bottom = 22.dp.dp(view.context)
+            right = 6.dp(view.context)
+            bottom = 22.dp(view.context)
         }
     }
 }

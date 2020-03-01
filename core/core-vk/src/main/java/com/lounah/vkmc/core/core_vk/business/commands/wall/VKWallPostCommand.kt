@@ -2,7 +2,7 @@ package com.lounah.vkmc.core.core_vk.business.commands.wall
 
 import android.net.Uri
 import com.google.gson.Gson
-import com.lounah.vkmc.core.core_vk.business.commands.photo.VKPhotoUploader
+import com.lounah.vkmc.core.core_vk.business.commands.photo.VKWallPhotoUploader
 import com.lounah.vkmc.core.core_vk.model.WallPostId
 import com.lounah.vkmc.core.core_vk.model.WallPostResponse
 import com.vk.api.sdk.VKApiManager
@@ -13,7 +13,7 @@ import com.vk.api.sdk.internal.ApiCommand
 internal class VKWallPostCommand(
     private val comment: String,
     private val attachments: List<Uri>,
-    private val vkPhotoUploader: (Uri, VKApiManager) -> String = VKPhotoUploader()
+    private val vkPhotoUploader: (Uri, VKApiManager) -> String = VKWallPhotoUploader()
 ) : ApiCommand<WallPostId>() {
 
     override fun onExecute(manager: VKApiManager): WallPostId {

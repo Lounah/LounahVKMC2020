@@ -4,7 +4,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.lounah.vkmc.core.recycler.base.ViewTyped
 import com.lounah.vkmc.feature.feature_market.R
 
-
 class ProductsSpanSizeLookUp(
     private val items: () -> List<ViewTyped>
 ) :

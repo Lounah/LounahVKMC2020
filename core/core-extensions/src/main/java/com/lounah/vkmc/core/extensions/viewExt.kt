@@ -8,10 +8,15 @@ import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 
-inline fun View.animateScale(to: Int, duration: Long = 150) = animate()
-    .scaleX(to.toFloat()).scaleY(to.toFloat())
-    .setDuration(duration)
-    .start()
+inline fun View.animateScale(to: Int, duration: Long = 150) {
+    animate()
+        .scaleX(to.toFloat())
+        .scaleY(to.toFloat())
+        .withStartAction { isEnabled = false }
+        .withEndAction { isEnabled = true }
+        .setDuration(duration)
+        .start()
+}
 
 inline fun View.animateTranslationY(to: Int, duration: Long = 150, startDelay: Long = 0) = animate()
     .translationY(to.toFloat())
@@ -80,6 +85,14 @@ inline fun View.setVisible(isVisible: Boolean) {
 
 inline fun List<View>.setVisible(isVisible: Boolean) {
     forEach { if (isVisible) it.show() else it.gone() }
+}
+
+fun View.showForceKeyboard() {
+    post {
+        this.requestFocus()
+        val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(this, 0)
+    }
 }
 
 inline fun View.hide() {

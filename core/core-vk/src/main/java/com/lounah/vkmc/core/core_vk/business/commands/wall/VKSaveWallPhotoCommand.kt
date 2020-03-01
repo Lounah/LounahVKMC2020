@@ -30,7 +30,7 @@ internal class VKSaveWallPhotoCommand(
 
     override val arguments: Map<String, String> = mapOf(
         "server" to fileUploadInfo.server,
-        "photo" to fileUploadInfo.photo,
+        "photo" to fileUploadInfo.photo.orEmpty(),
         "hash" to fileUploadInfo.hash
     )
 

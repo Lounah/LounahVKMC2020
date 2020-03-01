@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="albums">Альбомы</string>
+    <string name="edit_mode">Редактирование</string>
+    <string name="new_album_title">Название</string>
+    <string name="new_album_description">Описание</string>
+    <string name="new_album">Новый альбом</string>
+    <string name="new_album_privacy">Закрытый альбом</string>
+    <string name="no_albums">Альбомов нет</string>
+    <string name="could_not_create_album">Не удалось создать альбом</string>
+    <string name="could_not_delete_album">Не удалось удалить альбом</string>
+    <string name="no_photos_in_album">Вы еще не добавили ни одной фотографии</string>
+    <string name="uploading_photo">Идет загрузка фото</string>
+    <string name="could_not_upload_photo">Не удалось загрузить фото</string>
+    <string name="delete_photo">Удалить фотографию</string>
+    <string name="save_photo">Сохранить фотографию</string>
+    <string name="select_action">Выберите действие</string>
+    <string name="downloaded_successfully">Фотография сохранена</string>
+    <string name="download_error">Не удалось сохранить фотографию</string>
+    <string name="could_not_delete_photo">Не удалось удалить фотографию</string>
+
+    <plurals name="photosCount">
+        <item quantity="zero">фотографий</item>
+        <item quantity="one">фотография</item>
+        <item quantity="few">фотографии</item>
+        <item quantity="other">фотографий</item>
+    </plurals>
+
+</resources>

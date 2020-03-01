@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/albums"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="10dp"
+        android:paddingTop="59dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="72dp" />
+
+    <ViewFlipper
+        android:id="@+id/toolbarFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/uikit_white">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/TitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:text="@string/albums"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageView
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_add"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="64dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_edit"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:id="@+id/editBtn"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="56dp"
+                android:background="?selectableItemBackgroundBorderless" />
+
+            <View
+                android:id="@+id/addBtn"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="end"
+                android:background="?selectableItemBackgroundBorderless" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                style="@style/TitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="64dp"
+                android:text="@string/edit_mode"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="20dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_cancel_blue"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+    </ViewFlipper>
+
+</FrameLayout>

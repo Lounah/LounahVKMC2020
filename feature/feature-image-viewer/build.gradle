@@ -3,9 +3,12 @@ apply from: "$rootDir/common-android-library.gradle"
 dependencies {
     implementation project(Modules.coreExtensions)
     implementation project(Modules.coreUi)
+    implementation project(Modules.coreVk)
 
     implementation Libraries.glide
     implementation Libraries.vkSdk
+    implementation Libraries.rxJava
+    implementation Libraries.rxRedux
     implementation SupportLibraries.design
     implementation SupportLibraries.appcompat
 

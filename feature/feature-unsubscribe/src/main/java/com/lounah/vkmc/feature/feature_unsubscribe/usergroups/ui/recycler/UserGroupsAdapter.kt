@@ -4,7 +4,8 @@ import android.view.View
 import androidx.recyclerview.widget.DiffUtil
 import com.lounah.vkmc.core.extensions.asType
 import com.lounah.vkmc.core.recycler.base.ViewTyped
-import com.lounah.vkmc.core.recycler.paging.core.*
+import com.lounah.vkmc.core.recycler.paging.core.BasePagedAdapter
+import com.lounah.vkmc.core.recycler.paging.core.BaseViewHolder2
 import com.lounah.vkmc.feature.feature_unsubscribe.R
 
 internal class UserGroupsAdapter(
@@ -29,10 +30,11 @@ internal class UserGroupsAdapter(
     }
 
     override fun setItems(items: List<ViewTyped>) {
-        val callback = UserGroupsDiffUtilCallback(itemsInternal, items)
+        val unique = items.distinct()
+        val callback = UserGroupsDiffUtilCallback(itemsInternal, unique)
         val diff = DiffUtil.calculateDiff(callback)
         itemsInternal.clear()
-        itemsInternal.addAll(items)
+        itemsInternal.addAll(unique)
         diff.dispatchUpdatesTo(this)
     }
 }
