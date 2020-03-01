@@ -27,9 +27,7 @@ internal class VKServerPhotoUploadInfoCommand(
     override val responseParser: VKApiResponseParser<VKServerUploadInfo> = ServerUploadInfoParser()
 ) : VKApiCommandWrapper<VKServerUploadInfo>() {
 
-    private class ServerUploadInfoParser(
-        private val gson: Gson = Gson()
-    ) : VKApiResponseParser<VKServerUploadInfo> {
+    private class ServerUploadInfoParser : VKApiResponseParser<VKServerUploadInfo> {
         override fun parse(response: String): VKServerUploadInfo {
             return gson.fromJson(response, VKServerUploadInfoResponse::class.java).response
         }

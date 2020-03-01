@@ -11,7 +11,6 @@ import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.ui.util.ClickLock
 import com.lounah.vkmc.core.ui.util.throttledClick
 import com.lounah.vkmc.feature.feature_albums.container.AlbumsActivity
-import com.lounah.vkmc.feature.feature_map.map.ui.EventsMapActivity
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -35,7 +34,7 @@ internal class LoginActivity : AppCompatActivity() {
         checkIfLoggedIn()
         setContentView(R.layout.activity_login)
         loginBtn.throttledClick(clickLock) {
-            VK.login(this, EventsMapActivity.authScopes)
+            VK.login(this, AlbumsActivity.authScopes)
         }
     }
 
@@ -50,12 +49,12 @@ internal class LoginActivity : AppCompatActivity() {
             startMainActivity()
             finish()
         } else {
-            VK.login(this, EventsMapActivity.authScopes)
+            VK.login(this, AlbumsActivity.authScopes)
         }
     }
 
     private fun startMainActivity() {
-        EventsMapActivity.start(this)
+        AlbumsActivity.start(this)
         finish()
     }
 

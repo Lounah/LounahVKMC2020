@@ -1,6 +1,6 @@
 package com.lounah.vkmc.core.core_vk.domain.photos
 
-import com.lounah.vkmc.core.core_vk.business.commands.photo.VKGetPhotosCommand
+import com.lounah.vkmc.core.core_vk.business.commands.photo.VKSearchPhotosCommand
 import com.lounah.vkmc.core.core_vk.domain.City
 import com.lounah.vkmc.core.core_vk.domain.GetCities
 import com.lounah.vkmc.core.core_vk.domain.market.CityId
@@ -14,6 +14,6 @@ class GetPhotosByLatLng(
 
     override fun invoke(cityId: CityId): Single<List<PhotoByLatLng>> {
         return getCities().map { it.first { city ->  city.id == cityId } }
-            .map { VK.executeSync(VKGetPhotosCommand(it.latlng)) }
+            .map { VK.executeSync(VKSearchPhotosCommand(it.latlng)) }
     }
 }

@@ -2,7 +2,7 @@ package com.lounah.vkmc.feature.feature_sharing.ui
 
 import android.os.Bundle
 import android.view.View
-import com.lounah.vkmc.core.core_vk.domain.WallPost
+import com.lounah.vkmc.core.core_vk.domain.wall.WallPost
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
 import com.lounah.vkmc.core.extensions.*
 import com.lounah.vkmc.core.ui.bottomsheet.BaseBottomSheetDialogFragment

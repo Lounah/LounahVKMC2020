@@ -2,7 +2,7 @@ package com.lounah.vkmc.feature.image_viewer.presentation
 
 import com.lounah.vkmc.core.core_vk.domain.AlbumId
 import com.lounah.vkmc.core.core_vk.domain.GetPhotos
-import com.lounah.vkmc.core.core_vk.domain.Offset
+import com.lounah.vkmc.core.core_vk.domain.groups.Offset
 import com.lounah.vkmc.core.core_vk.model.Photo
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers.single

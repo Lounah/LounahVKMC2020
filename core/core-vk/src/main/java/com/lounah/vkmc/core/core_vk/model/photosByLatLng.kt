@@ -10,7 +10,7 @@ data class PhotosByLatLngResponse(
 
 data class PhotoByLatLng(
     val id: String,
-    val sizes: List<PhotoSize>,
+    val sizes: List<SearchPhotosSize>,
     @SerializedName("lat")
     val latitude: Double,
     @SerializedName("long")
@@ -23,7 +23,7 @@ data class PhotoByLatLng(
         get() = sizes.maxBy { it.width * it.height }?.url.orEmpty()
 }
 
-data class PhotoSize(
+data class SearchPhotosSize(
     val type: String,
     val url: String,
     val width: Int,

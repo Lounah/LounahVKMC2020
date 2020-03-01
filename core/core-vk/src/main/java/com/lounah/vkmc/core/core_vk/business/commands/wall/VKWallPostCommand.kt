@@ -1,11 +1,8 @@
 package com.lounah.vkmc.core.core_vk.business.commands.wall
 
 import android.net.Uri
-import com.lounah.vkmc.core.core_vk.business.commands.photo.VKPhotoUploader
-import com.lounah.vkmc.core.core_vk.business.gson
-import com.lounah.vkmc.core.core_vk.model.WallPost
-import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.commands.photo.VKWallPhotoUploader
+import com.lounah.vkmc.core.core_vk.business.gson
 import com.lounah.vkmc.core.core_vk.model.WallPostId
 import com.lounah.vkmc.core.core_vk.model.WallPostResponse
 import com.vk.api.sdk.VKApiManager
@@ -32,9 +29,9 @@ internal class VKWallPostCommand(
         return manager.execute(callBuilder.build(), ResponseApiParser())
     }
 
-    private class ResponseApiParser : VKApiResponseParser<WallPost> {
-        override fun parse(response: String): WallPost {
-            return gson.fromJson(response, WallPost::class.java)
+    private class ResponseApiParser : VKApiResponseParser<WallPostId> {
+        override fun parse(response: String): WallPostId {
+            return gson.fromJson(response, WallPostResponse::class.java).response
         }
     }
 }

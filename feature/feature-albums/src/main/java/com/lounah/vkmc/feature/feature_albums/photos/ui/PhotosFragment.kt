@@ -57,8 +57,6 @@ internal class PhotosFragment : Fragment() {
         }
     }
 
-
-
     private val presenter: PhotosPresenter by lazy(NONE) {
         val albumName = arguments!!.getString(ARG_ALBUM_NAME).orEmpty()
         getComponent<AlbumsComponent>().photosPresenterFactory(albumName, albumId)

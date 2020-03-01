@@ -1,6 +1,7 @@
 package com.lounah.vkmc.core.core_vk.domain
 
 import com.lounah.vkmc.core.core_vk.business.commands.photo.VKGetPhotosCommand
+import com.lounah.vkmc.core.core_vk.domain.groups.Offset
 import com.lounah.vkmc.core.core_vk.model.Photo
 import com.vk.api.sdk.VK
 import io.reactivex.Single
