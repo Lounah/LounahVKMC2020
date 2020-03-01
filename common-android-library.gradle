@@ -18,21 +18,22 @@ android {
         experimental = true
     }
 
-    buildTypes {
-        release {
-            minifyEnabled true
-        }
-        debug {
-            ext.alwaysUpdateBuildId = false
-        }
-    }
-
     signingConfigs {
-        config {
+        release {
             keyAlias signConfigs.keyAlias
             keyPassword signConfigs.keyPassword
             storeFile file(signConfigs.storeFile)
             storePassword signConfigs.storePassword
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+        }
+        debug {
+            ext.alwaysUpdateBuildId = false
         }
     }
 }

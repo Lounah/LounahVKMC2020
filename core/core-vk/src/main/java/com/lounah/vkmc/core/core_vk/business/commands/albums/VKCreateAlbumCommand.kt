@@ -1,5 +1,6 @@
 package com.lounah.vkmc.core.core_vk.business.commands.albums
 
+import androidx.annotation.Keep
 import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
 import com.vk.api.sdk.VKApiResponseParser
@@ -28,6 +29,8 @@ internal class VKCreateAlbumCommand(
     }
 }
 
+@Keep
 data class CreateAlbumResponse(val response: CreatedAlbum)
 
+@Keep
 data class CreatedAlbum(val id: String)

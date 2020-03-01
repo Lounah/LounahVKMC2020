@@ -1,5 +1,6 @@
 package com.lounah.vkmc.core.core_vk.business.commands.albums
 
+import androidx.annotation.Keep
 import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
 import com.lounah.vkmc.core.core_vk.domain.AlbumId
@@ -22,6 +23,7 @@ internal class VKDeleteAlbumCommand(
     }
 }
 
+@Keep
 data class DeleteAlbumResponse(val response: Int) {
     val isSucceed: Boolean
         get() = response == 1

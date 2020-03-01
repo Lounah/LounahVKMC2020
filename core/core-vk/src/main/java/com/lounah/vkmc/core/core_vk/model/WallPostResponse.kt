@@ -8,6 +8,7 @@ data class WallPostResponse(
     val response: WallPostId
 )
 
+@Keep
 data class WallPostId(
     @SerializedName("post_id")
     val id: String

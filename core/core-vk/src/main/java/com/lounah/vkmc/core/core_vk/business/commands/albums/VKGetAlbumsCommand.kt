@@ -1,7 +1,7 @@
 package com.lounah.vkmc.core.core_vk.business.commands.albums
 
-import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
+import com.lounah.vkmc.core.core_vk.business.gson
 import com.lounah.vkmc.core.core_vk.model.Album
 import com.lounah.vkmc.core.core_vk.model.AlbumsResponse
 import com.vk.api.sdk.VKApiResponseParser
@@ -19,9 +19,7 @@ internal class VKGetAlbumsCommand(
         "need_covers" to "1"
     )
 
-    private class GetAlbumsResponseParser(
-        private val gson: Gson = Gson()
-    ) : VKApiResponseParser<List<Album>> {
+    private class GetAlbumsResponseParser: VKApiResponseParser<List<Album>> {
 
         override fun parse(response: String?): List<Album> {
             return gson.fromJson(response, AlbumsResponse::class.java).response.items

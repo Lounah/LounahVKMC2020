@@ -1,5 +1,6 @@
 package com.lounah.vkmc.core.core_vk.business.commands.photo
 
+import androidx.annotation.Keep
 import com.google.gson.Gson
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
 import com.vk.api.sdk.VKApiResponseParser
@@ -21,6 +22,7 @@ internal class VKDeletePhotoCommand(
     }
 }
 
+@Keep
 data class DeletePhotoResponse(val response: Int) {
     val isSucceed: Boolean
         get() = response == 1

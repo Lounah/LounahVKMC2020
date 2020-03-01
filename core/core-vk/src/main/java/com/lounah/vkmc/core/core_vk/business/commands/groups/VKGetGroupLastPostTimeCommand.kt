@@ -1,5 +1,6 @@
 package com.lounah.vkmc.core.core_vk.business.commands.groups
 
+import androidx.annotation.Keep
 import com.lounah.vkmc.core.core_vk.business.VKApiCommandWrapper
 import com.lounah.vkmc.core.core_vk.business.gson
 import com.vk.api.sdk.VKApiResponseParser
@@ -19,7 +20,10 @@ internal class VKGetGroupLastPostTimeCommand(
     }
 }
 
+@Keep
 private data class VKGroupWallResponse(val response: VKGroupWall) {
+    @Keep
     data class VKGroupWall(val items: List<GroupWallItem>)
+    @Keep
     data class GroupWallItem(val date: Long)
 }

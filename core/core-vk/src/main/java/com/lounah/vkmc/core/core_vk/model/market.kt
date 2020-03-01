@@ -8,9 +8,11 @@ data class MarketResponse(
     val response: Markets
 ) {
 
+    @Keep
     data class Markets(val items: List<Market>)
 }
 
+@Keep
 data class Market(
     val id: String,
     val name: String,
@@ -27,9 +29,11 @@ data class Market(
 data class ProductsResponse(
     val response: Products
 ) {
+    @Keep
     data class Products(val items: List<Product>)
 }
 
+@Keep
 data class Product(
     val id: String,
     @SerializedName("owner_id")
@@ -43,12 +47,14 @@ data class Product(
     val url: String
 ) {
 
+    @Keep
     data class Price(val currency: Currency,
                      val amount: String) {
         val harmonizedAmount: String
             get() = "${amount.toLong() / 100}"
     }
 
+    @Keep
     data class Currency(val name: String) {
         val isRub: Boolean
             get() = name == "RUB"
