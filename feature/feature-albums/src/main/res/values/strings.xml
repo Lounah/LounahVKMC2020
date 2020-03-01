@@ -10,6 +10,8 @@
     <string name="could_not_create_album">Не удалось создать альбом</string>
     <string name="could_not_delete_album">Не удалось удалить альбом</string>
     <string name="no_photos_in_album">Вы еще не добавили ни одной фотографии</string>
+    <string name="uploading_photo">Идет загрузка фото</string>
+    <string name="could_not_upload_photo">Не удалось загрузить фото</string>
 
     <plurals name="photosCount">
         <item quantity="zero">фотографий</item>

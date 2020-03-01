@@ -60,6 +60,8 @@ internal class AlbumViewHolder(
 
     override fun bind(item: AlbumUi, payloads: List<Any>) {
         super.bind(item, payloads)
+        subtitle.text = item.subtitle
+        image.load(item.thumb, RequestOptions().placeholder(R.drawable.bg_album_placeholder))
         when {
             item.isInEditMode && item.isEditable -> {
                 delete.animateScale(1)

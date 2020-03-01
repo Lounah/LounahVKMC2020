@@ -8,8 +8,7 @@
         android:layout_height="24dp"
         android:layout_gravity="center"
         android:layout_marginEnd="40dp"
-        android:tint="@color/uikit_accent"
-        android:src="@drawable/fb_ic_camera_outline_24" />
+        android:tint="@color/uikit_accent" />
 
     <TextView
         android:id="@+id/pickPhoto"

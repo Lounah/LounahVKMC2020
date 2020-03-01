@@ -8,6 +8,7 @@ import com.lounah.vkmc.core.core_vk.domain.AlbumId
 import com.lounah.vkmc.core.core_vk.domain.Offset
 import com.lounah.vkmc.core.core_vk.model.Photo
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.*
+import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosEvent.*
 import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotoUi
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -39,8 +40,10 @@ class PhotosPresenter(
 ) {
 
     private val inputRelay = PublishRelay.create<PhotosAction>()
+    private val eventsRelay = PublishRelay.create<PhotosEvent>()
 
     val input: Consumer<PhotosAction> = inputRelay
+    val events: Observable<PhotosEvent> = eventsRelay
     val state: Observable<PhotosState> = inputRelay
         .reduxStore(
             initialState = PhotosState(albumName, albumId),
@@ -59,8 +62,11 @@ class PhotosPresenter(
                 uploadPhoto(state().albumId, Uri.fromFile(File(action.photoPath)))
                     .subscribeOn(single())
                     .map<PhotosAction> { OnPhotoUploaded(it, action.photoPath) }
+                    .doOnError { eventsRelay.accept(ShowError) }
                     .onErrorReturnItem(OnLoadingError)
                     .toObservable()
+                    .doOnSubscribe { eventsRelay.accept(ShowUploadDialog) }
+                    .doOnComplete { eventsRelay.accept(HideUploadDialog) }
             }
         }
     }

@@ -1,6 +1,8 @@
 package com.lounah.vkmc.feature.feature_albums.photos.ui
 
 import android.app.Activity.RESULT_OK
+import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,11 +16,14 @@ import com.lounah.vkmc.core.di.ComponentStorage.getComponent
 import com.lounah.vkmc.core.extensions.animateScale
 import com.lounah.vkmc.core.extensions.disposeOnDestroy
 import com.lounah.vkmc.core.extensions.subscribeTo
+import com.lounah.vkmc.core.extensions.toast
 import com.lounah.vkmc.core.recycler.paging.core.pagedScrollListener
 import com.lounah.vkmc.feature.feature_albums.R
 import com.lounah.vkmc.feature.feature_albums.di.AlbumsComponent
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosAction.*
+import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosEvent
+import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosEvent.*
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosPresenter
 import com.lounah.vkmc.feature.feature_albums.photos.presentation.PhotosState
 import com.lounah.vkmc.feature.feature_albums.photos.ui.recycler.PhotoUi
@@ -39,6 +44,13 @@ internal class PhotosFragment : Fragment() {
 
     private val albumId by lazy(NONE) {
         arguments!!.getString(ARG_ALBUM_ID).orEmpty()
+    }
+
+    private val uploadingDialog: Dialog by lazy(NONE) {
+        ProgressDialog(requireContext()).apply {
+            setMessage(getString(R.string.uploading_photo))
+            setCancelable(false)
+        }
     }
 
     private val presenter: PhotosPresenter by lazy(NONE) {
@@ -71,12 +83,20 @@ internal class PhotosFragment : Fragment() {
             .observeOn(mainThread())
             .subscribeTo(onNext = ::render)
             .disposeOnDestroy(viewLifecycleOwner)
+
+        presenter.events
+            .observeOn(mainThread())
+            .subscribeTo(onNext = ::handleEvent)
+            .disposeOnDestroy(viewLifecycleOwner)
     }
 
     private fun initUi() {
         initRecycler()
         addBtn.setOnClickListener {
             ImagePickerActivity.start(requireActivity(), PICK_IMAGE_RC)
+        }
+        back.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 
@@ -86,12 +106,20 @@ internal class PhotosFragment : Fragment() {
         photos.layoutManager = lm
         photos.adapter = photosAdapter
         photos.addItemDecoration(PhotosItemDecoration())
-        photos.pagedScrollListener { OnNextPage(it - 1).accept() }
+        photos.pagedScrollListener { if (it > 40) OnNextPage(it - 1).accept() }
     }
 
     private fun render(state: PhotosState) {
         photosAdapter.setItems(state.photos)
         if (state.albumId.toInt() > 0) add.animateScale(1)
+    }
+
+    private fun handleEvent(event: PhotosEvent) {
+        when (event) {
+            is ShowUploadDialog -> uploadingDialog.show()
+            is HideUploadDialog -> uploadingDialog.dismiss()
+            is ShowError -> toast(R.string.could_not_upload_photo)
+        }
     }
 
     private fun onPhotoClicked(photo: PhotoUi) {

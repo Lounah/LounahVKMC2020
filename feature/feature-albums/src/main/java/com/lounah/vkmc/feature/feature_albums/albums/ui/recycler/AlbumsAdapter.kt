@@ -41,11 +41,11 @@ internal class AlbumsAdapter(
     }
 
     override fun setItems(items: List<ViewTyped>) {
-        val unique = items.distinct()
-        val callback = AlbumsDiffUtilCallback(itemsInternal, unique)
+        val merged = items.associateBy(ViewTyped::uid).values.toList()
+        val callback = AlbumsDiffUtilCallback(itemsInternal, merged)
         val diff = DiffUtil.calculateDiff(callback)
         itemsInternal.clear()
-        itemsInternal.addAll(unique)
+        itemsInternal.addAll(merged)
         diff.dispatchUpdatesTo(this)
     }
 
@@ -77,7 +77,9 @@ internal class AlbumsDiffUtilCallback(
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
         return if (oldItems[oldItemPosition] is AlbumUi && newItems[newItemPosition] is AlbumUi) {
-            (oldItems[oldItemPosition] as AlbumUi).isInEditMode != (newItems[newItemPosition] as AlbumUi).isInEditMode
+            (oldItems[oldItemPosition] as AlbumUi).isInEditMode != (newItems[newItemPosition] as AlbumUi).isInEditMode || (
+                    (oldItems[oldItemPosition] as AlbumUi).subtitle != (newItems[newItemPosition] as AlbumUi).subtitle
+                    )
         } else null
     }
 }
