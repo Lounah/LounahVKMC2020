@@ -2,13 +2,13 @@ package com.lounah.vkmc.feature_places.places.map.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.material.snackbar.Snackbar
 import com.lounah.vkmc.core.arch.lifecycle.bind
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
+import com.lounah.vkmc.core.extensions.animateAlpha
 import com.lounah.vkmc.feature.feature_places.R
 import com.lounah.vkmc.feature_places.di.ClipsPlacesComponent
 import com.lounah.vkmc.feature_places.places.map.config.PlacesMapUiHelper
@@ -65,7 +65,7 @@ internal class ClipsPlacesFragment : Fragment(R.layout.fragment_clips_places), O
     }
 
     private fun render(state: PlacesState) {
-        progressView.isVisible = state.loading
+        progressView.animateAlpha(to = if (state.loading) 1 else 0)
         uiHelper.renderMarkers(state.stories)
     }
 

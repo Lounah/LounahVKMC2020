@@ -30,4 +30,5 @@
     <string name="permissions_required">Location, Camera and Storage permissions required</string>
     <string name="app_access_permission_rationale">Allow access to them</string>
     <string name="allow">Allow</string>
+    <string name="story_published">Story was successfully published</string>
 </resources>

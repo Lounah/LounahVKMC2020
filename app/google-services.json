@@ -1,9 +1,9 @@
 {
   "project_info": {
     "project_number": "350659972866",
-    "firebase_url": "https://vkmc2020-2.firebaseio.com",
-    "project_id": "vkmc2020-2",
-    "storage_bucket": "vkmc2020-2.appspot.com"
+    "firebase_url": "https://vkmc2020.firebaseio.com",
+    "project_id": "vkmc2020",
+    "storage_bucket": "vkmc2020.appspot.com"
   },
   "client": [
     {
@@ -37,6 +37,43 @@
           "other_platform_oauth_client": [
             {
               "client_id": "350659972866-pgi148amroolpnl58cm07dnt25ap03cd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529461039823:android:54836d06a7b8b7dd271dba",
+        "android_client_info": {
+          "package_name": "com.lounah.vkmc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529461039823-kpuve6b22a4soqeip9bubiclsiufbom6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lounah.vkmc",
+            "certificate_hash": "3f463c74a7c41e11253ab2afb160b1d77e74e569"
+          }
+        },
+        {
+          "client_id": "529461039823-07cmvfc96jidr1quosc2g07e47j5gbof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWlMXW-jrcNi_odT25BxnJDH7KwthJubM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529461039823-07cmvfc96jidr1quosc2g07e47j5gbof.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

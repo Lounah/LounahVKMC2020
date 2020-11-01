@@ -81,7 +81,7 @@ internal class CameraFragment : Fragment(R.layout.fragment_camera) {
         player.play(video)
     }
 
-    private fun enableVideoRecordingMode() {
+    fun enableVideoRecordingMode() {
         playerView.hide()
         next.animateTranslationY(next.height + 20.dp(requireContext()), duration = 150)
         controls.animateTranslationY(0, duration = 150L)

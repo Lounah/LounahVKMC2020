@@ -11,6 +11,7 @@ internal class PlacesUpdater : Update<PlacesState, PlacesEvent, PlacesCommand> {
     override fun update(state: PlacesState, event: PlacesEvent): Next<PlacesState, PlacesCommand> {
         return when (event) {
             is LoadingFailed -> {
+                println("ERROR: ${event.error}")
                 Next(state.copy(loading = false), listOf(ShowError))
             }
             is HideLoading -> Next(state.copy(loading = false))

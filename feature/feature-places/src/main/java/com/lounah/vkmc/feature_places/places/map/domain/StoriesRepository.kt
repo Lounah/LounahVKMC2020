@@ -3,14 +3,10 @@ package com.lounah.vkmc.feature_places.places.map.domain
 import com.google.android.gms.maps.model.LatLng
 import com.lounah.vkmc.feature_places.places.map.business.StoriesApi
 import com.lounah.vkmc.feature_places.places.model.Story
-import io.reactivex.Completable
 import io.reactivex.Observable
-import java.io.File
-import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 
 interface StoriesRepository {
-    fun putStory(file: File, location: LatLng): Completable
     fun getStoriesByIds(ids: List<String>): Observable<List<Story>>
     fun getNearestStories(location: LatLng): Observable<List<Story>>
     fun getStoryById(id: String): Observable<Story>
@@ -22,12 +18,6 @@ internal class StoriesRepositoryImpl(
 
     private val inMemoryStories = CopyOnWriteArrayList<Story>()
 
-    override fun putStory(file: File, location: LatLng): Completable {
-        val id = UUID.randomUUID().timestamp().toString()
-        return storiesApi.saveStory(id, "", "",file, location)
-            .map(inMemoryStories::add)
-            .ignoreElement()
-    }
 
     override fun getNearestStories(location: LatLng): Observable<List<Story>> {
         return storiesApi.getNearestStories(location)

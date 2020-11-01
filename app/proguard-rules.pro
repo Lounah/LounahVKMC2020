@@ -75,6 +75,5 @@
 }
 
 -dontwarn com.google.android.gms.**
--keepclasseswithmembers class com.camerakit.preview.CameraSurfaceView {
-    native <methods>;
-}
+
+-keep class com.lounah.vkmc.feature_places.** { *; }

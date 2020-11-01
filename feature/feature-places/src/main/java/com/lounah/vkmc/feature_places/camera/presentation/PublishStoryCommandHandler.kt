@@ -27,12 +27,10 @@ class PublishStoryCommandHandler(
                     LatLng(command.lat, command.lng),
                     command.story
                 )
-                    .toObservable<StorySettingsEvent>()
-                    .map<StorySettingsEvent> { OnStoryUploaded }
-                    .onErrorReturnItem(OnStoryLoadingFailed)
-                    .subscribeOn(io())
-                    .observeOn(mainThread())
-            }
+            }.map<StorySettingsEvent> { OnStoryUploaded }
+                .onErrorReturnItem(OnStoryLoadingFailed)
+                .subscribeOn(io())
+                .observeOn(mainThread())
         }
     }
 }

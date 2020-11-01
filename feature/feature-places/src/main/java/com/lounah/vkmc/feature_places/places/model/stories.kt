@@ -18,6 +18,7 @@ data class Story(
     val author: String
 )
 
+@Keep
 internal fun StorageMetadata.toStory(): Story {
     return Story(
         getCustomMetadata("id").orEmpty(),

@@ -4,7 +4,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.CollectionReference
 import com.lounah.vkmc.core.core_vk.business.commands.user.User
 import com.lounah.vkmc.feature_places.places.map.domain.GetNearestCity
-import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.Observables
 import java.io.File
@@ -16,7 +15,7 @@ interface StoryCreator {
         thumbnail: String,
         latLng: LatLng,
         story: File
-    ): Completable
+    ): Observable<String>
 }
 
 class StoryCreatorImpl(
@@ -31,7 +30,7 @@ class StoryCreatorImpl(
         thumbnail: String,
         latLng: LatLng,
         story: File
-    ): Completable {
+    ): Observable<String> {
         return Observables.zip(getUser(), publishStoryVideo(story)) { user, storyUri ->
             val author = "${user.firstName} ${user.lastName}"
             mapOf(
@@ -45,10 +44,10 @@ class StoryCreatorImpl(
                 "thumbnailUri" to thumbnail,
                 "uri" to storyUri
             )
-        }.flatMapCompletable { storyMap ->
-            Completable.create { emitter ->
+        }.flatMap { storyMap ->
+            Observable.create<String> { emitter ->
                 collectionRef.add(storyMap)
-                    .addOnSuccessListener { emitter.onComplete() }
+                    .addOnSuccessListener { emitter.onNext(it.id) }
                     .addOnFailureListener(emitter::onError)
             }
         }

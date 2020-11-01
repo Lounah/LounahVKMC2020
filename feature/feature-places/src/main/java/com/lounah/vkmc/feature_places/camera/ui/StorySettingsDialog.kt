@@ -10,10 +10,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import com.lounah.vkmc.core.arch.lifecycle.bind
 import com.lounah.vkmc.core.di.ComponentStorage.getComponent
-import com.lounah.vkmc.core.extensions.hide
-import com.lounah.vkmc.core.extensions.onTextChange
-import com.lounah.vkmc.core.extensions.show
-import com.lounah.vkmc.core.extensions.toast
+import com.lounah.vkmc.core.extensions.*
 import com.lounah.vkmc.core.ui.bottomsheet.BaseBottomSheetDialogFragment
 import com.lounah.vkmc.core.ui.bottomsheet.bottomSheetBehaviour
 import com.lounah.vkmc.core.ui.imageloader.GlideApp
@@ -77,7 +74,11 @@ internal class StorySettingsDialog : BaseBottomSheetDialogFragment(R.layout.dial
 
     private fun handleNews(news: StorySettingsNews) {
         when (news) {
-            is CloseDialog -> dismiss()
+            is CloseDialog -> {
+                toast(R.string.story_published)
+                parentFragment.asType<CameraFragment>().enableVideoRecordingMode()
+                dismiss()
+            }
             is ShowError -> {
                 toast(R.string.error_publishing)
             }

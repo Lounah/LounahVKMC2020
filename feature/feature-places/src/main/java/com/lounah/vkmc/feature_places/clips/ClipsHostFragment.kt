@@ -10,7 +10,7 @@ import com.lounah.vkmc.feature.feature_places.R
 import com.lounah.vkmc.feature_places.host.VKMainActivity
 import kotlinx.android.synthetic.main.fragment_clips_host.*
 
-internal class ClipsHostFragment : Fragment(R.layout.fragment_clips_host) {
+class ClipsHostFragment : Fragment(R.layout.fragment_clips_host) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
