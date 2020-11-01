@@ -6,6 +6,8 @@ dependencies {
     
     implementation Libraries.glide
     kapt Libraries.glideAp
+    implementation 'com.google.firebase:firebase-storage-ktx:19.1.0'
+    implementation 'com.firebaseui:firebase-ui-storage:6.1.0'
     implementation SupportLibraries.appcompat
     implementation SupportLibraries.design
 }

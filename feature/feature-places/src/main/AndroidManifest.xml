@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lounah.vkmc.feature.feature_places">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name="com.lounah.vkmc.feature_places.host.VKMainActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:theme="@style/VKMCAppTheme.Dark" />
+
+        <activity
+            android:name="com.lounah.vkmc.feature_places.places.feed.host.ui.StoriesFeedActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|layoutDirection"
+            android:theme="@style/VKMCAppTheme.Dark" />
+    </application>
+</manifest>

@@ -1,0 +1,8 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+    implementation Libraries.rxJava
+    implementation Libraries.rxKotlin
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+    implementation 'com.jakewharton.rxrelay2:rxrelay:2.1.1'
+}

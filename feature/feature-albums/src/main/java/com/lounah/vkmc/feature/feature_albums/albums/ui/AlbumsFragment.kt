@@ -1,9 +1,7 @@
 package com.lounah.vkmc.feature.feature_albums.albums.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.VERTICAL
@@ -34,7 +32,7 @@ import kotlin.LazyThreadSafetyMode.NONE
 private const val TOOLBAR_FLIPPER_REGULAR = 0
 private const val TOOLBAR_FLIPPER_EDIT_MODE = 1
 
-internal class AlbumsFragment : Fragment(), OnBackPressedListener {
+class AlbumsFragment : Fragment(R.layout.fragment_albums), OnBackPressedListener {
 
     private val albumsAdapter: AlbumsAdapter by lazy(NONE) {
         AlbumsAdapter(::onAlbumClicked, ::onAlbumLongClicked, ::onDeleteClicked, ::onRepeatLoading)
@@ -43,12 +41,6 @@ internal class AlbumsFragment : Fragment(), OnBackPressedListener {
     private val presenter: AlbumsPresenter by lazy(NONE) {
         getComponent<AlbumsComponent>().albumsPresenter
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_albums, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

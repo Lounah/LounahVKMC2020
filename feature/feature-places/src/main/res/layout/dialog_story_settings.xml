@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/vk_tt_commons_demi_bold"
+        android:text="@string/story_settings"
+        android:textColor="#fff"
+        android:textSize="23sp" />
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:fontFamily="@font/vk_roboto_regular"
+        android:hint="@string/title"
+        android:maxLines="1"
+        android:nextFocusRight="@id/comment"
+        android:nextFocusUp="@id/comment"
+        android:nextFocusDown="@id/comment"
+        android:nextFocusForward="@id/comment"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:singleLine="true"
+        android:textColor="#fff"
+        android:textColorHint="#CAC9C9"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:fontFamily="@font/vk_roboto_regular"
+        android:hint="@string/comment"
+        android:maxLines="1"
+        android:nextFocusUp="@id/comment"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:textColor="#fff"
+        android:textColorHint="#CAC9C9"
+        android:textSize="18sp" />
+
+    <com.lounah.vkmc.core.ui.AspectRatioCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/uikit_accent"
+        app:aspect_ratio="0.664"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:id="@+id/selectedImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription"
+            tools:layout_height="120dp"
+            tools:src="@color/uikit_gray" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_horizontal_gradient">
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textColor="@color/uikit_white"
+                android:fontFamily="@font/vk_roboto_regular"
+                tools:text="Krasnodar, Stavropolskaya st." />
+
+        </FrameLayout>
+
+    </com.lounah.vkmc.core.ui.AspectRatioCardView>
+
+    <FrameLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:id="@+id/actionButton"
+            style="@style/Button.Dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/publish"
+            android:visibility="visible"
+            app:elevation="0dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:elevation="4dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/uikit_black"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="gone" />
+
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -13,4 +13,5 @@ dependencies {
     implementation SupportLibraries.appcompat
 
     implementation 'com.alexvasilkov:gesture-views:2.2.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }

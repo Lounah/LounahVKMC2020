@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="newsfeed">News</string>
+    <string name="search">Hub</string>
+    <string name="messages">Messenger</string>
+    <string name="not_notifications">Clips</string>
+    <string name="menu">Profile</string>
+    <string name="for_u">For you</string>
+    <string name="following">Following</string>
+    <string name="top">Top</string>
+    <string name="places">Places</string>
+    <string name="clips_feed_empty_title">Nothing here yet</string>
+    <string name="clips_feed_empty_subtitle">Follow interesting people from your \"For you\" feed,\n and their clips will appear here</string>
+    <string name="clips_feed_for_you_empty_subtitle">There are no clips here yet</string>
+    <string name="loading">Загрузка…</string>
+    <string name="error_loading">Error loading stories</string>
+    <string name="error_publishing">Error publishing story</string>
+    <string name="retry">Retry</string>
+    <string name="clip">Clip</string>
+    <string name="story">Story</string>
+    <string name="next">Next</string>
+    <string name="story_settings">Story Settings</string>
+    <string name="title">Title</string>
+    <string name="comment">Enter your comment here</string>
+    <string name="publish">Publish</string>
+    <string name="hot">Hot</string>
+    <string name="friends">Friends</string>
+    <string name="chip_photos">Photos</string>
+    <string name="permissions_required">Location, Camera and Storage permissions required</string>
+    <string name="app_access_permission_rationale">Allow access to them</string>
+    <string name="allow">Allow</string>
+</resources>

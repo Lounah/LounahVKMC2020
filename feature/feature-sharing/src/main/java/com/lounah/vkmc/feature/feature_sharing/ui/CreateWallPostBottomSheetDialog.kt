@@ -70,7 +70,7 @@ internal class CreateWallPostBottomSheetDialog :
         if (state.isLoading) showProgress() else hideProgress()
         inputComment.isEnabled = !state.isLoading
         actionButton.isEnabled = !state.isLoading
-        dialog.bottomSheetBehaviour.isHideable = !state.isLoading
+        dialog?.bottomSheetBehaviour?.isHideable = !state.isLoading
     }
 
     private fun handleEvent(event: ShareMediaEvent) {

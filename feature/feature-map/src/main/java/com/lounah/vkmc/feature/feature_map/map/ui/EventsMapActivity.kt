@@ -113,7 +113,7 @@ class EventsMapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     companion object {
-        val authScopes = listOf(GROUPS, PHOTOS, WALL)
+        val authScopes = listOf(GROUPS, PHOTOS, WALL, STORIES)
 
         fun start(context: Context) {
             Intent(context, EventsMapActivity::class.java).also(context::startActivity)

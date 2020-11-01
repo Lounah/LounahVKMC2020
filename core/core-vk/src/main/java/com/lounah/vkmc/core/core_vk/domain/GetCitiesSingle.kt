@@ -24,17 +24,30 @@ private val inMemoryCities = listOf(
     City("158", "Челябинск", "Челябинске", 55.16 to 61.43)
 )
 
-class GetCities : () -> Single<List<City>> {
+class GetCities : () -> List<City> {
+    override fun invoke(): List<City> {
+        return inMemoryCities
+    }
+}
+
+class GetCitiesSingle : () -> Single<List<City>> {
 
     override fun invoke(): Single<List<City>> {
         return Single.just(inMemoryCities)
     }
 }
 
-class GetCityById : (CityId) -> Single<City> {
+class GetCityByIdSingle : (CityId) -> Single<City> {
 
     override fun invoke(cityId: CityId): Single<City> {
         return Single.just(inMemoryCities.firstOrNull { it.id == cityId })
+    }
+}
+
+class GetCityById : (CityId) -> City {
+
+    override fun invoke(cityId: CityId): City {
+        return inMemoryCities.firstOrNull { it.id == cityId } ?: error("Unknown cityId")
     }
 }
 

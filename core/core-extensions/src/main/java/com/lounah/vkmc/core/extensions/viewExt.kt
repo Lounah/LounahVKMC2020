@@ -5,6 +5,7 @@ package com.lounah.vkmc.core.extensions
 import android.content.Context
 import android.view.View
 import android.view.ViewAnimationUtils
+import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 
@@ -117,4 +118,10 @@ fun View.hideKeyboard() {
         val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(this.windowToken, 0)
     }
+}
+
+fun View.setMarginTop(marginTop: Int) {
+    val menuLayoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+    menuLayoutParams.setMargins(0, marginTop, 0, 0)
+    this.layoutParams = menuLayoutParams
 }

@@ -23,7 +23,7 @@ object Releases {
 }
 
 object Versions {
-    const val gradle = "3.5.3"
+    const val gradle = "4.0.1"
     const val compileSdk = 29
     const val minSdk = 21
     const val targetSdk = 29
@@ -43,7 +43,7 @@ object Versions {
     const val rxRedux = "1.0.1"
     const val okhttp = "4.2.1"
     const val gson = "2.8.6"
-    const val constraintLayout = "2.0.0-alpha4"
+    const val constraintLayout = "2.0.2"
     const val permissions = "3.0.0"
 
     const val glide = "4.10.0"
@@ -71,6 +71,7 @@ object Libraries {
 
 object SupportLibraries {
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+    const val fragment = "androidx.fragment:fragment-ktx:1.2.5"
     const val design = "com.google.android.material:material:${Versions.design}"
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
 }

@@ -17,9 +17,17 @@ import com.lounah.vkmc.feature.feature_sharing.di.SharingDependencies
 import com.lounah.vkmc.feature.feature_unsubscribe.di.UserGroupsComponent
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.di.GroupDetailsComponent
 import com.lounah.vkmc.feature.feature_unsubscribe.groupdetails.di.GroupDetailsDependencies
+import com.lounah.vkmc.feature_places.di.ClipsPlacesComponent
+import com.lounah.vkmc.feature_places.di.ClipsPlacesDependencies
 
-interface AppComponent : SharingDependencies, ImagePickerDependencies, GroupDetailsDependencies,
-    ProductDetailsDependencies, MapsDependencies, AlbumsDependencies {
+interface AppComponent :
+    SharingDependencies,
+    ImagePickerDependencies,
+    GroupDetailsDependencies,
+    ProductDetailsDependencies,
+    MapsDependencies,
+    AlbumsDependencies,
+    ClipsPlacesDependencies {
 
     companion object {
         operator fun invoke(context: Context): AppComponent {
@@ -40,6 +48,10 @@ interface AppComponent : SharingDependencies, ImagePickerDependencies, GroupDeta
 
     fun challengeFeatureComponent(): SharingComponent {
         return SharingComponent(this)
+    }
+
+    fun storiesPlacesComponent(): ClipsPlacesComponent {
+        return ClipsPlacesComponent(this)
     }
 
     fun imagePickerComponent(): ImagePickerComponent {

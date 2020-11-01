@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        android:name="com.lounah.vkmc.feature_places.ClipsHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#000"
+        app:elevation="4dp"
+        app:itemIconTint="@color/selector_bottom_navigation_icons"
+        app:itemTextAppearanceActive="@style/BottomNavigationTextAppearence"
+        app:itemTextAppearanceInactive="@style/BottomNavigationTextAppearence.Inactive"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/places_bottom_navigation" />
+
+</FrameLayout>

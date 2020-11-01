@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0A">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:layout_gravity="top"
+        android:background="@drawable/places_clips_toolbar_gradient" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/camera"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/vk_icon_camera_outline_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/camera"
+            app:layout_constraintEnd_toStartOf="@id/yourStories"
+            app:layout_constraintStart_toEndOf="@id/camera"
+            app:layout_constraintTop_toTopOf="@id/camera"
+            app:tabGravity="center"
+            app:tabIndicatorColor="#fff"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="#fff"
+            app:tabTextAppearance="@style/TabText">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/forYou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/for_u" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/following"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/following" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/top" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/places"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/places" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <ImageView
+            android:id="@+id/yourStories"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/vk_icon_play_rectangle_stack_outline_28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#000"
+        app:elevation="4dp"
+        app:itemIconTint="@color/selector_bottom_navigation_icons"
+        app:itemTextAppearanceActive="@style/BottomNavigationTextAppearence"
+        app:itemTextAppearanceInactive="@style/BottomNavigationTextAppearence.Inactive"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/places_bottom_navigation" />
+</FrameLayout>

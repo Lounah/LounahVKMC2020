@@ -7,27 +7,19 @@ internal object InjectorInitializer {
 
     fun initialize(context: Context) {
         val appComponent = AppComponent(context)
-        val challengeFeatureComponent = appComponent.challengeFeatureComponent()
-        val imagePickerComponent = appComponent.imagePickerComponent()
-        val userGroupsComponent = appComponent.userGroupsComponent()
-        val groupDetailsComponent = appComponent.groupDetailsComponent()
-        val marketsComponent = appComponent.marketsComponent()
-        val goodsComponent = appComponent.goodsComponent()
-        val citiesListComponent = appComponent.citiesListComponent()
-        val productDetailsComponent = appComponent.productDetailsComponent()
-        val albumsComponent = appComponent.albumsComponent()
-        val eventsMapComponent = appComponent.eventsMapComponent()
-
-        ComponentStorage.addComponent(appComponent)
-        ComponentStorage.addComponent(challengeFeatureComponent)
-        ComponentStorage.addComponent(imagePickerComponent)
-        ComponentStorage.addComponent(groupDetailsComponent)
-        ComponentStorage.addComponent(eventsMapComponent)
-        ComponentStorage.addComponent(citiesListComponent)
-        ComponentStorage.addComponent(albumsComponent)
-        ComponentStorage.addComponent(goodsComponent)
-        ComponentStorage.addComponent(marketsComponent)
-        ComponentStorage.addComponent(userGroupsComponent)
-        ComponentStorage.addComponent(productDetailsComponent)
+        listOf(
+            appComponent,
+            appComponent.challengeFeatureComponent(),
+            appComponent.imagePickerComponent(),
+            appComponent.userGroupsComponent(),
+            appComponent.groupDetailsComponent(),
+            appComponent.marketsComponent(),
+            appComponent.goodsComponent(),
+            appComponent.citiesListComponent(),
+            appComponent.productDetailsComponent(),
+            appComponent.albumsComponent(),
+            appComponent.eventsMapComponent(),
+            appComponent.storiesPlacesComponent()
+        ).also(ComponentStorage::addComponents)
     }
 }

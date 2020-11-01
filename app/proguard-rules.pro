@@ -74,3 +74,7 @@
     public <methods>;
 }
 
+-dontwarn com.google.android.gms.**
+-keepclasseswithmembers class com.camerakit.preview.CameraSurfaceView {
+    native <methods>;
+}

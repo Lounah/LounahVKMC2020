@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BottomNavigationTextAppearence" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/vk_tt_commons_medium</item>
+    </style>
+
+    <style name="TabText">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/vk_roboto_medium</item>
+        <item name="android:textColor">#99A2AD</item>
+    </style>
+
+    <style name="BottomNavigationTextAppearence.Inactive">
+        <item name="android:textColor">#AD9DA1A7</item>
+    </style>
+</resources>

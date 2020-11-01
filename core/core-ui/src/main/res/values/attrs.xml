@@ -6,4 +6,7 @@
     <declare-styleable name="AspectRatioFrameLayout">
         <attr name="aspfl_aspect_ratio" format="float" />
     </declare-styleable>
+    <declare-styleable name="CameraButton">
+        <attr name="cb_recording_color" format="color"/>
+    </declare-styleable>
 </resources>
